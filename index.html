@@ -4,326 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hebrew Remembrance Songs: A Curated Library</title>
-    <style>
-        :root {
-            --primary-color: #3a506b; /* Deeper blue */
-            --secondary-color: #5bc0de; /* Lighter blue accent */
-            --accent-color: #d9534f; /* Muted red for emphasis */
-            --text-color: #333;
-            --background-color: #f9f9f9;
-            --card-background: #ffffff;
-            --border-color: #e0e0e0;
-            --hebrew-color: #8b4513;
-            --english-color: #2c3e50;
-            --transliteration-color: #6c757d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary-color), #1c2541);
-            color: white;
-            padding: 2.5rem 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .header-content h1 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .header-content p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .navigation {
-            background: var(--card-background);
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-button {
-            background: none;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-button:hover,
-        .nav-button.active {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .main-content {
-            padding: 2rem 0;
-        }
-
-        /* Library Section */
-        #library-section {
-            display: block;
-        }
-
-        .library-controls {
-            background: var(--card-background);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .search-bar {
-            flex: 1;
-            min-width: 300px;
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-
-        .tag-filters button {
-            background: #e9ecef;
-            color: #495057;
-            border: 1px solid #dee2e6;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 0.25rem;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .tag-filters button.active {
-            background: var(--secondary-color);
-            color: white;
-            border-color: var(--secondary-color);
-        }
-
-        .song-library {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .song-card {
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border-left: 5px solid var(--secondary-color);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .song-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
-
-        .song-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-            font-size: 1.4rem;
-        }
-
-        .song-card .hebrew-title {
-            color: var(--hebrew-color);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            direction: rtl;
-            text-align: right;
-        }
-
-        .song-card .artist {
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .song-card .description {
-            color: #6c757d;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            flex-grow: 1;
-            margin-bottom: 1rem;
-        }
-
-        .song-card .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .song-card .tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-        
-        #no-results {
-            text-align: center;
-            padding: 3rem;
-            font-size: 1.2rem;
-            color: #6c757d;
-            grid-column: 1 / -1;
-        }
-
-        /* Player Section */
-        .player-section {
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: none; /* Hidden by default */
-        }
-        
-        .player-section.active {
-            display: block;
-        }
-
-        .back-button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .back-button:hover {
-            background: #c0392b;
-        }
-
-        .player-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1.5rem;
-        }
-
-        .player-header h2 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* ... other player styles from previous version ... */
-        .player-header .hebrew-title { color: var(--hebrew-color); font-size: 1.8rem; direction: rtl; margin-bottom: 0.5rem; }
-        .player-header .artist { color: var(--secondary-color); font-size: 1.3rem; font-weight: 500; }
-        .youtube-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
-        .lyrics-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .lyrics-column { background: #f9f9f9; padding: 1.5rem; border-radius: 8px; border-top: 4px solid; max-height: 500px; overflow-y: auto; }
-        .hebrew-lyrics { border-top-color: var(--hebrew-color); direction: rtl; text-align: right; }
-        .english-lyrics { border-top-color: var(--english-color); }
-        .transliteration-lyrics { border-top-color: var(--transliteration-color); }
-        .lyrics-column h3 { margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; position: sticky; top: 0; background: #f9f9f9; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
-        .hebrew-lyrics h3 { color: var(--hebrew-color); }
-        .english-lyrics h3 { color: var(--english-color); }
-        .transliteration-lyrics h3 { color: var(--transliteration-color); }
-        .lyric-line { margin-bottom: 1rem; padding: 0.75rem; border-radius: 6px; transition: all 0.3s ease; cursor: default; border-left: 3px solid transparent; line-height: 1.6; }
-        .cultural-context { background: linear-gradient(135deg, #f9f9f9, #e9ecef); padding: 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid var(--accent-color); }
-        .cultural-context h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.4rem; }
-        .cultural-context p, .cultural-context li { color: #495057; line-height: 1.8; margin-bottom: 1rem; }
-        .ai-analysis { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
-        .ai-analysis h3 { margin-bottom: 1rem; font-size: 1.4rem; }
-        .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .analysis-card { background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px; }
-        .analysis-card h4 { margin-bottom: 0.5rem; color: #ffd700; }
-
-        /* About Section */
-        #about-section {
-            background: var(--card-background);
-            padding: 2rem;
-            border-radius: 12px;
-            display: none; /* Hidden by default */
-        }
-
-        footer {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content h1 { font-size: 2.2rem; }
-            .song-library { grid-template-columns: 1fr; }
-            .lyrics-container { grid-template-columns: 1fr; }
-            .library-controls { flex-direction: column; align-items: stretch; }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>Hebrew Remembrance Songs</h1>
+                <h1>Hebrew Songs of Remembrance</h1>
                 <p>A curated library of translated songs for Yom HaZikaron, Yom HaShoah, and moments of reflection.</p>
             </div>
         </div>
     </header>
 
     <nav class="navigation">
-        <div class="container">
-            <div class="nav-content">
+        <div class="container nav-container">
+            <div class="nav-links">
                 <button class="nav-button active" onclick="showView('library-section')">📚 Song Library</button>
                 <button class="nav-button" onclick="showView('about-section')">ℹ️ About This Project</button>
+            </div>
+            <div class="theme-switcher">
+                <span>☀️</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>🌙</span>
             </div>
         </div>
     </nav>
@@ -333,31 +45,31 @@
             
             <section id="library-section">
                 <div class="library-controls">
-                    <input type="text" id="search-bar" class="search-bar" placeholder="Search for a song or artist...">
+                    <input type="text" id="search-bar" class="search-bar" placeholder="Search by English/Hebrew title or artist...">
                     <div id="tag-filters" class="tag-filters">
                         </div>
                 </div>
                 <div id="song-library" class="song-library">
                     </div>
-                <div id="no-results" style="display: none;">No songs found matching your search.</div>
+                <div id="no-results" style="display: none;">No songs found matching your criteria.</div>
             </section>
 
             <section id="player-section" class="player-section">
                 <button class="back-button" onclick="showView('library-section')">← Back to Library</button>
                 
                 <div class="player-header">
-                    <h2 id="song-title">Song Title</h2>
-                    <div class="hebrew-title" id="hebrew-title">כותרת בעברית</div>
-                    <div class="artist" id="song-artist">Artist Name</div>
+                    <h2 id="song-title"></h2>
+                    <div class="hebrew-title" id="hebrew-title"></div>
+                    <div class="artist" id="song-artist"></div>
                 </div>
 
                 <div class="youtube-embed" id="youtube-embed-container"></div>
 
                 <div class="ai-analysis">
-                    <h3>Song Analysis</h3>
+                    <h3>At a Glance</h3>
                     <div class="analysis-grid">
-                        <div class="analysis-card"><h4>Theme</h4><p id="song-theme"></p></div>
-                        <div class="analysis-card"><h4>Era</h4><p id="song-era"></p></div>
+                        <div class="analysis-card"><h4>Primary Theme</h4><p id="song-theme"></p></div>
+                        <div class="analysis-card"><h4>Historical Era</h4><p id="song-era"></p></div>
                         <div class="analysis-card"><h4>Emotional Tone</h4><p id="song-emotion"></p></div>
                         <div class="analysis-card"><h4>For Learners</h4><p id="song-difficulty"></p></div>
                     </div>
@@ -365,13 +77,17 @@
 
                 <div class="lyrics-container">
                     <div class="lyrics-column hebrew-lyrics"><h3>עברית (Hebrew)</h3><div id="hebrew-lyrics"></div></div>
-                    <div class="lyrics-column english-lyrics"><h3>English</h3><div id="english-lyrics"></div></div>
-                    <div class="lyrics-column transliteration-lyrics"><h3>Pronunciation</h3><div id="transliteration-lyrics"></div></div>
+                    <div class="lyrics-column english-lyrics"><h3>English Poetic Translation</h3><div id="english-lyrics"></div></div>
+                    <div class="lyrics-column transliteration-lyrics"><h3>Pronunciation Guide</h3><div id="transliteration-lyrics"></div></div>
                 </div>
 
                 <div class="cultural-context">
                     <h3>Background & Significance</h3>
                     <div id="song-context"></div>
+                </div>
+                 <div class="linguistic-notes">
+                    <h3>Linguistic & Thematic Notes</h3>
+                    <div id="linguistic-notes"></div>
                 </div>
             </section>
             
@@ -381,14 +97,14 @@
                 <p>Music is a powerful conduit for history, emotion, and collective memory. For those who do not speak Hebrew, the depth of these songs can be lost. This library aims to bridge that gap by providing not just literal translations, but poetic interpretations, accurate pronunciation guides (transliterations), and the cultural and historical context necessary to fully appreciate each piece.</p>
                 <h3>Features:</h3>
                 <ul>
-                    <li><strong>Curated Selection:</strong> A hand-picked collection of songs for Yom HaZikaron (Israel's Memorial Day), Yom HaShoah (Holocaust Remembrance Day), and general themes of peace, loss, and hope.</li>
-                    <li><strong>In-Depth Translations:</strong> Each song is presented with its original Hebrew, a meaningful English translation, and a phonetic transliteration.</li>
-                    <li><strong>Cultural Context:</strong> Understand the story behind the song—who wrote it, when, why, and what it means to the people who sing it.</li>
+                    <li><strong>Curated Selection:</strong> A hand-picked collection of 20 seminal songs for Yom HaZikaron (Israel's Memorial Day), Yom HaShoah (Holocaust Remembrance Day), and general themes of peace, loss, and hope.</li>
+                    <li><strong>Complete Lyrics & In-Depth Translations:</strong> Each song is presented with its complete original Hebrew, a meaningful English translation that captures the poetic spirit, and a phonetic transliteration.</li>
+                    <li><strong>Cultural & Linguistic Context:</strong> Understand the story behind the song—who wrote it, when, why, what it means, and notes on key Hebrew phrases.</li>
                     <li><strong>Search and Filter:</strong> Easily find songs by title, artist, or theme using the library's search and tag filters.</li>
+                    <li><strong>Light & Dark Mode:</strong> Choose your preferred viewing experience.</li>
                 </ul>
                 <p>This is a living project. We hope it serves as a valuable tool for education, connection, and remembrance.</p>
             </section>
-
         </div>
     </main>
 
@@ -398,496 +114,6 @@
         </div>
     </footer>
 
-<script>
-// =================================================================================
-//  SONG DATABASE
-//  This is where all the pre-translated song data is stored.
-// =================================================================================
-const songDatabase = [
-    {
-        id: 'shir-hareut',
-        title: 'The Song of Friendship',
-        hebrewTitle: 'שיר הרעות',
-        artist: 'Lahakat HaNahal',
-        youtubeId: 'SjgXf7pE-oM',
-        description: 'The foundational anthem of Israeli civil religion, expressing the profound loss and camaraderie of the 1948 War of Independence.',
-        tags: ['Yom HaZikaron', 'Loss', 'Friendship', 'War of Independence'],
-        lyrics: {
-            hebrew: [
-                'עַל הַנֶּגֶב יוֹרֵד לֵיל הַסְּתָו', 'וּמַצִּית כּוֹכָבִים חֶרֶשׁ חֶרֶשׁ', 'עֵת הָרוּחַ עוֹבֵר עַל הַסַּף', 'עֲנָנִים מְהַלְּכִים עַל הַדֶּרֶךְ.',
-                'כְּבָר שָׁנָה, לֹא הִרְגַּשְׁנוּ כִּמְעַט', 'אֵיךְ עָבְרָה הַזְּמַן בִּשְׂדוֹתֵינוּ,', 'כְּבָר שָׁנָה וְנוֹתַרְנוּ מְעַט', 'מָה רַבִּים שֶׁאֵינָם כְּבָר בֵּינֵינוּ.',
-                'אַךְ נִזְכֹּר אֶת כֻּלָּם', 'אֶת יְפֵי הַבְּלוֹרִית וְהַתֹּאַר', 'כִּי רֵעוּת שֶׁכָּזֹאת לְעוֹלָם', 'לֹא תִּתֵּן אֶת לִבֵּנוּ לִשְׁכֹּחַ', 'אַהֲבָה מְקֻדֶּשֶׁת בְּדָם', 'אַתְּ תָּשׁוּבִי בֵּינֵינוּ לִפְרֹחַ.'
-            ],
-            english: [
-                'Upon the Negev, the autumn night descends', 'And kindles the stars, silently, softly', 'As the wind passes over the threshold', 'Clouds are walking on the road.',
-                'It\'s been a year, we almost didn\'t feel', 'How the time passed in our fields,', 'It\'s been a year, and we who remain are few', 'So many are no longer among us.',
-                'But we will remember them all', 'The ones handsome of forelock and form', 'Because a fellowship such as this, forever', 'Will not let our hearts forget', 'A love consecrated in blood', 'You will return to bloom amongst us.'
-            ],
-            transliteration: [
-                'Al ha-Negev yored leil ha-stav', 'U-matzit kochavim cheresh cheresh', 'Et ha-ruach over al ha-saf', 'Ananim mehalechim al ha-derech.',
-                'Kvar shana, lo hirgashnu kim\'at', 'Eich avra ha-zman bi-sdoteinu,', 'Kvar shana ve-notarnu me\'at', 'Ma rabim she-einam kvar beineinu.',
-                'Ach nizkor et kulam', 'Et yefei ha-blorit ve-ha-to\'ar', 'Ki re\'ut she-kazot le-olam', 'Lo titen et libenu lishko\'ach', 'Ahavah mekudeshet be-dam', 'At tashuvi beineinu lifro\'ach.'
-            ]
-        },
-        context: "Written by Palmach poet Haim Gouri in 1948, 'Shir HaRe'ut' elevates the bond between soldiers ('Re\'ut' - a deep comradeship) to a sacred national value. It personifies this fellowship as a burning flame born from the terror of war, sanctifying the sacrifice of the fallen generation. It is a cornerstone of every Yom HaZikaron ceremony.",
-        analysis: { theme: 'Friendship & Remembrance', era: '1940s', emotion: 'Solemn, Nostalgic', difficulty: 'Advanced' }
-    },
-    {
-        id: 'bab-el-wad',
-        title: 'The Gate of the Valley',
-        hebrewTitle: 'באב אל וואד',
-        artist: 'Yafa Yarkoni',
-        youtubeId: '3LwT2JgVjeo',
-        description: 'Immortalizes the bloody 1948 battles to break the siege of Jerusalem, embedding the memory of the fallen into the landscape itself.',
-        tags: ['Yom HaZikaron', 'War of Independence', 'Jerusalem', 'Memory'],
-        lyrics: {
-            hebrew: [
-                'פֹּה אֲנִי עוֹבֵר, נִצָּב לְיַד הָאֶבֶן.', 'כְּבִישׁ חָרֵב, שָׁקוּעַ בַּשְּׁקִיעָה.', 'עֶרֶב רַד, יוֹרֵד, קָרֵב, נוֹשֵׁב בָּעֵצֶב,', 'רוּחַ-יָם מַלְחִית וְקַרְקִיעָה.',
-                'בָּאב אֶל-וָאד, לָנֶצַח זְכֹר נָא אֶת שְׁמוֹתֵינוּ,', 'כְּשֶׁהַשַּׁיָּרוֹת פָּרְצוּ בַּדֶּרֶךְ אֶל הָעִיר.', 'יוֹם אָבִיב יָבוֹא וְרַקְפוֹת תִּפְרַחְנָה,', 'וְזֶה אֲשֶׁר יֵלֵךְ בַּדֶּרֶךְ שֶׁהָלַכנוּ,', 'לֹא יִשְׁכַּח אוֹתָנוּ, אֶת בָּאב אֶל-וָאד.'
-            ],
-            english: [
-                'Here I pass, standing beside the stone.', 'A ruined road, sunken in the sunset\'s glow.', 'Evening has fallen, descends, draws near, blowing in sorrow,', 'A salty sea-breeze and the ground below.',
-                'Bab el-Wad, forever, please, remember our names,', 'As the convoys broke through on the road to the city.', 'A spring day will come and cyclamens will bloom,', 'And he who will walk on the road we walked,', 'Will not forget us, the men of Bab el-Wad.'
-            ],
-            transliteration: [
-                'Po ani over, nitzav le-yad ha-even.', 'Kvish charev, shaku\'a ba-shki\'ah.', 'Erev rad, yored, karev, noshev ba-etzev,', 'Ruach-yam malchit ve-karki\'ah.',
-                'Bab el-Wad, la-netzach zechor na et shmoteinu,', 'Ke-she-ha-shayarot partzu ba-derech el ha-ir.', 'Yom aviv yavo ve-rakfot tifrachna,', 'Ve-zeh asher yelech ba-derech she-halachnu,', 'Lo yishkach otanu, et Bab el-Wad.'
-            ]
-        },
-        context: "Penned by Haim Gouri, this song transforms a specific location—the gorge leading to Jerusalem—into a national memorial. It personifies the valley, asking it to remember the names of those who fell breaking the siege. The 'iron skeletons' of the destroyed armored cars lined the road for decades, making this song a living testament to the price paid for the city.",
-        analysis: { theme: 'Sacrifice & Memory', era: '1940s', emotion: 'Commemorative, Solemn', difficulty: 'Advanced' }
-    },
-    {
-        id: 'magash-hakesef',
-        title: 'The Silver Platter',
-        hebrewTitle: 'מגש הכסף',
-        artist: 'Yehoram Gaon',
-        youtubeId: 'h8s6A4h-0-s',
-        description: 'A prophetic poem-turned-song defining the sacrifice of the 1948 generation as the "platter" on which the state was delivered.',
-        tags: ['Yom HaZikaron', 'Sacrifice', 'Statehood', 'War of Independence'],
-        lyrics: {
-            hebrew: [
-                'וְהָאָרֶץ תִּשְׁקֹט, עֵין שָׁמַיִם קוֹדֶרֶת', 'תַּעֲטֶה עֲרָפֶל, עֲשַׁן אֲדָמָה,', 'כִּי אֻמָּה קְרוּעַת לֵב, אַךְ נוֹשֶׁמֶת, תִּקְרַב', 'לְקַבֵּל אֶת הַנֵּס הָאֶחָד, הֶעָתִיד.',
-                'אָז מִנֶּגֶד יֵצְאוּ נַעַר וְנַעֲרָה', 'וְיִצְעֲדוּ הָלְאָה לְאַט.', 'וְאָמְרוּ: אֲנַחְנוּ מַגַּשׁ הַכֶּסֶף', 'שֶׁעָלָיו לָךְ נִתְּנָה מְדִינַת הַיְּהוּדִים.', 'וְהַשְּׁאָר יְסֻפַּר בְּתוֹלְדוֹת יִשְׂרָאֵל.'
-            ],
-            english: [
-                'And the land will grow still, the eye of the sky turns grim', 'Cloaked in mist, the smoke of the earth', 'For a nation, heart-torn but breathing, will approach', 'To receive the one, the future miracle.',
-                'Then from across, a boy and a girl will step forth', 'And they will walk forward slowly.', 'And they will say: We are the silver platter', 'Upon which the state of the Jews was given to you.', 'And the rest will be told in the chronicles of Israel.'
-            ],
-            transliteration: [
-                'Ve-ha\'aretz tishkot, ein shamayim koderet', 'Ta\'ateh arafel, ashan adamah,', 'Ki umah kru\'at lev, ach noshemet, tikrav', 'Le-kabel et ha-nes ha-echad, he-atid.',
-                'Az mi-neged yetz\'u na\'ar ve-na\'arah', 'Ve-yitz\'adu hal\'ah le\'at.', 'Ve-amru: Anachnu magash ha-kesef', 'She-alav lach nitnah medinat ha-yehudim.', 'Ve-ha-she\'ar yesupar be-toldot Yisrael.'
-            ]
-        },
-        context: "Written by Natan Alterman in 1947 as a direct response to Chaim Weizmann's remark that a state is not given on a 'silver platter.' Alterman's poem posits that the state *was* delivered on such a platter: the young men and women who gave their lives. It is a canonical text recited at nearly every official Yom HaZikaron ceremony, defining the day as an acknowledgment of a sacred debt.",
-        analysis: { theme: 'National Sacrifice', era: '1940s', emotion: 'Mythic, Solemn', difficulty: 'Advanced' }
-    },
-    {
-        id: 'halikha-lekesariya',
-        title: 'A Walk to Caesarea (My God, My God)',
-        hebrewTitle: 'הליכה לקיסריה (אלי, אלי)',
-        artist: 'Ofra Haza',
-        youtubeId: 'QTQdu1j_y5g',
-        description: 'A life-affirming poem by Hannah Szenes, made tragic and powerful by her ultimate sacrifice as a paratrooper in WWII.',
-        tags: ['Yom HaShoah', 'Faith', 'Hope', 'Sacrifice', 'Poetry'],
-        lyrics: {
-            hebrew: [ 'אֵלִי, אֵלִי,', 'שֶׁלֹּא יִגָּמֵר לְעוֹלָם', 'הַחוֹל וְהַיָּם,', 'רִשְׁרוּשׁ שֶׁל הַמַּיִם,', 'בְּרַק הַשָּׁמַיִם,', 'תְּפִלַּת הָאָדָם.' ],
-            english: [ 'My God, my God,', 'May it never end –', 'The sand and the sea,', 'The rush of the waters,', 'The crash of the heavens,', 'The prayer of man.' ],
-            transliteration: [ 'Eli, Eli,', 'She-lo yigamer le-olam', 'Ha-chol ve-ha-yam,', 'Rishrush shel ha-mayim,', 'Berak ha-shamayim,', 'Tefilat ha-adam.' ]
-        },
-        context: "This poem by Hannah Szenes has become a sacred text of Yom HaShoah. Written in the beauty of Caesarea in 1942, its simple prayer for the permanence of nature is transformed by Szenes's biography. She volunteered to parachute into occupied Europe, was captured, tortured, and executed. The song represents the life she willingly sacrificed and the Zionist ideal of rebirth in the face of destruction.",
-        analysis: { theme: 'Endurance & Hope', era: '1940s', emotion: 'Wistful, Hopeful', difficulty: 'Beginner' }
-    },
-    {
-        id: 'katuv-beiparon-bakaron-hechatum',
-        title: 'Written in Pencil in the Sealed Railway Car',
-        hebrewTitle: 'כתוב בעיפרון בקרון החתום',
-        artist: 'HaMadregot',
-        youtubeId: 'jm-J95p_6-I',
-        description: 'A short, devastating poem by Holocaust survivor Dan Pagis that reframes the Shoah as a primordial, biblical tragedy.',
-        tags: ['Yom HaShoah', 'Holocaust', 'Poetry', 'Theology'],
-        lyrics: {
-            hebrew: [ 'כָּאן בַּמִּשְׁלוֹחַ הַזֶּה', 'אֲנִי חַוָּה', 'עִם הֶבֶל בְּנִי', 'אִם תִּרְאוּ אֶת בְּנִי הַגָּדוֹל', 'קַיִן בֶּן אָדָם', 'תַּגִּידוּ לוֹ שֶׁאֲנִי' ],
-            english: [ 'here in this transport', 'i am eve', 'with abel my son', 'if you see my other son', 'cain son of man', 'tell him that i' ],
-            transliteration: [ 'Kan ba-mishlo\'ach ha-zeh', 'ani Chavah', 'im Hevel b\'ni', 'im tir\'u et b\'ni ha-gadol', 'Kayin ben adam', 'tagidu lo she-ani' ]
-        },
-        context: "Dan Pagis's poem recasts the Holocaust through biblical archetypes. The speaker is Eve, trapped in a cattle car with her murdered son Abel, sending a message to her other son, the murderer Cain ('son of man' or 'human being'). It transforms a specific historical event into a timeless act of fratricide at the heart of the human story. The poem is inscribed at Yad Vashem.",
-        analysis: { theme: 'Testimony & Trauma', era: '1970s', emotion: 'Haunting, Fragile', difficulty: 'Advanced' }
-    },
-    {
-        id: 'givat-hatachmoshet',
-        title: 'Ammunition Hill',
-        hebrewTitle: 'גבעת התחמושת',
-        artist: 'The Central Command Trio',
-        youtubeId: 'R4p441s8_80',
-        description: 'A raw, documentary-style account of one of the fiercest battles of the 1967 Six-Day War for the reunification of Jerusalem.',
-        tags: ['Yom HaZikaron', 'Six-Day War', 'Jerusalem', 'Heroism', 'Battle'],
-        lyrics: {
-            hebrew: [ 'בִּשְׁתַּיִם, שְׁתַּיִם וּשְׁלוֹשִׁים הִתְחַלְנוּ לִזְחֹל,', 'מִבֵּית הַסֵּפֶר לִשּׁוֹטְרִים, לְעֵבֶר הַגְּדֵרוֹת,', '״עֲבֹר דּוּמִיָּה, עוֹד מְעַט זֶה מַתְחִיל.״', 'בְּשָׁלוֹשׁ וָעֶשֶׂר דָּקוֹת כְּבָר הָיִינוּ בִּפְנִים,', '״פְּלֻגָּה א\', קָדִימָה!״ וְרַצְנוּ אֲבוּדֵי-חוּשִׁים,', 'אֶל תוֹךְ הַתְּעָלָה הָרִאשׁוֹנָה.' ],
-            english: [ 'At two, two thirty, we started to crawl,', 'From the Police Academy, towards the fences tall,', '\'Go silent, it\'s about to begin.\'', 'At ten past three, we were already inside,', '\'Company A, forward!\' and we ran bereft of senses,', 'Into the first trench.' ],
-            transliteration: [ 'Bi-shtayim, shtayim u-shloshim hitchalnu lizchol,', 'Mi-beit ha-sefer le-shotrim, le-ever ha-gederot,', '\'Avor dumiyah, od me\'at zeh matchil.\'', 'Be-shalosh va-eser dakot kvar hayinu bifnim,', '\'Pluga aleph, kadima!\' ve-ratznu avudei-chushim,', 'El toch ha-te\'alah ha-rishonah.' ]
-        },
-        context: "Based on actual testimonies of the soldiers who fought there, this song marked a shift in Israeli war songs. It moves away from poetic allegory to a gritty, journalistic style, capturing the chaos and grim reality of close-quarters combat. It honors the heroism of 1967 while acknowledging its brutal, human cost.",
-        analysis: { theme: 'Battle & Heroism', era: '1960s', emotion: 'Gritty, Intense', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'choref-shivim-ve-shalosh',
-        title: 'Winter of \'73',
-        hebrewTitle: 'חורף 73\'',
-        artist: 'Lahakat Chinuch Meyuchad',
-        youtubeId: '-T43kG2-2vI',
-        description: 'A powerful dialogue between the children born after the Yom Kippur War and their parents\' generation, questioning the unfulfilled promise of peace.',
-        tags: ['Yom Kippur War', 'Peace', 'Generations', 'Yom HaZikaron', 'Promise'],
-        lyrics: {
-            hebrew: [ 'אֲנַחְנוּ הַיְּלָדִים שֶׁל חֹרֶף שִׁבְעִים וְשָׁלוֹשׁ,', 'גָּדַלְנוּ, וְהִנֵּה אֲנַחְנוּ חַיָּלִים.', 'מַבִּיטִים בָּכֶם, אָבוֹת עֲיֵפִים,', 'וְשׁוֹאֲלִים בְּשֶׁקֶט: הַאִם קִיַּמְתֶּם?', 'הִבְטַחְתֶּם יוֹנָה, עֲלֵה זַיִת,', 'הִבְטַחְתֶּם שָׁלוֹם בַּבַּיִת.', 'הִבְטַחְתֶּם אָבִיב וּפְרִיחָה,', 'וְלֹא קִיַּמְתֶּם.' ],
-            english: [ 'We are the children of the winter of seventy-three,', 'We have grown, and here we are, soldiers.', 'Looking at you, weary fathers,', 'And asking quietly: Did you fulfill?', 'You promised a dove, an olive branch,', 'You promised peace at home.', 'You promised spring and blossoming,', 'And you did not fulfill.' ],
-            transliteration: [ 'Anachnu ha-yeladim shel choref shiv\'im ve-shalosh,', 'Gadalnu, ve-hineh anachnu chayalim.', 'Mabitim bachem, avot ayefim,', 'Ve-sho\'alim be-sheket: Ha-im kiyamtem?', 'Hivtachtem yonah, aleh zayit,', 'Hivtachtem shalom ba-bayit.', 'Hivtachtem aviv u-frichah,', 'Ve-lo kiyamtem.' ]
-        },
-        context: "Released in 1994, this song captures the lingering trauma of the 1973 war through a generational lens. The children, now soldiers themselves, hold their parents accountable for the promise that theirs would be the last generation to fight. It marks a shift from collective mourning to a more complex, questioning dialogue about the cost of war and the responsibility for peace.",
-        analysis: { theme: 'Generational Dialogue', era: '1990s', emotion: 'Poignant, Questioning', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'ma-avarech',
-        title: 'With What Shall I Bless Him?',
-        hebrewTitle: 'מה אברך',
-        artist: 'Rivka Zohar',
-        youtubeId: 'a265GIyYy-Y',
-        description: 'A haunting ballad that personalizes collective grief by telling the story of an angel blessing a boy at each stage of life, only to fall silent when he becomes a man destined for war.',
-        tags: ['Yom HaZikaron', 'Personal Grief', 'Six-Day War', 'Loss', 'Youth'],
-        lyrics: {
-            hebrew: [ 'מַה אֲבָרֵךְ לוֹ, בַּמֶּה יְבֹרַךְ?', 'זֶה הַיֶּלֶד? – שָׁאַל הַמַּלְאָךְ.', 'וְהֵשִׁיב בִּדְמָעָה: אֲבָרְכֶנּוּ בְּחֹסֶן,', 'מַה אֲבָרֵךְ לוֹ, בַּמֶּה יְבֹרַךְ?', 'זֶה הַנַּעַר? – שָׁאַל הַמַּלְאָךְ.', 'וְעָנָה בִּשְׂחוֹק גָּדוֹל: שֶׁיֵּדַע אֶת הָאֹשֶׁר,', 'וְהַנַּעַר, הַיֶּלֶד, הָעֶלֶם הָיָה לְאִישׁ,', 'וְהַמַּלְאָךְ הִבִּיט בּוֹ וְשָׁתַק.' ],
-            english: [ 'With what shall I bless him, with what shall he be blessed?', 'This child? – asked the angel.', 'And answered with a tear: I will bless him with strength,', 'With what shall I bless him, with what shall he be blessed?', 'This lad? – asked the angel.', 'And answered with a great laugh: That he may know happiness,', 'And the lad, the child, the young man became a man,', 'And the angel looked upon him and was silent.' ],
-            transliteration: [ 'Ma avarech lo, ba-meh yevorach?', 'Zeh ha-yeled? – sha\'al ha-mal\'ach.', 'Ve-heshiv bi-dma\'ah: Avrachenu be-chosen,', 'Ma avarech lo, ba-meh yevorach?', 'Zeh ha-na\'ar? – sha\'al ha-mal\'ach.', 'Ve-anah bi-schok gadol: She-yeda et ha-osher,', 'Ve-ha-na\'ar, ha-yeled, ha-elem hayah le-ish,', 'Ve-ha-mal\'ach hibit bo ve-shatak.' ]
-        },
-        context: "Poet Rachel Shapira wrote the lyrics in memory of her classmate Eldad Kruk, who was killed in the Six-Day War. The song powerfully captures the tragedy of unrealized potential by following the blessings given to a boy throughout his life, which cease when he becomes a man and a soldier. It makes the abstract cost of war deeply personal.",
-        analysis: { theme: 'Personal Grief', era: '1960s', emotion: 'Mournful, Tender', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'lu-yehi',
-        title: 'May It Be',
-        hebrewTitle: 'לו יהי',
-        artist: 'Chava Alberstein',
-        youtubeId: 'PhO8a_j-22E',
-        description: 'The defining anthem of the Yom Kippur War, written by Naomi Shemer as an urgent, collective prayer for hope and the safe return of soldiers.',
-        tags: ['Yom Kippur War', 'Prayer', 'Hope', 'Peace'],
-        lyrics: {
-            hebrew: [ 'עוֹד יֵשׁ מִפְרָשׂ לָבָן בָּאֹפֶק', 'מוּל עָנָן שָׁחֹר כָּבֵד,', 'כָּל שֶׁנְּבַקֵּשׁ – לוּ יְהִי.', 'לוּ יְהִי, לוּ יְהִי, אָנָּא לוּ יְהִי –', 'כָּל שֶׁנְּבַקֵּשׁ לוּ יְהִי.', 'בְּסוֹף הַקַּיִץ שֶׁלָּנוּ', 'תְּנוּ לָנוּ לַחֲזֹר הַבַּיְתָה.' ],
-            english: [ 'There is still a white sail on the horizon', 'Against a heavy black cloud,', 'All that we ask for – may it be.', 'May it be, may it be, please, may it be –', 'All that we ask for, may it be.', 'At the end of our summer', 'Let us return home.' ],
-            transliteration: [ 'Od yesh mifras lavan ba-ofek', 'Mul anan shachor kaved,', 'Kol she-nevakesh – lu yehi.', 'Lu yehi, lu yehi, ana lu yehi –', 'Kol she-nevakesh lu yehi.', 'Be-sof ha-kayitz shelanu', 'Tnu lanu lachazor ha-baytah.' ]
-        },
-        context: "Written and composed by Naomi Shemer during the first desperate days of the 1973 Yom Kippur War, 'Lu Yehi' became the unofficial national prayer. It perfectly captured the nation's mood of shock and fear, and its title is an active plea ('May it be') rather than a passive acceptance. The song marks the moment the Israeli psyche turned from the certainty of victory to the fragility of prayer.",
-        analysis: { theme: 'Hope & Prayer', era: '1970s', emotion: 'Prayerful, Hopeful', difficulty: 'Beginner' }
-    },
-    {
-        id: 'ein-li-eretz-acheret',
-        title: 'I Have No Other Country',
-        hebrewTitle: 'אין לי ארץ אחרת',
-        artist: 'Gali Atari',
-        youtubeId: '1zPhm-aEGJg',
-        description: 'A quintessential Israeli anthem that balances unconditional love for the country with a fierce, critical vow to fight for its soul.',
-        tags: ['Peace', 'Protest', 'Belonging', 'Lebanon War', 'Hope'],
-        lyrics: {
-            hebrew: [ 'אֵין לִי אֶרֶץ אַחֶרֶת', 'גַּם אִם אַדְמָתִי בּוֹעֶרֶת.', 'רַק מִלָּה בְּעִבְרִית חוֹדֶרֶת', 'אֶל עָרְקַי, אֶל נִשְׁמָתִי,', 'בְּגוּף כּוֹאֵב, בְּלֵב רָעֵב,', 'כָּאן הוּא בֵּיתִי.', 'לֹא אֶשְׁתֹּק, כִּי אַרְצִי', 'שִׁנְּתָה אֶת פָּנֶיהָ.', 'לֹא אַוַתֵּר לָהּ, לְהַזְכִּיר לָהּ,', 'וְאָשִׁיר בְּאָזְנֶיהָ,', 'עַד שֶׁתִּפְקַח אֶת עֵינֶיהָ.' ],
-            english: [ 'I have no other country', 'Even if my land is burning.', 'Only a word in Hebrew penetrates', 'Into my veins, into my soul,', 'With an aching body, with a hungry heart,', 'Here is my home.', 'I will not be silent, for my country', 'Has changed its face.', 'I will not give up on her, I will remind her,', 'And sing into her ears,', 'Until she opens her eyes.' ],
-            transliteration: [ 'Ein li eretz acheret', 'Gam im admati bo\'eret.', 'Rak milah be-Ivrit choderet', 'El orkai, el nishmati,', 'Be-guf ko\'ev, be-lev ra\'ev,', 'Kan hu beiti.', 'Lo eshtok, ki artzi', 'Shinta et paneha.', 'Lo avater lah, le-hazkir lah,', 'Ve-ashir be-ozneha,', 'Ad she-tifkach et eineha.' ]
-        },
-        context: "Written by Ehud Manor in 1982, this song captures the paradox of Israeli identity: deep love combined with sharp criticism. Embraced as an anthem by the peace movement during the Lebanon War, its duality has allowed it to be adopted by all sides of the political spectrum. It defines a uniquely Israeli patriotism rooted in the painful responsibility to fight for the nation's character.",
-        analysis: { theme: 'Patriotism & Protest', era: '1980s', emotion: 'Defiant, Passionate', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'shir-lashalom',
-        title: 'A Song for Peace',
-        hebrewTitle: 'שיר לשלום',
-        artist: 'Miri Aloni & Lahakat HaNahal',
-        youtubeId: '-Y94qG-T25M',
-        description: 'Israel\'s most iconic and controversial peace anthem, forever linked to the memory of Prime Minister Yitzhak Rabin, who sang it moments before his assassination.',
-        tags: ['Peace', 'Protest', 'Hope', 'Yitzhak Rabin'],
-        lyrics: {
-            hebrew: [ 'תְּנוּ לַשֶּׁמֶשׁ לַעֲלוֹת,', 'לַבֹּקֶר לְהָאִיר,', 'הַזַּכָּה שֶׁבַּתְּפִלּוֹת', 'אוֹתָנוּ לֹא תַּחֲזִיר.', 'לָכֵן, רַק שִׁירוּ שִׁיר לַשָּׁלוֹם,', 'אַל תִּלְחֲשׁוּ תְּפִלָּה.', 'אַל תַּגִּידוּ יוֹם יָבוֹא,', 'הָבִיאוּ אֶת הַיּוֹם!' ],
-            english: [ 'Let the sun rise,', 'Let the morning shine,', 'The purest of prayers', 'Will not bring us back.', 'Therefore, just sing a song for peace,', 'Do not whisper a prayer.', 'Do not say a day will come,', 'Bring the day!' ],
-            transliteration: [ 'Tnu la-shemesh la-alot,', 'La-boker le-ha\'ir,', 'Ha-zakah she-ba-tefilot', 'Otanu lo tachazir.', 'Lachen, rak shiru shir la-shalom,', 'Al tilchashu tefilah.', 'Al tagidu yom yavo,', 'Havi\'u et ha-yom!' ]
-        },
-        context: "Written by a wounded soldier in 1969, this song was a radical departure from the ethos of its time. It explicitly rejects rituals of mourning in favor of an active, urgent demand for peace. Its status was tragically cemented on Nov 4, 1995, when it was the last song sung by Yitzhak Rabin before his assassination. The blood-stained lyric sheet found in his pocket transformed the song into a sacred relic of the peace movement.",
-        analysis: { theme: 'Peace & Activism', era: '1960s', emotion: 'Urgent, Hopeful', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'ballada-lachovesh',
-        title: 'Ballad for a Medic',
-        hebrewTitle: 'בלדה לחובש',
-        artist: 'Yehoram Gaon',
-        youtubeId: 'W9lGTt8mX2c',
-        description: 'A narrative ballad about a medic who makes the ultimate sacrifice to stay with a wounded soldier, embodying the IDF ethos of "leaving no man behind."',
-        tags: ['Yom HaZikaron', 'Heroism', 'Sacrifice', 'War of Attrition'],
-        lyrics: {
-            hebrew: [ 'בְּעֵמֶק שָׁם, בֵּין הֶהָרִים,', 'שָׁכַב פָּצוּעַ וְגָנַח.', '״הַשְׁאִירוּ אוֹתִי כָּאן, חֲבֵרִים,', 'אֲנִי כְּבָר לֹא אוּכַל לָנוּעַ.״', '״עֲזֹב שְׁטוּיוֹת,״ עָנָה אָז הַחוֹבֵשׁ,', '״אֲנִי אוֹתְךָ מִכָּאן לֹא עוֹזֵב.״', 'וְהֵם נוֹתְרוּ שְׁנֵיהֶם, וְהֵם גְּלוּיִים לָאֵשׁ.' ],
-            english: [ 'In the valley there, between the mountains,', 'A wounded soldier lay and groaned.', '\'Leave me here, friends,', 'I can no longer move.\'', '\'Leave that nonsense,\' the medic then said,', '\'I am not leaving you here.\'', 'And the two of them remained, exposed to the fire.' ],
-            transliteration: [ 'Be-emek sham, bein he-harim,', 'Shachav patzu\'a ve-ganach.', '\'Hash\'iru oti kan, chaverim,', 'Ani kvar lo uchal lanu\'a.\'', '\'Azov shtuyot,\' anah az ha-chovesh,', '\'Ani otcha mi-kan lo ozev.\'', 'Ve-hem notru shneihem, ve-hem gluyim la-esh.' ]
-        },
-        context: "Based on a story by S.Y. Agnon, this song tells the tragic tale of a medic who refuses to abandon a mortally wounded soldier, staying with him under fire and using his own last dressing to tend to him. It powerfully captures the themes of self-sacrifice, medical ethics on the battlefield, and the profound humanism that can exist even in the midst of war. It is a staple of ceremonies honoring fallen medics.",
-        analysis: { theme: 'Self-Sacrifice', era: '1960s', emotion: 'Tragic, Heroic', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'yerushalayim-shel-zahav',
-        title: 'Jerusalem of Gold',
-        hebrewTitle: 'ירושלים של זהב',
-        artist: 'Shuli Natan',
-        youtubeId: 'l0d-P7Y_pLM',
-        description: 'Israel\'s unofficial national anthem, written three weeks before the Six-Day War, expressing a 2000-year-old longing for a divided Jerusalem.',
-        tags: ['Jerusalem', 'Six-Day War', 'Hope', 'Longing', 'Reunification'],
-        lyrics: {
-            hebrew: [ 'אֲוִיר הָרִים צָלוּל כַּיַּיִן', 'וְרֵיחַ אֳרָנִים', 'נִשָּׂא בְּרוּחַ הָעַרְבַּיִם', 'עִם קוֹל פַּעֲמוֹנִים.', 'יְרוּשָׁלַיִם שֶׁל זָהָב', 'וְשֶׁל נְחֹשֶׁת וְשֶׁל אוֹר', 'הֲלֹא לְכָל שִׁירַיִךְ אֲנִי כִּנּוֹר.', 'חָזַרְנוּ אֶל בּוֹרוֹת הַמַּיִם,', 'לַשּׁוּק וְלַכִּכָּר,', 'שׁוֹפָר קוֹרֵא בְּהַר הַבַּיִת', 'בָּעִיר הָעַתִּיקָה.' ],
-            english: [ 'Mountain air as clear as wine', 'And the scent of pines', 'Is carried on the evening wind', 'With the sound of bells.', 'Jerusalem of gold', 'And of bronze, and of light', 'Behold, I am a violin for all your songs.', 'We have returned to the water cisterns,', 'To the market and to the square,', 'A shofar sounds on the Temple Mount', 'In the Old City.' ],
-            transliteration: [ 'Avir harim tzalul ka-yayin', 'Ve-rei\'ach oranim', 'Nisa be-ruach ha-arbayim', 'Im kol pa\'amonim.', 'Yerushalayim shel zahav', 'Ve-shel nechoshet ve-shel or', 'Ha-lo le-chol shirayich ani kinor.', 'Chazarnu el borot ha-mayim,', 'La-shuk ve-la-kikar,', 'Shofar kore be-Har ha-Bayit', 'Ba-ir ha-atikah.' ]
-        },
-        context: "Written by Naomi Shemer just before the 1967 war, the song's original lyrics lamented a divided Jerusalem inaccessible to Jews. When the city was reunified, Shemer added a triumphant final verse celebrating the return. The song's history encapsulates a pivotal moment of national trauma and euphoria. Its original mournful verses ensure its place in the canon of remembrance for the city that once was.",
-        analysis: { theme: 'Longing & Homecoming', era: '1960s', emotion: 'Yearning, Reverent', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'hanisich-hakatan',
-        title: 'The Little Prince',
-        hebrewTitle: 'הנסיך הקטן',
-        artist: 'Gidi Gov',
-        youtubeId: 'lQ67Bv4g9hA',
-        description: 'A poignant elegy for a fallen soldier, using the allegory of Saint-Exupéry\'s famous story to describe a journey from which there is no return.',
-        tags: ['Personal Grief', 'Yom HaZikaron', 'Loss of Innocence', 'Allegory'],
-        lyrics: {
-            hebrew: [ 'הוּא יָשַׁב עַל שְׂפַת הַכּוֹכָב,', 'לְבַדּוֹ עִם הַשְּׁקִיעָה.', 'הַשּׁוֹשַׁנָּה אָמְרָה לוֹ: ״לֵךְ,', 'וְהוּא נֶעֱצַב מְאֹד, וְהָלַךְ,', 'וְעָזַב אֶת כּוֹכָבוֹ לְבַד.', 'וְהוּא רָצָה לַחֲזֹר, אֲבָל,', 'הַדֶּרֶךְ הָיְתָה אֲרֻכָּה כָּל כָּךְ,', 'וְהוּא יָדַע שֶׁהוּא לֹא יָכוֹל,', 'לַחֲזֹר אֶל כּוֹכָבוֹ לָנֶצַח.' ],
-            english: [ 'He sat on the edge of the star,', 'Alone with the sunset.', 'The rose told him: \'Go,', 'And he grew very sad, and he went,', 'And left his star alone.', 'And he wanted to return, but,', 'The road was so long,', 'And he knew that he could not,', 'Return to his star forever.' ],
-            transliteration: [ 'Hu yashav al sfat ha-kochav,', 'Levado im ha-shki\'ah.', 'Ha-shoshanah amrah lo: \'Lech,', 'Ve-hu ne\'etzav me\'od, ve-halach,', 'Ve-azav et kochavo levad.', 'Ve-hu ratzah lachzor, aval,', 'Ha-derech haytah arukah kol kach,', 'Ve-hu yada she-hu lo yachol,', 'Lachzor el kochavo la-netzach.' ]
-        },
-        context: "Yehonatan Geffen wrote this song in memory of his nephew, a soldier killed in 1973. Using the simple, childlike language of 'The Little Prince,' it tells the heartbreaking story of leaving home (his star) and love (his rose) for a journey (the army) from which he can never return. It strips away heroic narratives to focus on the intimate, irreversible tragedy of a single lost life.",
-        analysis: { theme: 'Allegorical Loss', era: '1970s', emotion: 'Melancholic, Gentle', difficulty: 'Beginner' }
-    },
-    {
-        id: 'kmo-tzemach-bar',
-        title: 'Like a Wildflower',
-        hebrewTitle: 'כמו צמח בר',
-        artist: 'Chava Alberstein',
-        youtubeId: 'Zf9zVf4I0-c',
-        description: 'An anthem of resilience and survival, using the metaphor of a lone wildflower that endures a harsh winter to bloom again.',
-        tags: ['Resilience', 'Hope', 'Survival', 'Yom HaZikaron'],
-        lyrics: {
-            hebrew: [ 'רַק אִמָּא דָּאֲגָה וְאָמְרָה:', '"אֵיךְ תִּגְדַּל, יַלְדִּי?"', 'וְהוּא חִיֵּךְ לָהּ וְשָׁתַק.', 'כְּמוֹ צֶמַח בַּר.', 'שֶׁמְּחַפֵּשׂ אֶת הַשֶּׁמֶשׁ', 'מִתַּחַת לַסְּלָעִים.', 'כָּךְ הוּא חָלַם לִפְרֹחַ,', 'יוֹם אֶחָד, בֵּין הַשְּׁבִילִים.' ],
-            english: [ 'Only mother worried and said:', '"How will you grow, my child?"', 'And he smiled at her and was silent.', 'Like a wildflower.', 'That searches for the sun', 'Underneath the rocks.', 'So he dreamed of blooming,', 'One day, among the paths.' ],
-            transliteration: [ 'Rak ima da\'agah ve-amrah:', '"Eich tigdal, yaldi?"', 'Ve-hu chiyech lah ve-shatak.', 'Kmo tzemach bar.', 'She-mechapes et ha-shemesh', 'Mi-tachat la-sla\'im.', 'Kach hu chalam lifroach,', 'Yom echad, bein ha-shvilim.' ]
-        },
-        context: "This song by Rachel Shapira is a powerful message of hope for the bereaved. Its theme of perseverance through darkness and the promise of eventual renewal resonates deeply with the Israeli experience. It suggests that even from the depths of grief, life can emerge, fragile but determined, like a wildflower breaking through hard ground.",
-        analysis: { theme: 'Resilience & Survival', era: '1970s', emotion: 'Hopeful, Enduring', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'lelechet-shevi-acharayich',
-        title: 'To Walk Captivated By You',
-        hebrewTitle: 'ללכת שבי אחרייך',
-        artist: 'Ilanit',
-        youtubeId: 'qO3z4T9xYbo',
-        description: 'A declaration of love and commitment to the Land of Israel, personified as a beloved partner whose burdens must be shared.',
-        tags: ['Love of Land', 'Yom Kippur War', 'Hope', 'Belonging'],
-        lyrics: {
-            hebrew: [ 'לָלֶכֶת שְׁבִי אַחֲרַיִךְ,', 'לִנְשֹׁם אֶת עֲפַר דְּרָכַיִךְ,', 'לִכְאֹב וְלָשֵׂאת בִּשְׁנַיִם', 'וְלֶאֱהֹב אוֹתָךְ.', 'לָתֵת אֶת יָדִי לְיָדֵךְ,', 'לִצְעֹד לְעֻמַּת פָּנַיִךְ,', 'לָשִׂים אֶת כְּתֵפִי אֶל שֶׁכֶם', 'וְלִבְנוֹת אוֹתָךְ.' ],
-            english: [ 'To walk captivated by you,', 'To breathe the dust of your paths,', 'To ache and to bear together', 'And to love you.', 'To give my hand to yours,', 'To march towards your face,', 'To place my shoulder to the burden', 'And to build you.' ],
-            transliteration: [ 'Lalechet shevi acharayich,', 'Linshom et afar drachayich,', 'Lich\'ov ve-laset bi-shnayim', 'Ve-le\'ehov otach.', 'Latet et yadi le-yadech,', 'Litz\'od le\'umat panayich,', 'Lasim et k\'tefi el shechem', 'Ve-livnot otach.' ]
-        },
-        context: "Ehud Manor wrote these lyrics during the Yom Kippur War while he was abroad, feeling helpless. The song is an expression of his deep, physical connection to the land and his yearning to return and share in its struggles. It describes a love that is not easy or idyllic but embraces pain and responsibility. In memorial contexts, it reaffirms the bond to the land for which soldiers fell.",
-        analysis: { theme: 'Love of Land', era: '1970s', emotion: 'Devotional, Earnest', difficulty: 'Beginner' }
-    },
-    {
-        id: 'zemer-nogah',
-        title: 'A Sad Song',
-        hebrewTitle: 'זמר נוגה',
-        artist: 'Ofra Haza',
-        youtubeId: 'T_3FAPlJk4g',
-        description: 'A haunting poem by the pre-state poet Rachel, giving voice to the silent, private grief of those left behind by war.',
-        tags: ['Poetry', 'Sacrifice', 'Longing', 'Pre-State Era'],
-        lyrics: {
-            hebrew: [ 'הֲתִזְכֹּר מַנְגִינָתִי, זֶמֶר עֶרֶשׂ?', 'הֲתִשְׁמַע בִּדְמִי הַלֵּילוֹת?', 'הֲתֵדַע אֶת הַכְּאֵב הַנִּצְחִי,', 'הַמְּחַכֶּה לְךָ תָּמִיד?', 'וְאִם לֹא אֶהְיֶה כְּשֶׁתָּשׁוּב,', 'הֲתָבוֹא אֶל קִבְרִי הַשָּׁכֹל,', 'וְתִבְכֶּה עַל אַהֲבָה שֶׁאֵינֶנָּה?' ],
-            english: [ 'Will you remember my melody, a cradle song?', 'Will you hear in the silence of the nights?', 'Will you know the eternal pain,', 'That always waits for you?', 'And if I am not here when you return,', 'Will you come to my bereaved grave,', 'And weep for a love that is no more?' ],
-            transliteration: [ 'Ha-tizkor manginati, zemer eres?', 'Ha-tishma bi-dmi ha-leilot?', 'Ha-teda et ha-ke\'ev ha-nitzchi,', 'Ha-mechakeh lecha tamid?', 'Ve-im lo ehyeh ke-she-tashuv,', 'Ha-tavo el kivri ha-shakol,', 'Ve-tivkeh al ahavah she-einena?' ]
-        },
-        context: "This poem by Rachel Bluwstein (1890-1931), one of modern Hebrew's foundational poets, speaks from the perspective of one left behind by a beloved who has gone to a war from which he may not return. Its power lies in its quiet intimacy and focus on the personal sacrifice of those who wait and remember. Set to music, it was adopted into the canon of memorial songs.",
-        analysis: { theme: 'Poetic Longing', era: '1920s (Poem)', emotion: 'Wistful, Haunting', difficulty: 'Advanced' }
-    },
-    {
-        id: 'avshalom',
-        title: 'Avshalom',
-        hebrewTitle: 'אבשלום',
-        artist: 'Arik Einstein & Shalom Hanoch',
-        youtubeId: 'O9dYp_oXGqc',
-        description: 'A classic rock ballad that merges the biblical tragedy of King David\'s son with the contemporary grief of losing a friend.',
-        tags: ['Personal Grief', 'Biblical Allusion', 'Loss', 'Friendship'],
-        lyrics: {
-            hebrew: [ 'פָּנָיו הָיוּ כְּמוֹ הַשֶּׁמֶשׁ,', 'עֵינָיו אוֹר כּוֹכָבִים.', 'וּשְׂעָרוֹ הַזָּהֹב', 'הָיָה תָּלוּי עַל הָעֵץ.', 'אַבְשָׁלוֹם, אַבְשָׁלוֹם,', 'לָמָּה לֹא חָזַרְתָּ הַבַּיְתָה?', 'הַמֶּלֶךְ דָּוִד קוֹרֵא לְךָ,', 'הוּא מְחַכֶּה לְךָ.' ],
-            english: [ 'His face was like the sun,', 'His eyes the light of stars.', 'And his golden hair', 'Was hanging on the tree.', 'Avshalom, Avshalom,', 'Why did you not come home?', 'King David calls for you,', 'He is waiting for you.' ],
-            transliteration: [ 'Panav hayu kmo ha-shemesh,', 'Einav or kochavim.', 'U-se\'aro ha-zahov', 'Hayah talui al ha-etz.', 'Avshalom, Avshalom,', 'Lamah lo chazarta ha-baytah?', 'Ha-melech David kore lecha,', 'Hu mechakeh lecha.' ]
-        },
-        context: "Written in memory of a close friend's young son, this song draws a direct parallel between modern grief and King David's famous lament for his son, Avshalom, in the Bible. By invoking this ancient story of a father's inconsolable grief, the song elevates a personal loss into a timeless, archetypal tragedy, becoming an anthem for a generation grappling with the loss of friends in Israel's wars.",
-        analysis: { theme: 'Biblical Grief', era: '1970s', emotion: 'Grieving, Rock', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'shtei-etzbaot-mitzidon',
-        title: 'Two Fingers from Sidon',
-        hebrewTitle: 'שתי אצבעות מצידון',
-        artist: 'Boaz Ofri',
-        youtubeId: 'nFp25LwJ1p0',
-        description: 'From a seminal anti-war film, this song captures the tragic irony of the First Lebanon War, where being close to home meant nothing.',
-        tags: ['Lebanon War', 'Anti-War', 'Loss of Innocence', 'Trauma'],
-        lyrics: {
-            hebrew: [ 'גֶּפֶן, יַיִן, מִטָּה חַמָּה.', 'בְּיָפוֹ שֶׁל סְתָו.', 'וְהוּא כָּתַב: "אִמָּא יְקָרָה,', 'הַכֹּל כָּאן כְּמוֹ אָז.', 'אַל תִּדְאֲגִי, אֲנִי חוֹזֵר,', 'זֶה כְּבָר מַמָּשׁ קָרוֹב,', 'רַק שְׁתֵּי אֶצְבָּעוֹת מִצִּידוֹן."' ],
-            english: [ 'A vine, wine, a warm bed.', 'In the beauty of autumn.', 'And he wrote: "Dear Mom,', 'Everything here is like it was then.', 'Don\'t worry, I am coming back,', 'It\'s really close now,', 'Just two fingers from Sidon."' ],
-            transliteration: [ 'Gefen, yayin, mitah chamah.', 'Be-yofo shel stav.', 'Ve-hu katav: "Ima yekara,', 'Ha-kol kan kmo az.', 'Al tid\'agi, ani chozer,', 'Zeh kvar mamash karov,', 'Rak shtei etzba\'ot mi-Tzidon."' ]
-        },
-        context: "The title track from a 1986 film that shattered heroic molds, offering a critical look at the First Lebanon War. The title is soldier's slang for being very close to the Israeli border, measured by two fingers on a map. The song's tragic irony is that this proximity means nothing in the face of sudden death. It became an anthem for a disillusioned generation, questioning the purpose of war.",
-        analysis: { theme: 'Anti-War Trauma', era: '1980s', emotion: 'Somber, Critical', difficulty: 'Intermediate' }
-    },
-    {
-        id: 'livkot-lecha',
-        title: 'To Cry for You',
-        hebrewTitle: 'לבכות לך',
-        artist: 'Aviv Geffen & Arik Einstein',
-        youtubeId: 'S1Y_0agII4g',
-        description: 'A personal song of grief that became a national anthem of mourning for an entire generation after the assassination of Yitzhak Rabin.',
-        tags: ['Personal Grief', 'Yitzhak Rabin', 'Loss', 'Youth'],
-        lyrics: {
-            hebrew: [ 'לִבְכּוֹת לְךָ, אֲנִי מַבְטִיחַ לִבְכּוֹת לְךָ,', 'עַל שֶׁהָלַכְתָּ בְּלִי לְהַגִּיד לִי שָׁלוֹם.', 'כְּמוֹ שֶׁאַתָּה, לֹא יִהְיֶה לִי חָבֵר אַחֵר,', 'כָּזֶה שֶׁיָּבוֹא וְיֵלֵךְ כְּמוֹ חֲלוֹם.', 'וְזֶה כּוֹאֵב, לְהִתְגַּעְגֵּעַ וְלִזְכֹּר,', 'אֶת כָּל הַדְּבָרִים שֶׁלֹּא נַסְפִּיק לַעֲשׂוֹת.', 'לְדַבֵּר אִתְּךָ, וְלֹא לְקַבֵּל תְּשׁוּבָה,', 'זוֹ הַשְּׁתִיקָה שֶׁאוֹתִי מְשַׁגַּעַת.' ],
-            english: [ 'To cry for you, I promise to cry for you,', 'For you left without saying goodbye to me.', 'Like you, I will have no other friend,', 'One who comes and goes like a dream.', 'And it hurts, to miss and to remember,', 'All the things we won\'t get to do.', 'To talk to you, and not get an answer,', 'It\'s the silence that drives me mad.' ],
-            transliteration: [ 'Livkot lecha, ani mavti\'ach livkot lecha,', 'Al she-halachta bli le-hagid li shalom.', 'Kmo she-ata, lo yihiyeh li chaver acher,', 'Kazeh she-yavo ve-yelech kmo chalom.', 'Ve-zeh ko\'ev, le-hitga\'age\'a ve-lizkor,', 'Et kol ha-devarim she-lo naspik la\'asot.', 'Le-daber itcha, ve-lo le-kabel teshuvah,', 'Zo ha-shtikah she-oti meshaga\'at.' ]
-        },
-        context: "Initially written by Aviv Geffen for a deceased friend, this raw, personal song became the anthem for the 'Candle Youth' after the 1-995 assassination of Yitzhak Rabin. Geffen performed it at the rally moments before the murder. Its direct, simple language of loss articulated the shock and grief of a generation in a way formal mourning could not, forever linking personal pain with national trauma.",
-        analysis: { theme: 'Personal & National Grief', era: '1990s', emotion: 'Heartbroken, Raw', difficulty: 'Beginner' }
-    }
-];
-
-// =================================================================================
-//  WEBSITE FUNCTIONALITY
-//  The code below powers the library, search, and player. No need to edit this.
-// =================================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    populateFilters();
-    renderLibrary();
-
-    const searchBar = document.getElementById('search-bar');
-    searchBar.addEventListener('input', () => renderLibrary());
-    
-    document.querySelectorAll('#tag-filters button').forEach(button => {
-        button.addEventListener('click', () => {
-            button.classList.toggle('active');
-            renderLibrary();
-        });
-    });
-});
-
-function populateFilters() {
-    const allTags = [...new Set(songDatabase.flatMap(song => song.tags))].sort();
-    const filtersContainer = document.getElementById('tag-filters');
-    filtersContainer.innerHTML = ''; // Clear existing
-    allTags.forEach(tag => {
-        const button = document.createElement('button');
-        button.textContent = tag;
-        button.dataset.tag = tag;
-        filtersContainer.appendChild(button);
-    });
-    // Re-add event listeners after populating
-    document.querySelectorAll('#tag-filters button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.currentTarget.classList.toggle('active');
-            renderLibrary();
-        });
-    });
-}
-
-function renderLibrary() {
-    const libraryContainer = document.getElementById('song-library');
-    const noResultsDiv = document.getElementById('no-results');
-    libraryContainer.innerHTML = '';
-
-    const searchTerm = document.getElementById('search-bar').value.toLowerCase();
-    const activeTags = Array.from(document.querySelectorAll('#tag-filters button.active')).map(b => b.dataset.tag);
-
-    const filteredSongs = songDatabase.filter(song => {
-        const matchesSearch = 
-            song.title.toLowerCase().includes(searchTerm) ||
-            song.artist.toLowerCase().includes(searchTerm) ||
-            song.hebrewTitle.includes(searchTerm);
-        
-        const matchesTags = activeTags.length === 0 || activeTags.every(tag => song.tags.includes(tag));
-
-        return matchesSearch && matchesTags;
-    });
-    
-    if (filteredSongs.length === 0) {
-        noResultsDiv.style.display = 'block';
-    } else {
-        noResultsDiv.style.display = 'none';
-    }
-
-    filteredSongs.forEach(song => {
-        const card = document.createElement('div');
-        card.className = 'song-card';
-        card.onclick = () => loadSong(song.id);
-        
-        const tagsHtml = song.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-
-        card.innerHTML = `
-            <h3>${song.title}</h3>
-            <div class="hebrew-title">${song.hebrewTitle}</div>
-            <div class="artist">${song.artist}</div>
-            <p class="description">${song.description}</p>
-            <div class="tags">${tagsHtml}</div>
-        `;
-        libraryContainer.appendChild(card);
-    });
-}
-
-function loadSong(songId) {
-    const song = songDatabase.find(s => s.id === songId);
-    if (!song) return;
-
-    // Populate header
-    document.getElementById('song-title').textContent = song.title;
-    document.getElementById('hebrew-title').textContent = song.hebrewTitle;
-    document.getElementById('song-artist').textContent = song.artist;
-
-    // Embed YouTube video
-    document.getElementById('youtube-embed-container').innerHTML = 
-        `<iframe src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-    
-    // Populate analysis
-    document.getElementById('song-theme').textContent = song.analysis.theme;
-    document.getElementById('song-era').textContent = song.analysis.era;
-    document.getElementById('song-emotion').textContent = song.analysis.emotion;
-    document.getElementById('song-difficulty').textContent = song.analysis.difficulty;
-    
-    // Populate lyrics
-    const hebrewContainer = document.getElementById('hebrew-lyrics');
-    const englishContainer = document.getElementById('english-lyrics');
-    const transliterationContainer = document.getElementById('transliteration-lyrics');
-    hebrewContainer.innerHTML = song.lyrics.hebrew.map(line => `<div class="lyric-line">${line || '&nbsp;'}</div>`).join('');
-    englishContainer.innerHTML = song.lyrics.english.map(line => `<div class="lyric-line">${line || '&nbsp;'}</div>`).join('');
-    transliterationContainer.innerHTML = song.lyrics.transliteration.map(line => `<div class="lyric-line">${line || '&nbsp;'}</div>`).join('');
-
-    // Populate context
-    document.getElementById('song-context').innerHTML = `<p>${song.context.replace(/\n/g, '</p><p>')}</p>`;
-
-    showView('player-section');
-}
-
-function showView(viewId) {
-    document.getElementById('library-section').style.display = 'none';
-    document.getElementById('player-section').style.display = 'none';
-    document.getElementById('about-section').style.display = 'none';
-    
-    document.getElementById(viewId).style.display = 'block';
-
-    document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-    if (viewId === 'library-section') {
-        document.querySelector('.nav-button[onclick="showView(\'library-section\')"]').classList.add('active');
-    } else if (viewId === 'about-section') {
-        document.querySelector('.nav-button[onclick="showView(\'about-section\')"]').classList.add('active');
-    }
-    
-    window.scrollTo(0, 0); // Scroll to top on view change
-}
-
-</script>
+    <script src="script.js"></script>
 </body>
 </html>

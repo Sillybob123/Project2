@@ -1,0 +1,407 @@
+/* style.css */
+
+:root {
+    --primary-color-light: #2c3e50;
+    --secondary-color-light: #3498db;
+    --accent-color-light: #e74c3c;
+    --text-color-light: #34495e;
+    --background-color-light: #ecf0f1;
+    --card-background-light: #ffffff;
+    --border-color-light: #dcdde1;
+    --hebrew-color-light: #8e44ad;
+    --english-color-light: #2980b9;
+    --transliteration-color-light: #7f8c8d;
+    --shadow-color-light: rgba(0, 0, 0, 0.1);
+
+    --primary-color-dark: #ecf0f1;
+    --secondary-color-dark: #3498db;
+    --accent-color-dark: #e74c3c;
+    --text-color-dark: #bdc3c7;
+    --background-color-dark: #2c3e50;
+    --card-background-dark: #34495e;
+    --border-color-dark: #4a627a;
+    --hebrew-color-dark: #9b59b6;
+    --english-color-dark: #5dade2;
+    --transliteration-color-dark: #95a5a6;
+    --shadow-color-dark: rgba(0, 0, 0, 0.4);
+}
+
+/* Default to light mode variables */
+body {
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+    --accent-color: var(--accent-color-light);
+    --text-color: var(--text-color-light);
+    --background-color: var(--background-color-light);
+    --card-background: var(--card-background-light);
+    --border-color: var(--border-color-light);
+    --hebrew-color: var(--hebrew-color-light);
+    --english-color: var(--english-color-light);
+    --transliteration-color: var(--transliteration-color-light);
+    --shadow-color: var(--shadow-color-light);
+}
+
+/* Dark mode variables */
+body.dark-mode {
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --accent-color: var(--accent-color-dark);
+    --text-color: var(--text-color-dark);
+    --background-color: var(--background-color-dark);
+    --card-background: var(--card-background-dark);
+    --border-color: var(--border-color-dark);
+    --hebrew-color: var(--hebrew-color-dark);
+    --english-color: var(--english-color-dark);
+    --transliteration-color: var(--transliteration-color-dark);
+    --shadow-color: var(--shadow-color-dark);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6, .nav-button {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Loader */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s;
+}
+.spinner {
+    border: 8px solid var(--border-color);
+    border-top: 8px solid var(--secondary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #2c3e50, #000000);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+.header-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.header-content p {
+    font-size: 1.2rem;
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Navigation & Theme Switcher */
+.navigation {
+    background: var(--card-background);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.nav-button {
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.6rem 1.6rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+.nav-button:hover, .nav-button.active {
+    background: var(--secondary-color);
+    color: white;
+}
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: var(--secondary-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Main Content */
+.main-content {
+    padding: 3rem 0;
+}
+
+/* Library Controls */
+.library-controls {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: background-color 0.3s;
+}
+.search-bar {
+    flex-grow: 1;
+    min-width: 300px;
+    padding: 0.85rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.search-bar:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+.tag-filters button {
+    background: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0.25rem;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+.tag-filters button.active {
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Song Library */
+.song-library {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+.song-card {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-left: 5px solid var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: card-fade-in 0.5s forwards;
+}
+@keyframes card-fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.song-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px var(--shadow-color);
+}
+.song-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.song-card .hebrew-title {
+    color: var(--hebrew-color);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    direction: rtl;
+    text-align: right;
+    font-family: 'Merriweather', serif;
+}
+.song-card .artist {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.song-card .description {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+.song-card .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.song-card .tag {
+    background: var(--background-color);
+    color: var(--text-color);
+    opacity: 0.7;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+}
+#no-results {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    grid-column: 1 / -1;
+}
+
+/* Player Section */
+.player-section { display: none; }
+.player-section.active { display: block; animation: section-fade-in 0.5s ease; }
+@keyframes section-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.back-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+}
+.back-button:hover { background: #c0392b; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(231, 76, 60, 0.5); }
+.player-header { text-align: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+.player-header h2 { color: var(--primary-color); font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+.player-header .hebrew-title { color: var(--hebrew-color); font-size: 2rem; direction: rtl; margin-bottom: 0.5rem; }
+.player-header .artist { color: var(--secondary-color); font-size: 1.4rem; font-weight: 500; }
+.youtube-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2rem; border-radius: 12px; box-shadow: 0 8px 25px var(--shadow-color); }
+.youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
+
+/* AI Analysis Section */
+.ai-analysis { background: var(--card-background); border: 1px solid var(--border-color); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
+.ai-analysis h3 { margin-bottom: 1.5rem; font-size: 1.6rem; color: var(--primary-color); text-align: center; }
+.analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.analysis-card { text-align: center; }
+.analysis-card h4 { margin-bottom: 0.5rem; color: var(--secondary-color); font-weight: 600; font-size: 1rem; text-transform: uppercase; }
+.analysis-card p { font-size: 1.1rem; font-weight: 300; }
+
+/* Lyrics Section */
+.lyrics-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.lyrics-column { background: var(--card-background); padding: 1.5rem; border-radius: 8px; border-top: 4px solid; max-height: 600px; overflow-y: auto; }
+.hebrew-lyrics { border-top-color: var(--hebrew-color); direction: rtl; text-align: right; }
+.english-lyrics { border-top-color: var(--english-color); }
+.transliteration-lyrics { border-top-color: var(--transliteration-color); }
+.lyrics-column h3 { margin-bottom: 1rem; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; position: sticky; top: -1.5rem; background: var(--card-background); padding: 1rem 0; }
+.hebrew-lyrics h3 { color: var(--hebrew-color); }
+.english-lyrics h3 { color: var(--english-color); }
+.transliteration-lyrics h3 { color: var(--transliteration-color); }
+.lyric-line { margin-bottom: 0.5rem; padding: 0.5rem; border-radius: 4px; line-height: 1.8; transition: background-color 0.2s; }
+.lyric-line:hover { background-color: var(--background-color); }
+.lyric-line.stanza-break { height: 1.5rem; padding: 0; }
+
+/* Context & Notes Section */
+.cultural-context, .linguistic-notes, #about-section {
+    background: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    border-left: 5px solid var(--accent-color);
+}
+#about-section { border-left-color: var(--secondary-color); }
+.cultural-context h3, .linguistic-notes h3, #about-section h2, #about-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+#about-section h3 { font-size: 1.4rem; color: var(--secondary-color); margin-top: 1.5rem; }
+.cultural-context p, .cultural-context li, .linguistic-notes p, #about-section p, #about-section li {
+    color: var(--text-color);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+#about-section ul { list-style-position: inside; padding-left: 1rem; }
+
+/* Footer */
+footer {
+    background: var(--primary-color-light);
+    color: white;
+    text-align: center;
+    padding: 2.5rem 0;
+    margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .lyrics-container { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .header-content h1 { font-size: 2.2rem; }
+    .song-library { grid-template-columns: 1fr; }
+    .library-controls { flex-direction: column; align-items: stretch; }
+    .nav-container { flex-direction: column; gap: 1rem; }
+}

@@ -402,560 +402,357 @@
 // =================================================================================
 //  SONG DATABASE
 //  This is where all the pre-translated song data is stored.
-//  To add a new song, simply copy an existing object and paste it at the end of the array.
 // =================================================================================
 const songDatabase = [
-    {
-        id: 'hachoref-haacharon',
-        title: 'The Last Winter',
-        hebrewTitle: 'החורף האחרון',
-        artist: 'Hava Alberstein',
-        youtubeId: 'UduJG5bUPEA',
-        description: 'A heart-wrenching song written by Avi Koren in memory of his brother who fell in the Yom Kippur War.',
-        tags: ['Yom HaZikaron', 'Loss', 'Yom Kippur War'],
-        lyrics: {
-            hebrew: [
-                'אחי הטוב, הבן היפה שלי',
-                'החורף האחרון שלך עכשיו הגיע',
-                'אחי הטוב, הבן היפה שלי',
-                'אתה שומע איך הרוח מייללת?',
-                'ומתחת לשמיכה הכבדה',
-                'אתה שוכב קר, אתה לא נושם',
-                'בחורף הזה כבר לא תהיה כאן',
-                'אחי הטוב, הבן היפה שלי'
-            ],
-            english: [
-                'My good brother, my beautiful son',
-                'Your last winter has now arrived',
-                'My good brother, my beautiful son',
-                'Do you hear how the wind is wailing?',
-                'And under the heavy blanket',
-                'You lie cold, you are not breathing',
-                'This winter, you will no longer be here',
-                'My good brother, my beautiful son'
-            ],
-            transliteration: [
-                'Achi hatov, haben hayafa sheli',
-                'Hachoref ha\'acharon shelcha achshav hegia',
-                'Achi hatov, haben hayafa sheli',
-                'Ata shome\'a eich haruach meyalélet?',
-                'Umitachat lasmicha hakveda',
-                'Ata shochev kar, ata lo noshem',
-                'Bachoref haze kvar lo tihye kan',
-                'Achi hatov, haben hayafa sheli'
-            ]
-        },
-        context: "Written by Avi Koren about his brother, Shmuel Avraham Koren, who was killed in the Yom Kippur War. The song captures the raw, personal grief of a family member dealing with the finality of loss, contrasting the coldness of death with the warmth of memory. It has become an anthem of personal bereavement on Yom HaZikaron.",
-        analysis: {
-            theme: 'Personal Grief',
-            era: '1970s',
-            emotion: 'Melancholic, Mournful',
-            difficulty: 'Intermediate'
-        }
-    },
-    {
-        id: 'lu-yehi',
-        title: 'Let It Be',
-        hebrewTitle: 'לו יהי',
-        artist: 'Naomi Shemer',
-        youtubeId: 'PhO8a_j-22E',
-        description: 'An iconic prayer for peace, written by Naomi Shemer during the intense uncertainty of the Yom Kippur War.',
-        tags: ['Hope', 'Peace', 'Yom Kippur War'],
-        lyrics: {
-            hebrew: [
-                'עוד יש מפרש לבן באופק',
-                'מול ענן שחור כבד',
-                'כל שנבקש לו יהי',
-                'ואם פתאום יזרח מאופל',
-                'על ראשנו אור כוכב',
-                'כל שנבקש לו יהי.',
-                'לו יהי, לו יהי',
-                'אנא, לו יהי',
-                'כל שנבקש לו יהי.'
-            ],
-            english: [
-                'There is still a white sail on the horizon',
-                'Against a heavy, black cloud',
-                'All that we ask for, let it be.',
-                'And if suddenly, from the darkness, there shines',
-                'Above our heads the light of a star',
-                'All that we ask for, let it be.',
-                'Let it be, let it be',
-                'Please, let it be',
-                'All that we ask for, let it be.'
-            ],
-            transliteration: [
-                'Od yesh mifras lavan ba\'ofek',
-                'Mul anan shachor kaved',
-                'Kol shenevakesh lu yehi',
-                'Ve\'im pitom yizrach me\'ofel',
-                'Al rosheinu or kochav',
-                'Kol shenevakesh lu yehi.',
-                'Lu yehi, lu yehi',
-                'Ana, lu yehi',
-                'Kol shenevakesh lu yehi.'
-            ]
-        },
-        context: "Naomi Shemer wrote this song in 1973 as a Hebrew response to the Beatles' 'Let It Be,' but it quickly took on a life of its own as a national prayer during the Yom Kippur War. It expresses a deep yearning for an end to suffering and a return to normalcy and peace, becoming a timeless Israeli anthem of hope.",
-        analysis: {
-            theme: 'Hope & Peace',
-            era: '1970s',
-            emotion: 'Hopeful, Prayerful',
-            difficulty: 'Beginner'
-        }
-    },
-    {
-        id: 'eli-eli',
-        title: 'My God, My God (A Walk to Caesarea)',
-        hebrewTitle: 'אלי, אלי (הליכה לקיסריה)',
-        artist: 'Hannah Szenes',
-        youtubeId: 'QTQdu1j_y5g',
-        description: 'A famous poem by Hannah Szenes, a paratrooper who was captured and executed during WWII.',
-        tags: ['Yom HaShoah', 'Hope', 'Poetry'],
-        lyrics: {
-            hebrew: [
-                'אלי, אלי',
-                'שלא יגמר לעולם',
-                'החול והים',
-                'רשרוש של המים',
-                'ברק השמיים',
-                'תפילת האדם'
-            ],
-            english: [
-                'My God, my God',
-                'May it never end',
-                'The sand and the sea',
-                'The rush of the water',
-                'The crash of the heavens',
-                'The prayer of man.'
-            ],
-            transliteration: [
-                'Eli, Eli',
-                'Shelo yigamer le\'olam',
-                'Hachol vehayam',
-                'Rishrush shel hamayim',
-                'Brak hashamayim',
-                'Tefilat ha\'adam'
-            ]
-        },
-        context: "Written in 1942 by Hannah Szenes, a poet and Special Operations Executive paratrooper. She was captured behind enemy lines in Hungary and executed in 1944. The poem, filled with imagery of nature's eternity, is a powerful plea for hope and continuity in the face of immense darkness. It is a cornerstone of Yom HaShoah commemorations.",
-        analysis: {
-            theme: 'Endurance & Hope',
-            era: '1940s',
-            emotion: 'Wistful, Hopeful',
-            difficulty: 'Beginner'
-        }
-    },
-    {
-        id: 'ein-li-eretz-acheret',
-        title: 'I Have No Other Country',
-        hebrewTitle: 'אין לי ארץ אחרת',
-        artist: 'Gali Atari (words by Ehud Manor)',
-        youtubeId: '1zPhm-aEGJg',
-        description: 'A powerful anthem of belonging and resilience, expressing a deep, sometimes painful, love for Israel.',
-        tags: ['Hope', 'Resilience', 'Peace'],
-        lyrics: {
-            hebrew: [
-                'אין לי ארץ אחרת',
-                'גם אם אדמתי בוערת',
-                'רק מילה בעברית חודרת',
-                'אל עורקיי, אל נשמתי',
-                'בגופי הכואב',
-                'בלב הרעב',
-                'פה הוא ביתי.'
-            ],
-            english: [
-                'I have no other country',
-                'Even if my land is burning',
-                'Only a word in Hebrew penetrates',
-                'Into my veins, into my soul',
-                'With an aching body',
-                'With a hungry heart',
-                'Here is my home.'
-            ],
-            transliteration: [
-                'Ein li eretz acheret',
-                'Gam im admati bo\'eret',
-                'Rak milah be\'ivrit choderet',
-                'El orakai, el nishmati',
-                'Begufi hako\'ev',
-                'Balev hara\'ev',
-                'Po hu beiti.'
-            ]
-        },
-        context: "With lyrics by Ehud Manor and music by Corinne Allal, this song became an anthem of the Israeli peace movement. Written during the First Lebanon War, it conveys a message of fierce attachment to the land, even amidst pain and disagreement. It speaks to the idea that despite its flaws and conflicts, Israel is the only home for its people, a place they will not abandon.",
-        analysis: {
-            theme: 'Patriotism & Resilience',
-            era: '1980s',
-            emotion: 'Defiant, Passionate',
-            difficulty: 'Intermediate'
-        }
-    },
     {
         id: 'shir-hareut',
         title: 'The Song of Friendship',
         hebrewTitle: 'שיר הרעות',
-        artist: 'The Chizbatron (words by Haim Gouri)',
+        artist: 'Lahakat HaNahal',
         youtubeId: 'SjgXf7pE-oM',
-        description: 'An iconic song of camaraderie and loss, written during the 1948 War of Independence.',
-        tags: ['Yom HaZikaron', 'Friendship', 'War of Independence'],
+        description: 'The foundational anthem of Israeli civil religion, expressing the profound loss and camaraderie of the 1948 War of Independence.',
+        tags: ['Yom HaZikaron', 'Loss', 'Friendship', 'War of Independence'],
         lyrics: {
             hebrew: [
-                'על הנגב יורד ליל הסתיו',
-                'ומצית כוכבים חרש חרש',
-                'עת הרוח עובר על הסף',
-                'עננים מהלכים על הדרך.',
-                'הרעות נשאנוך בלי מילים',
-                'אפורה, עקשנית ושותקת',
-                'ונזכור את כולם',
-                'את יפי הבלורית והתואר.'
+                'עַל הַנֶּגֶב יוֹרֵד לֵיל הַסְּתָו', 'וּמַצִּית כּוֹכָבִים חֶרֶשׁ חֶרֶשׁ', 'עֵת הָרוּחַ עוֹבֵר עַל הַסַּף', 'עֲנָנִים מְהַלְּכִים עַל הַדֶּרֶךְ.',
+                'כְּבָר שָׁנָה, לֹא הִרְגַּשְׁנוּ כִּמְעַט', 'אֵיךְ עָבְרָה הַזְּמַן בִּשְׂדוֹתֵינוּ,', 'כְּבָר שָׁנָה וְנוֹתַרְנוּ מְעַט', 'מָה רַבִּים שֶׁאֵינָם כְּבָר בֵּינֵינוּ.',
+                'אַךְ נִזְכֹּר אֶת כֻּלָּם', 'אֶת יְפֵי הַבְּלוֹרִית וְהַתֹּאַר', 'כִּי רֵעוּת שֶׁכָּזֹאת לְעוֹלָם', 'לֹא תִּתֵּן אֶת לִבֵּנוּ לִשְׁכֹּחַ', 'אַהֲבָה מְקֻדֶּשֶׁת בְּדָם', 'אַתְּ תָּשׁוּבִי בֵּינֵינוּ לִפְרֹחַ.'
             ],
             english: [
-                'The autumn night descends on the Negev',
-                'And quietly, quietly, lights the stars',
-                'As the wind passes over the threshold',
-                'Clouds are walking on the road.',
-                'The friendship, we carried you without words',
-                'Gray, stubborn and silent',
-                'And we will remember them all',
-                'The ones with the handsome hair and stature.'
+                'Upon the Negev, the autumn night descends', 'And kindles the stars, silently, softly', 'As the wind passes over the threshold', 'Clouds are walking on the road.',
+                'It\'s been a year, we almost didn\'t feel', 'How the time passed in our fields,', 'It\'s been a year, and we who remain are few', 'So many are no longer among us.',
+                'But we will remember them all', 'The ones handsome of forelock and form', 'Because a fellowship such as this, forever', 'Will not let our hearts forget', 'A love consecrated in blood', 'You will return to bloom amongst us.'
             ],
             transliteration: [
-                'Al haNegev yored leil hastav',
-                'Umatzit kochavim cheresh cheresh',
-                'Et haruach over al hasaf',
-                'Ananim mehalchim al haderech.',
-                'HaRe\'ut nasanuch bli milim',
-                'Aforah, akshanit veshoketet',
-                'Venizkor et kulam',
-                'Et yefei hablorit vehatoar.'
+                'Al ha-Negev yored leil ha-stav', 'U-matzit kochavim cheresh cheresh', 'Et ha-ruach over al ha-saf', 'Ananim mehalechim al ha-derech.',
+                'Kvar shana, lo hirgashnu kim\'at', 'Eich avra ha-zman bi-sdoteinu,', 'Kvar shana ve-notarnu me\'at', 'Ma rabim she-einam kvar beineinu.',
+                'Ach nizkor et kulam', 'Et yefei ha-blorit ve-ha-to\'ar', 'Ki re\'ut she-kazot le-olam', 'Lo titen et libenu lishko\'ach', 'Ahavah mekudeshet be-dam', 'At tashuvi beineinu lifro\'ach.'
             ]
         },
-        context: "Written by Haim Gouri during the 1948 War of Independence, this song is the ultimate anthem of comradeship ('Re\'ut') among soldiers. It speaks of the silent, unbreakable bond between those who fought together and the promise to remember those who fell. Its somber melody and powerful lyrics have made it a central part of Israeli memorial ceremonies.",
-        analysis: {
-            theme: 'Friendship & Remembrance',
-            era: '1940s',
-            emotion: 'Solemn, Nostalgic',
-            difficulty: 'Advanced'
-        }
-    },
-    {
-        id: 'yerushalayim-shel-zahav',
-        title: 'Jerusalem of Gold',
-        hebrewTitle: 'ירושלים של זהב',
-        artist: 'Naomi Shemer',
-        youtubeId: 'l0d-P7Y_pLM',
-        description: 'A deeply poetic and longing ode to Jerusalem, written just before the Six-Day War that reunified the city.',
-        tags: ['Hope', 'Jerusalem', 'Six-Day War'],
-        lyrics: {
-            hebrew: [
-                'אוויר הרים צלול כיין',
-                'וריח אורנים',
-                'נישא ברוח הערביים',
-                'עם קול פעמונים.',
-                'ירושלים של זהב',
-                'ושל נחושת ושל אור',
-                'הלא לכל שיריך אני כינור.'
-            ],
-            english: [
-                'Mountain air as clear as wine',
-                'And the scent of pines',
-                'Is carried on the evening wind',
-                'With the sound of bells.',
-                'Jerusalem of gold',
-                'And of copper and of light',
-                'Am I not a violin for all your songs?'
-            ],
-            transliteration: [
-                'Avir harim tzalul kayayin',
-                'Ve\'reach oranim',
-                'Nisa be\'ruach ha\'arbayim',
-                'Im kol pa\'amonim.',
-                'Yerushalayim shel zahav',
-                'Veshel nechoshet veshel or',
-                'Halo lechol shirayich ani kinor.'
-            ]
-        },
-        context: "Composed by Naomi Shemer for the 1967 Israeli Song Festival. Written just weeks before the Six-Day War, it expressed the 2,000-year-old Jewish yearning for a return to an inaccessible, divided Jerusalem. After the war, when the Old City was captured by Israeli forces, Shemer added a triumphant final verse. It is considered Israel's unofficial second national anthem.",
-        analysis: {
-            theme: 'Longing & Homecoming',
-            era: '1960s',
-            emotion: 'Yearning, Reverent',
-            difficulty: 'Intermediate'
-        }
-    },
-    {
-        id: 'milyon-kochavim',
-        title: 'A Million Stars',
-        hebrewTitle: 'מיליון כוכבים',
-        artist: 'Amit Farkash',
-        youtubeId: 'QZovYp8y5gE',
-        description: 'A touching song written by a friend in memory of Tom Farkash, an Air Force pilot killed in the Second Lebanon War.',
-        tags: ['Yom HaZikaron', 'Loss', 'Second Lebanon War'],
-        lyrics: {
-            hebrew: [
-                'יש מיליון כוכבים הלילה',
-                'והלב שלי שבור',
-                'אני זוכר איך שהבטחת',
-                'שתחזור לפני שיעבור.',
-                'אמרת נסיים את המלחמה הזאת',
-                'ננצח ונחזור',
-                'אבל הנה נשארתי לבדי',
-                'עם חור שחור.'
-            ],
-            english: [
-                'There are a million stars tonight',
-                'And my heart is broken',
-                'I remember how you promised',
-                'That you would return before it was over.',
-                'You said we will finish this war',
-                'We will win and come back',
-                'But here I am, left alone',
-                'With a black hole.'
-            ],
-            transliteration: [
-                'Yesh milyon kochavim halayla',
-                'Ve\'halev sheli shavur',
-                'Ani zocher eich she\'hivtachta',
-                'She\'tachazor lifnei she\'yaavor.',
-                'Amarta nesayem et hamilchama hazot',
-                'Nenatzeach ve\'nachzor',
-                'Aval hina nisharti levadi',
-                'Im chor shachor.'
-            ]
-        },
-        context: "This song was written by Yiftach Kerzner in memory of his friend Tom Farkash, an IAF helicopter pilot who was killed in the Second Lebanon War in 2006. Tom's sister, Amit Farkash, performed it, and her emotional delivery turned it into one of modern Israel's most well-known songs of mourning. It speaks to the younger generation's experience of loss and has become a staple of Yom HaZikaron ceremonies.",
-        analysis: {
-            theme: 'Modern Loss',
-            era: '2000s',
-            emotion: 'Heartbroken, Intimate',
-            difficulty: 'Beginner'
-        }
+        context: "Written by Palmach poet Haim Gouri in 1948, 'Shir HaRe'ut' elevates the bond between soldiers ('Re\'ut' - a deep comradeship) to a sacred national value. It personifies this fellowship as a burning flame born from the terror of war, sanctifying the sacrifice of the fallen generation. It is a cornerstone of every Yom HaZikaron ceremony.",
+        analysis: { theme: 'Friendship & Remembrance', era: '1940s', emotion: 'Solemn, Nostalgic', difficulty: 'Advanced' }
     },
     {
         id: 'bab-el-wad',
-        title: 'Bab el-Wad',
+        title: 'The Gate of the Valley',
         hebrewTitle: 'באב אל וואד',
         artist: 'Yafa Yarkoni',
         youtubeId: '3LwT2JgVjeo',
-        description: 'A memorial song for the soldiers who fell trying to break the siege of Jerusalem in the 1948 War of Independence.',
-        tags: ['Yom HaZikaron', 'Jerusalem', 'War of Independence'],
+        description: 'Immortalizes the bloody 1948 battles to break the siege of Jerusalem, embedding the memory of the fallen into the landscape itself.',
+        tags: ['Yom HaZikaron', 'War of Independence', 'Jerusalem', 'Memory'],
         lyrics: {
             hebrew: [
-                'פה אני עובר, ניצב ליד האבן.',
-                'כביש אספלט שחור, סלעים ורכסים.',
-                'ערב אט יורד, רוח ים נושבת',
-                'אור כוכב ראשון מעל בית מחסיר.',
-                'באב אל וואד,',
-                'לנצח זכור נא את שמותינו,',
-                'שיירות פרצו בדרך אל העיר.'
+                'פֹּה אֲנִי עוֹבֵר, נִצָּב לְיַד הָאֶבֶן.', 'כְּבִישׁ חָרֵב, שָׁקוּעַ בַּשְּׁקִיעָה.', 'עֶרֶב רַד, יוֹרֵד, קָרֵב, נוֹשֵׁב בָּעֵצֶב,', 'רוּחַ-יָם מַלְחִית וְקַרְקִיעָה.',
+                'בָּאב אֶל-וָאד, לָנֶצַח זְכֹר נָא אֶת שְׁמוֹתֵינוּ,', 'כְּשֶׁהַשַּׁיָּרוֹת פָּרְצוּ בַּדֶּרֶךְ אֶל הָעִיר.', 'יוֹם אָבִיב יָבוֹא וְרַקְפוֹת תִּפְרַחְנָה,', 'וְזֶה אֲשֶׁר יֵלֵךְ בַּדֶּרֶךְ שֶׁהָלַכנוּ,', 'לֹא יִשְׁכַּח אוֹתָנוּ, אֶת בָּאב אֶל-וָאד.'
             ],
             english: [
-                'Here I pass, standing by the stone.',
-                'A black asphalt road, rocks and ridges.',
-                'Evening slowly falls, a sea breeze blows',
-                'The light of the first star over Beit Machsir.',
-                'Bab el-Wad,',
-                'Forever remember our names,',
-                'Convoys broke through on the road to the city.'
+                'Here I pass, standing beside the stone.', 'A ruined road, sunken in the sunset\'s glow.', 'Evening has fallen, descends, draws near, blowing in sorrow,', 'A salty sea-breeze and the ground below.',
+                'Bab el-Wad, forever, please, remember our names,', 'As the convoys broke through on the road to the city.', 'A spring day will come and cyclamens will bloom,', 'And he who will walk on the road we walked,', 'Will not forget us, the men of Bab el-Wad.'
             ],
             transliteration: [
-                'Po ani over, nitzav leyad ha\'even.',
-                'Kvish asfalt shachor, sla\'im u\'rechasim.',
-                'Erev at yored, ruach yam noshevet',
-                'Or kochav rishon me\'al Beit Machsir.',
-                'Bab el Wad,',
-                'Lanetzach zechor na et shmoteinu,',
-                'Shayarot partzu baderech el ha\'ir.'
+                'Po ani over, nitzav le-yad ha-even.', 'Kvish charev, shaku\'a ba-shki\'ah.', 'Erev rad, yored, karev, noshev ba-etzev,', 'Ruach-yam malchit ve-karki\'ah.',
+                'Bab el-Wad, la-netzach zechor na et shmoteinu,', 'Ke-she-ha-shayarot partzu ba-derech el ha-ir.', 'Yom aviv yavo ve-rakfot tifrachna,', 'Ve-zeh asher yelech ba-derech she-halachnu,', 'Lo yishkach otanu, et Bab el-Wad.'
             ]
         },
-        context: "Bab el-Wad (Sha'ar HaGai in Hebrew) is a valley on the Tel Aviv-Jerusalem highway where fierce battles took place during the 1948 War of Independence. Convoys trying to break the Arab siege of Jerusalem were ambushed there, with heavy casualties. The song, with words by Haim Gouri, gives voice to the fallen, asking passersby to remember their sacrifice which opened the road to the city. The rusted, armored vehicles of those convoys are still preserved on the side of the road today as a memorial.",
-        analysis: {
-            theme: 'Sacrifice & Memory',
-            era: '1940s',
-            emotion: 'Solemn, Commemorative',
-            difficulty: 'Advanced'
-        }
-    },
-    {
-        id: 'anachnu-nisharim',
-        title: 'We are Staying',
-        hebrewTitle: 'אנחנו נשארים',
-        artist: 'Dudu Zakai',
-        youtubeId: 'u2cVLrRUd4I',
-        description: 'A defiant song of continuity and connection to the land, written after the evacuation of Yamit in Sinai.',
-        tags: ['Resilience', 'Hope', 'Peace'],
-        lyrics: {
-            hebrew: [
-                'הפרחים ידממו בעוד שנה',
-                'בצבעים שהיו לפני ואחרי',
-                'ואנחנו נהיה שנינו כאן',
-                'בגשמים וברוחות הסתיו האחרים',
-                'כי אנחנו נשארים',
-                'אנחנו נשארים'
-            ],
-            english: [
-                'The flowers will bleed in another year',
-                'In colors that were before and after',
-                'And we will both be here',
-                'In the rains and winds of other autumns',
-                'Because we are staying',
-                'We are staying'
-            ],
-            transliteration: [
-                'Haprachim yedamemu be\'od shana',
-                'Bitzvaim shehayu lifnei ve\'acharei',
-                'Ve\'anachnu nihiye shneinu kan',
-                'Bagshamim uveruchot hastav ha\'acherim',
-                'Ki anachnu nisharim',
-                'Anachnu nisharim'
-            ]
-        },
-        context: "Written by Halel Mittelpunkt after the wrenching 1982 evacuation of the Israeli settlement of Yamit in the Sinai Peninsula as part of the peace treaty with Egypt. The song became an anthem of the settlers who felt uprooted, expressing a deep-seated determination to remain connected to the Land of Israel, no matter the political circumstances. It captures a sense of defiant permanence and love for the land itself.",
-        analysis: {
-            theme: 'Continuity',
-            era: '1980s',
-            emotion: 'Determined, Bittersweet',
-            difficulty: 'Intermediate'
-        }
-    },
-    {
-        id: 'paamon-kaved',
-        title: 'A Heavy Bell',
-        hebrewTitle: 'פעמון כבד',
-        artist: 'Dan Almagor',
-        youtubeId: 'u4k7rR0Vz4w',
-        description: 'A poem written in the immediate, raw aftermath of the Yom Kippur War, lamenting the loss of an entire generation.',
-        tags: ['Yom HaZikaron', 'Loss', 'Yom Kippur War'],
-        lyrics: {
-            hebrew: [
-                'צלצול של פעמון כבד ורם',
-                'היה צריך להעיר את כל העם',
-                'ולהזכיר לכולנו שוב ושוב',
-                'את מה שכבר כמעט נשכח',
-                'שעל הבנים שנפלו במלחמה',
-                'עדיין לא שולמה המקדמה.'
-            ],
-            english: [
-                'The ring of a heavy and loud bell',
-                'Should have woken the entire nation',
-                'And reminded us all, again and again',
-                'That which was almost forgotten',
-                'That for the sons who fell in the war',
-                'The down payment has not yet been made.'
-            ],
-            transliteration: [
-                'Tziltzul shel pa\'amon kaved veram',
-                'Haya tzarich leha\'ir et kol ha\'am',
-                'Ulehazkir lekulanu shuv veshuv',
-                'Et ma shekvar kimat nishkach',
-                'She\'al habanim shenoflu bamilchama',
-                'Adayin lo shulma hamikdama.'
-            ]
-        },
-        context: "This song, with sharp lyrics by Dan Almagor, is a piece of social and political criticism written in the wake of the Yom Kippur War. It laments the societal forgetfulness and the return to normalcy that often follows conflict, arguing that the nation has not fully paid its debt or learned its lesson from the sacrifice of its fallen soldiers. It's a call for perpetual remembrance and accountability.",
-        analysis: {
-            theme: 'National Memory',
-            era: '1970s',
-            emotion: 'Critical, Somber',
-            difficulty: 'Advanced'
-        }
-    },
-    {
-        id: 'ktov-et-ze-be-iparon',
-        title: 'Write it with a Pencil',
-        hebrewTitle: 'כתוב את זה בעיפרון',
-        artist: 'Samy Samir',
-        youtubeId: '16gY_aAlaas',
-        description: 'The story of a Holocaust survivor who asks for his concentration camp number to be written in pencil, hoping to one day erase it.',
-        tags: ['Yom HaShoah', 'Hope', 'Resilience'],
-        lyrics: {
-            hebrew: [
-                'כתוב את זה בעיפרון',
-                'בתוך הקרון החתום',
-                'אם לא תמצא קרון',
-                'כתוב על העצמות שלי',
-                'ואם אני אמות',
-                'תחיה אתה, תספר אתה',
-                'מה שקרה לי.'
-            ],
-            english: [
-                'Write it with a pencil',
-                'Inside the sealed train car',
-                'If you cannot find a car',
-                'Write on my bones',
-                'And if I die',
-                'You will live, you will tell',
-                'What happened to me.'
-            ],
-            transliteration: [
-                'Ktov et ze be\'iparon',
-                'Betoch hakaron hechatum',
-                'Im lo timtza karon',
-                'Ktov al ha\'atzamot sheli',
-                'Ve\'im ani amut',
-                'Tichyeh ata, tesaper ata',
-                'Ma shekara li.'
-            ]
-        },
-        context: "Based on the poem by Dan Pagis, a Holocaust survivor. The original poem speaks of Eve in the Garden of Eden, but the song adaptation powerfully re-contextualizes it to the Holocaust. The line 'write it with a pencil' captures a heartbreaking, almost naive hope that the horrific reality could somehow be temporary or erasable. It is a profound meditation on memory, testimony, and the impossible desire to undo trauma.",
-        analysis: {
-            theme: 'Testimony & Trauma',
-            era: 'Post-Holocaust',
-            emotion: 'Haunting, Fragile',
-            difficulty: 'Advanced'
-        }
+        context: "Penned by Haim Gouri, this song transforms a specific location—the gorge leading to Jerusalem—into a national memorial. It personifies the valley, asking it to remember the names of those who fell breaking the siege. The 'iron skeletons' of the destroyed armored cars lined the road for decades, making this song a living testament to the price paid for the city.",
+        analysis: { theme: 'Sacrifice & Memory', era: '1940s', emotion: 'Commemorative, Solemn', difficulty: 'Advanced' }
     },
     {
         id: 'magash-hakesef',
         title: 'The Silver Platter',
         hebrewTitle: 'מגש הכסף',
-        artist: 'Natan Alterman (Poem)',
+        artist: 'Yehoram Gaon',
         youtubeId: 'h8s6A4h-0-s',
-        description: 'A famous poem depicting the fallen soldiers of 1948 as the "silver platter" on which the state of Israel was founded.',
-        tags: ['Yom HaZikaron', 'Sacrifice', 'War of Independence'],
+        description: 'A prophetic poem-turned-song defining the sacrifice of the 1948 generation as the "platter" on which the state was delivered.',
+        tags: ['Yom HaZikaron', 'Sacrifice', 'Statehood', 'War of Independence'],
         lyrics: {
             hebrew: [
-                'והארץ תשקוט, עין שמיים אודמת',
-                'תעמעם לאיטה על גבולות עשנים.',
-                'ואומה תעמוד, קרועת לב אך נושמת',
-                'לקבל את הנס האחד, אין שני.',
-                '...ואז יצאו נערה ונער',
-                'ואט אט יצעדו הם מול האומה.',
-                'לבושי חג וקרב, כבדי נשק וקסם',
-                'ויאמרו: אנחנו מגש הכסף',
-                'שעליו לך ניתנה מדינת היהודים.'
+                'וְהָאָרֶץ תִּשְׁקֹט, עֵין שָׁמַיִם קוֹדֶרֶת', 'תַּעֲטֶה עֲרָפֶל, עֲשַׁן אֲדָמָה,', 'כִּי אֻמָּה קְרוּעַת לֵב, אַךְ נוֹשֶׁמֶת, תִּקְרַב', 'לְקַבֵּל אֶת הַנֵּס הָאֶחָד, הֶעָתִיד.',
+                'אָז מִנֶּגֶד יֵצְאוּ נַעַר וְנַעֲרָה', 'וְיִצְעֲדוּ הָלְאָה לְאַט.', 'וְאָמְרוּ: אֲנַחְנוּ מַגַּשׁ הַכֶּסֶף', 'שֶׁעָלָיו לָךְ נִתְּנָה מְדִינַת הַיְּהוּדִים.', 'וְהַשְּׁאָר יְסֻפַּר בְּתוֹלְדוֹת יִשְׂרָאֵל.'
             ],
             english: [
-                'And the land will grow still, the red eye of the sky',
-                'Will slowly dim over smoking borders.',
-                'And a nation will stand, heartbroken but breathing',
-                'To receive the one miracle, there is no second.',
-                '...And then a girl and a boy will step forward',
-                'And slowly they will march before the nation.',
-                'Dressed for festival and battle, heavy with weapons and charm',
-                'And they will say: We are the silver platter',
-                'On which the Jewish state was given to you.'
+                'And the land will grow still, the eye of the sky turns grim', 'Cloaked in mist, the smoke of the earth', 'For a nation, heart-torn but breathing, will approach', 'To receive the one, the future miracle.',
+                'Then from across, a boy and a girl will step forth', 'And they will walk forward slowly.', 'And they will say: We are the silver platter', 'Upon which the state of the Jews was given to you.', 'And the rest will be told in the chronicles of Israel.'
             ],
             transliteration: [
-                'Veha\'aretz tishkot, ein shamayim odemet',
-                'Te\'am\'em le\'itah al gvulot ashenim.',
-                'Ve\'umah ta\'amod, kru\'at lev ach noshemet',
-                'Lekabel et hanes ha\'echad, ein sheni.',
-                '...Ve\'az yitz\'u na\'arah ve\'na\'ar',
-                'Ve\'at at yitz\'adu hem mul ha\'umah.',
-                'Levushei chag u\'krav, kvedei neshek ve\'kesem',
-                'Veyomru: Anachnu magash hakesef',
-                'She\'alav lach nitna medinat hayehudim.'
+                'Ve-ha\'aretz tishkot, ein shamayim koderet', 'Ta\'ateh arafel, ashan adamah,', 'Ki umah kru\'at lev, ach noshemet, tikrav', 'Le-kabel et ha-nes ha-echad, he-atid.',
+                'Az mi-neged yetz\'u na\'ar ve-na\'arah', 'Ve-yitz\'adu hal\'ah le\'at.', 'Ve-amru: Anachnu magash ha-kesef', 'She-alav lach nitnah medinat ha-yehudim.', 'Ve-ha-she\'ar yesupar be-toldot Yisrael.'
             ]
         },
-        context: "Natan Alterman's iconic 1947 poem is not a song in the traditional sense, but its recitation is a pillar of Yom HaZikaron. It answers a hypothetical question from Chaim Weizmann that a state is not given on a silver platter. Alterman's response is that the state *was* delivered on a silver platter—but that platter was the generation of young men and women who gave their lives for its creation. It is the ultimate Israeli expression of the concept of national sacrifice.",
-        analysis: {
-            theme: 'National Sacrifice',
-            era: '1940s',
-            emotion: 'Solemn, Mythic',
-            difficulty: 'Advanced'
-        }
+        context: "Written by Natan Alterman in 1947 as a direct response to Chaim Weizmann's remark that a state is not given on a 'silver platter.' Alterman's poem posits that the state *was* delivered on such a platter: the young men and women who gave their lives. It is a canonical text recited at nearly every official Yom HaZikaron ceremony, defining the day as an acknowledgment of a sacred debt.",
+        analysis: { theme: 'National Sacrifice', era: '1940s', emotion: 'Mythic, Solemn', difficulty: 'Advanced' }
+    },
+    {
+        id: 'halikha-lekesariya',
+        title: 'A Walk to Caesarea (My God, My God)',
+        hebrewTitle: 'הליכה לקיסריה (אלי, אלי)',
+        artist: 'Ofra Haza',
+        youtubeId: 'QTQdu1j_y5g',
+        description: 'A life-affirming poem by Hannah Szenes, made tragic and powerful by her ultimate sacrifice as a paratrooper in WWII.',
+        tags: ['Yom HaShoah', 'Faith', 'Hope', 'Sacrifice', 'Poetry'],
+        lyrics: {
+            hebrew: [ 'אֵלִי, אֵלִי,', 'שֶׁלֹּא יִגָּמֵר לְעוֹלָם', 'הַחוֹל וְהַיָּם,', 'רִשְׁרוּשׁ שֶׁל הַמַּיִם,', 'בְּרַק הַשָּׁמַיִם,', 'תְּפִלַּת הָאָדָם.' ],
+            english: [ 'My God, my God,', 'May it never end –', 'The sand and the sea,', 'The rush of the waters,', 'The crash of the heavens,', 'The prayer of man.' ],
+            transliteration: [ 'Eli, Eli,', 'She-lo yigamer le-olam', 'Ha-chol ve-ha-yam,', 'Rishrush shel ha-mayim,', 'Berak ha-shamayim,', 'Tefilat ha-adam.' ]
+        },
+        context: "This poem by Hannah Szenes has become a sacred text of Yom HaShoah. Written in the beauty of Caesarea in 1942, its simple prayer for the permanence of nature is transformed by Szenes's biography. She volunteered to parachute into occupied Europe, was captured, tortured, and executed. The song represents the life she willingly sacrificed and the Zionist ideal of rebirth in the face of destruction.",
+        analysis: { theme: 'Endurance & Hope', era: '1940s', emotion: 'Wistful, Hopeful', difficulty: 'Beginner' }
+    },
+    {
+        id: 'katuv-beiparon-bakaron-hechatum',
+        title: 'Written in Pencil in the Sealed Railway Car',
+        hebrewTitle: 'כתוב בעיפרון בקרון החתום',
+        artist: 'HaMadregot',
+        youtubeId: 'jm-J95p_6-I',
+        description: 'A short, devastating poem by Holocaust survivor Dan Pagis that reframes the Shoah as a primordial, biblical tragedy.',
+        tags: ['Yom HaShoah', 'Holocaust', 'Poetry', 'Theology'],
+        lyrics: {
+            hebrew: [ 'כָּאן בַּמִּשְׁלוֹחַ הַזֶּה', 'אֲנִי חַוָּה', 'עִם הֶבֶל בְּנִי', 'אִם תִּרְאוּ אֶת בְּנִי הַגָּדוֹל', 'קַיִן בֶּן אָדָם', 'תַּגִּידוּ לוֹ שֶׁאֲנִי' ],
+            english: [ 'here in this transport', 'i am eve', 'with abel my son', 'if you see my other son', 'cain son of man', 'tell him that i' ],
+            transliteration: [ 'Kan ba-mishlo\'ach ha-zeh', 'ani Chavah', 'im Hevel b\'ni', 'im tir\'u et b\'ni ha-gadol', 'Kayin ben adam', 'tagidu lo she-ani' ]
+        },
+        context: "Dan Pagis's poem recasts the Holocaust through biblical archetypes. The speaker is Eve, trapped in a cattle car with her murdered son Abel, sending a message to her other son, the murderer Cain ('son of man' or 'human being'). It transforms a specific historical event into a timeless act of fratricide at the heart of the human story. The poem is inscribed at Yad Vashem.",
+        analysis: { theme: 'Testimony & Trauma', era: '1970s', emotion: 'Haunting, Fragile', difficulty: 'Advanced' }
+    },
+    {
+        id: 'givat-hatachmoshet',
+        title: 'Ammunition Hill',
+        hebrewTitle: 'גבעת התחמושת',
+        artist: 'The Central Command Trio',
+        youtubeId: 'R4p441s8_80',
+        description: 'A raw, documentary-style account of one of the fiercest battles of the 1967 Six-Day War for the reunification of Jerusalem.',
+        tags: ['Yom HaZikaron', 'Six-Day War', 'Jerusalem', 'Heroism', 'Battle'],
+        lyrics: {
+            hebrew: [ 'בִּשְׁתַּיִם, שְׁתַּיִם וּשְׁלוֹשִׁים הִתְחַלְנוּ לִזְחֹל,', 'מִבֵּית הַסֵּפֶר לִשּׁוֹטְרִים, לְעֵבֶר הַגְּדֵרוֹת,', '״עֲבֹר דּוּמִיָּה, עוֹד מְעַט זֶה מַתְחִיל.״', 'בְּשָׁלוֹשׁ וָעֶשֶׂר דָּקוֹת כְּבָר הָיִינוּ בִּפְנִים,', '״פְּלֻגָּה א\', קָדִימָה!״ וְרַצְנוּ אֲבוּדֵי-חוּשִׁים,', 'אֶל תוֹךְ הַתְּעָלָה הָרִאשׁוֹנָה.' ],
+            english: [ 'At two, two thirty, we started to crawl,', 'From the Police Academy, towards the fences tall,', '\'Go silent, it\'s about to begin.\'', 'At ten past three, we were already inside,', '\'Company A, forward!\' and we ran bereft of senses,', 'Into the first trench.' ],
+            transliteration: [ 'Bi-shtayim, shtayim u-shloshim hitchalnu lizchol,', 'Mi-beit ha-sefer le-shotrim, le-ever ha-gederot,', '\'Avor dumiyah, od me\'at zeh matchil.\'', 'Be-shalosh va-eser dakot kvar hayinu bifnim,', '\'Pluga aleph, kadima!\' ve-ratznu avudei-chushim,', 'El toch ha-te\'alah ha-rishonah.' ]
+        },
+        context: "Based on actual testimonies of the soldiers who fought there, this song marked a shift in Israeli war songs. It moves away from poetic allegory to a gritty, journalistic style, capturing the chaos and grim reality of close-quarters combat. It honors the heroism of 1967 while acknowledging its brutal, human cost.",
+        analysis: { theme: 'Battle & Heroism', era: '1960s', emotion: 'Gritty, Intense', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'choref-shivim-ve-shalosh',
+        title: 'Winter of \'73',
+        hebrewTitle: 'חורף 73\'',
+        artist: 'Lahakat Chinuch Meyuchad',
+        youtubeId: '-T43kG2-2vI',
+        description: 'A powerful dialogue between the children born after the Yom Kippur War and their parents\' generation, questioning the unfulfilled promise of peace.',
+        tags: ['Yom Kippur War', 'Peace', 'Generations', 'Yom HaZikaron', 'Promise'],
+        lyrics: {
+            hebrew: [ 'אֲנַחְנוּ הַיְּלָדִים שֶׁל חֹרֶף שִׁבְעִים וְשָׁלוֹשׁ,', 'גָּדַלְנוּ, וְהִנֵּה אֲנַחְנוּ חַיָּלִים.', 'מַבִּיטִים בָּכֶם, אָבוֹת עֲיֵפִים,', 'וְשׁוֹאֲלִים בְּשֶׁקֶט: הַאִם קִיַּמְתֶּם?', 'הִבְטַחְתֶּם יוֹנָה, עֲלֵה זַיִת,', 'הִבְטַחְתֶּם שָׁלוֹם בַּבַּיִת.', 'הִבְטַחְתֶּם אָבִיב וּפְרִיחָה,', 'וְלֹא קִיַּמְתֶּם.' ],
+            english: [ 'We are the children of the winter of seventy-three,', 'We have grown, and here we are, soldiers.', 'Looking at you, weary fathers,', 'And asking quietly: Did you fulfill?', 'You promised a dove, an olive branch,', 'You promised peace at home.', 'You promised spring and blossoming,', 'And you did not fulfill.' ],
+            transliteration: [ 'Anachnu ha-yeladim shel choref shiv\'im ve-shalosh,', 'Gadalnu, ve-hineh anachnu chayalim.', 'Mabitim bachem, avot ayefim,', 'Ve-sho\'alim be-sheket: Ha-im kiyamtem?', 'Hivtachtem yonah, aleh zayit,', 'Hivtachtem shalom ba-bayit.', 'Hivtachtem aviv u-frichah,', 'Ve-lo kiyamtem.' ]
+        },
+        context: "Released in 1994, this song captures the lingering trauma of the 1973 war through a generational lens. The children, now soldiers themselves, hold their parents accountable for the promise that theirs would be the last generation to fight. It marks a shift from collective mourning to a more complex, questioning dialogue about the cost of war and the responsibility for peace.",
+        analysis: { theme: 'Generational Dialogue', era: '1990s', emotion: 'Poignant, Questioning', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'ma-avarech',
+        title: 'With What Shall I Bless Him?',
+        hebrewTitle: 'מה אברך',
+        artist: 'Rivka Zohar',
+        youtubeId: 'a265GIyYy-Y',
+        description: 'A haunting ballad that personalizes collective grief by telling the story of an angel blessing a boy at each stage of life, only to fall silent when he becomes a man destined for war.',
+        tags: ['Yom HaZikaron', 'Personal Grief', 'Six-Day War', 'Loss', 'Youth'],
+        lyrics: {
+            hebrew: [ 'מַה אֲבָרֵךְ לוֹ, בַּמֶּה יְבֹרַךְ?', 'זֶה הַיֶּלֶד? – שָׁאַל הַמַּלְאָךְ.', 'וְהֵשִׁיב בִּדְמָעָה: אֲבָרְכֶנּוּ בְּחֹסֶן,', 'מַה אֲבָרֵךְ לוֹ, בַּמֶּה יְבֹרַךְ?', 'זֶה הַנַּעַר? – שָׁאַל הַמַּלְאָךְ.', 'וְעָנָה בִּשְׂחוֹק גָּדוֹל: שֶׁיֵּדַע אֶת הָאֹשֶׁר,', 'וְהַנַּעַר, הַיֶּלֶד, הָעֶלֶם הָיָה לְאִישׁ,', 'וְהַמַּלְאָךְ הִבִּיט בּוֹ וְשָׁתַק.' ],
+            english: [ 'With what shall I bless him, with what shall he be blessed?', 'This child? – asked the angel.', 'And answered with a tear: I will bless him with strength,', 'With what shall I bless him, with what shall he be blessed?', 'This lad? – asked the angel.', 'And answered with a great laugh: That he may know happiness,', 'And the lad, the child, the young man became a man,', 'And the angel looked upon him and was silent.' ],
+            transliteration: [ 'Ma avarech lo, ba-meh yevorach?', 'Zeh ha-yeled? – sha\'al ha-mal\'ach.', 'Ve-heshiv bi-dma\'ah: Avrachenu be-chosen,', 'Ma avarech lo, ba-meh yevorach?', 'Zeh ha-na\'ar? – sha\'al ha-mal\'ach.', 'Ve-anah bi-schok gadol: She-yeda et ha-osher,', 'Ve-ha-na\'ar, ha-yeled, ha-elem hayah le-ish,', 'Ve-ha-mal\'ach hibit bo ve-shatak.' ]
+        },
+        context: "Poet Rachel Shapira wrote the lyrics in memory of her classmate Eldad Kruk, who was killed in the Six-Day War. The song powerfully captures the tragedy of unrealized potential by following the blessings given to a boy throughout his life, which cease when he becomes a man and a soldier. It makes the abstract cost of war deeply personal.",
+        analysis: { theme: 'Personal Grief', era: '1960s', emotion: 'Mournful, Tender', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'lu-yehi',
+        title: 'May It Be',
+        hebrewTitle: 'לו יהי',
+        artist: 'Chava Alberstein',
+        youtubeId: 'PhO8a_j-22E',
+        description: 'The defining anthem of the Yom Kippur War, written by Naomi Shemer as an urgent, collective prayer for hope and the safe return of soldiers.',
+        tags: ['Yom Kippur War', 'Prayer', 'Hope', 'Peace'],
+        lyrics: {
+            hebrew: [ 'עוֹד יֵשׁ מִפְרָשׂ לָבָן בָּאֹפֶק', 'מוּל עָנָן שָׁחֹר כָּבֵד,', 'כָּל שֶׁנְּבַקֵּשׁ – לוּ יְהִי.', 'לוּ יְהִי, לוּ יְהִי, אָנָּא לוּ יְהִי –', 'כָּל שֶׁנְּבַקֵּשׁ לוּ יְהִי.', 'בְּסוֹף הַקַּיִץ שֶׁלָּנוּ', 'תְּנוּ לָנוּ לַחֲזֹר הַבַּיְתָה.' ],
+            english: [ 'There is still a white sail on the horizon', 'Against a heavy black cloud,', 'All that we ask for – may it be.', 'May it be, may it be, please, may it be –', 'All that we ask for, may it be.', 'At the end of our summer', 'Let us return home.' ],
+            transliteration: [ 'Od yesh mifras lavan ba-ofek', 'Mul anan shachor kaved,', 'Kol she-nevakesh – lu yehi.', 'Lu yehi, lu yehi, ana lu yehi –', 'Kol she-nevakesh lu yehi.', 'Be-sof ha-kayitz shelanu', 'Tnu lanu lachazor ha-baytah.' ]
+        },
+        context: "Written and composed by Naomi Shemer during the first desperate days of the 1973 Yom Kippur War, 'Lu Yehi' became the unofficial national prayer. It perfectly captured the nation's mood of shock and fear, and its title is an active plea ('May it be') rather than a passive acceptance. The song marks the moment the Israeli psyche turned from the certainty of victory to the fragility of prayer.",
+        analysis: { theme: 'Hope & Prayer', era: '1970s', emotion: 'Prayerful, Hopeful', difficulty: 'Beginner' }
+    },
+    {
+        id: 'ein-li-eretz-acheret',
+        title: 'I Have No Other Country',
+        hebrewTitle: 'אין לי ארץ אחרת',
+        artist: 'Gali Atari',
+        youtubeId: '1zPhm-aEGJg',
+        description: 'A quintessential Israeli anthem that balances unconditional love for the country with a fierce, critical vow to fight for its soul.',
+        tags: ['Peace', 'Protest', 'Belonging', 'Lebanon War', 'Hope'],
+        lyrics: {
+            hebrew: [ 'אֵין לִי אֶרֶץ אַחֶרֶת', 'גַּם אִם אַדְמָתִי בּוֹעֶרֶת.', 'רַק מִלָּה בְּעִבְרִית חוֹדֶרֶת', 'אֶל עָרְקַי, אֶל נִשְׁמָתִי,', 'בְּגוּף כּוֹאֵב, בְּלֵב רָעֵב,', 'כָּאן הוּא בֵּיתִי.', 'לֹא אֶשְׁתֹּק, כִּי אַרְצִי', 'שִׁנְּתָה אֶת פָּנֶיהָ.', 'לֹא אַוַתֵּר לָהּ, לְהַזְכִּיר לָהּ,', 'וְאָשִׁיר בְּאָזְנֶיהָ,', 'עַד שֶׁתִּפְקַח אֶת עֵינֶיהָ.' ],
+            english: [ 'I have no other country', 'Even if my land is burning.', 'Only a word in Hebrew penetrates', 'Into my veins, into my soul,', 'With an aching body, with a hungry heart,', 'Here is my home.', 'I will not be silent, for my country', 'Has changed its face.', 'I will not give up on her, I will remind her,', 'And sing into her ears,', 'Until she opens her eyes.' ],
+            transliteration: [ 'Ein li eretz acheret', 'Gam im admati bo\'eret.', 'Rak milah be-Ivrit choderet', 'El orkai, el nishmati,', 'Be-guf ko\'ev, be-lev ra\'ev,', 'Kan hu beiti.', 'Lo eshtok, ki artzi', 'Shinta et paneha.', 'Lo avater lah, le-hazkir lah,', 'Ve-ashir be-ozneha,', 'Ad she-tifkach et eineha.' ]
+        },
+        context: "Written by Ehud Manor in 1982, this song captures the paradox of Israeli identity: deep love combined with sharp criticism. Embraced as an anthem by the peace movement during the Lebanon War, its duality has allowed it to be adopted by all sides of the political spectrum. It defines a uniquely Israeli patriotism rooted in the painful responsibility to fight for the nation's character.",
+        analysis: { theme: 'Patriotism & Protest', era: '1980s', emotion: 'Defiant, Passionate', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'shir-lashalom',
+        title: 'A Song for Peace',
+        hebrewTitle: 'שיר לשלום',
+        artist: 'Miri Aloni & Lahakat HaNahal',
+        youtubeId: '-Y94qG-T25M',
+        description: 'Israel\'s most iconic and controversial peace anthem, forever linked to the memory of Prime Minister Yitzhak Rabin, who sang it moments before his assassination.',
+        tags: ['Peace', 'Protest', 'Hope', 'Yitzhak Rabin'],
+        lyrics: {
+            hebrew: [ 'תְּנוּ לַשֶּׁמֶשׁ לַעֲלוֹת,', 'לַבֹּקֶר לְהָאִיר,', 'הַזַּכָּה שֶׁבַּתְּפִלּוֹת', 'אוֹתָנוּ לֹא תַּחֲזִיר.', 'לָכֵן, רַק שִׁירוּ שִׁיר לַשָּׁלוֹם,', 'אַל תִּלְחֲשׁוּ תְּפִלָּה.', 'אַל תַּגִּידוּ יוֹם יָבוֹא,', 'הָבִיאוּ אֶת הַיּוֹם!' ],
+            english: [ 'Let the sun rise,', 'Let the morning shine,', 'The purest of prayers', 'Will not bring us back.', 'Therefore, just sing a song for peace,', 'Do not whisper a prayer.', 'Do not say a day will come,', 'Bring the day!' ],
+            transliteration: [ 'Tnu la-shemesh la-alot,', 'La-boker le-ha\'ir,', 'Ha-zakah she-ba-tefilot', 'Otanu lo tachazir.', 'Lachen, rak shiru shir la-shalom,', 'Al tilchashu tefilah.', 'Al tagidu yom yavo,', 'Havi\'u et ha-yom!' ]
+        },
+        context: "Written by a wounded soldier in 1969, this song was a radical departure from the ethos of its time. It explicitly rejects rituals of mourning in favor of an active, urgent demand for peace. Its status was tragically cemented on Nov 4, 1995, when it was the last song sung by Yitzhak Rabin before his assassination. The blood-stained lyric sheet found in his pocket transformed the song into a sacred relic of the peace movement.",
+        analysis: { theme: 'Peace & Activism', era: '1960s', emotion: 'Urgent, Hopeful', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'ballada-lachovesh',
+        title: 'Ballad for a Medic',
+        hebrewTitle: 'בלדה לחובש',
+        artist: 'Yehoram Gaon',
+        youtubeId: 'W9lGTt8mX2c',
+        description: 'A narrative ballad about a medic who makes the ultimate sacrifice to stay with a wounded soldier, embodying the IDF ethos of "leaving no man behind."',
+        tags: ['Yom HaZikaron', 'Heroism', 'Sacrifice', 'War of Attrition'],
+        lyrics: {
+            hebrew: [ 'בְּעֵמֶק שָׁם, בֵּין הֶהָרִים,', 'שָׁכַב פָּצוּעַ וְגָנַח.', '״הַשְׁאִירוּ אוֹתִי כָּאן, חֲבֵרִים,', 'אֲנִי כְּבָר לֹא אוּכַל לָנוּעַ.״', '״עֲזֹב שְׁטוּיוֹת,״ עָנָה אָז הַחוֹבֵשׁ,', '״אֲנִי אוֹתְךָ מִכָּאן לֹא עוֹזֵב.״', 'וְהֵם נוֹתְרוּ שְׁנֵיהֶם, וְהֵם גְּלוּיִים לָאֵשׁ.' ],
+            english: [ 'In the valley there, between the mountains,', 'A wounded soldier lay and groaned.', '\'Leave me here, friends,', 'I can no longer move.\'', '\'Leave that nonsense,\' the medic then said,', '\'I am not leaving you here.\'', 'And the two of them remained, exposed to the fire.' ],
+            transliteration: [ 'Be-emek sham, bein he-harim,', 'Shachav patzu\'a ve-ganach.', '\'Hash\'iru oti kan, chaverim,', 'Ani kvar lo uchal lanu\'a.\'', '\'Azov shtuyot,\' anah az ha-chovesh,', '\'Ani otcha mi-kan lo ozev.\'', 'Ve-hem notru shneihem, ve-hem gluyim la-esh.' ]
+        },
+        context: "Based on a story by S.Y. Agnon, this song tells the tragic tale of a medic who refuses to abandon a mortally wounded soldier, staying with him under fire and using his own last dressing to tend to him. It powerfully captures the themes of self-sacrifice, medical ethics on the battlefield, and the profound humanism that can exist even in the midst of war. It is a staple of ceremonies honoring fallen medics.",
+        analysis: { theme: 'Self-Sacrifice', era: '1960s', emotion: 'Tragic, Heroic', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'yerushalayim-shel-zahav',
+        title: 'Jerusalem of Gold',
+        hebrewTitle: 'ירושלים של זהב',
+        artist: 'Shuli Natan',
+        youtubeId: 'l0d-P7Y_pLM',
+        description: 'Israel\'s unofficial national anthem, written three weeks before the Six-Day War, expressing a 2000-year-old longing for a divided Jerusalem.',
+        tags: ['Jerusalem', 'Six-Day War', 'Hope', 'Longing', 'Reunification'],
+        lyrics: {
+            hebrew: [ 'אֲוִיר הָרִים צָלוּל כַּיַּיִן', 'וְרֵיחַ אֳרָנִים', 'נִשָּׂא בְּרוּחַ הָעַרְבַּיִם', 'עִם קוֹל פַּעֲמוֹנִים.', 'יְרוּשָׁלַיִם שֶׁל זָהָב', 'וְשֶׁל נְחֹשֶׁת וְשֶׁל אוֹר', 'הֲלֹא לְכָל שִׁירַיִךְ אֲנִי כִּנּוֹר.', 'חָזַרְנוּ אֶל בּוֹרוֹת הַמַּיִם,', 'לַשּׁוּק וְלַכִּכָּר,', 'שׁוֹפָר קוֹרֵא בְּהַר הַבַּיִת', 'בָּעִיר הָעַתִּיקָה.' ],
+            english: [ 'Mountain air as clear as wine', 'And the scent of pines', 'Is carried on the evening wind', 'With the sound of bells.', 'Jerusalem of gold', 'And of bronze, and of light', 'Behold, I am a violin for all your songs.', 'We have returned to the water cisterns,', 'To the market and to the square,', 'A shofar sounds on the Temple Mount', 'In the Old City.' ],
+            transliteration: [ 'Avir harim tzalul ka-yayin', 'Ve-rei\'ach oranim', 'Nisa be-ruach ha-arbayim', 'Im kol pa\'amonim.', 'Yerushalayim shel zahav', 'Ve-shel nechoshet ve-shel or', 'Ha-lo le-chol shirayich ani kinor.', 'Chazarnu el borot ha-mayim,', 'La-shuk ve-la-kikar,', 'Shofar kore be-Har ha-Bayit', 'Ba-ir ha-atikah.' ]
+        },
+        context: "Written by Naomi Shemer just before the 1967 war, the song's original lyrics lamented a divided Jerusalem inaccessible to Jews. When the city was reunified, Shemer added a triumphant final verse celebrating the return. The song's history encapsulates a pivotal moment of national trauma and euphoria. Its original mournful verses ensure its place in the canon of remembrance for the city that once was.",
+        analysis: { theme: 'Longing & Homecoming', era: '1960s', emotion: 'Yearning, Reverent', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'hanisich-hakatan',
+        title: 'The Little Prince',
+        hebrewTitle: 'הנסיך הקטן',
+        artist: 'Gidi Gov',
+        youtubeId: 'lQ67Bv4g9hA',
+        description: 'A poignant elegy for a fallen soldier, using the allegory of Saint-Exupéry\'s famous story to describe a journey from which there is no return.',
+        tags: ['Personal Grief', 'Yom HaZikaron', 'Loss of Innocence', 'Allegory'],
+        lyrics: {
+            hebrew: [ 'הוּא יָשַׁב עַל שְׂפַת הַכּוֹכָב,', 'לְבַדּוֹ עִם הַשְּׁקִיעָה.', 'הַשּׁוֹשַׁנָּה אָמְרָה לוֹ: ״לֵךְ,', 'וְהוּא נֶעֱצַב מְאֹד, וְהָלַךְ,', 'וְעָזַב אֶת כּוֹכָבוֹ לְבַד.', 'וְהוּא רָצָה לַחֲזֹר, אֲבָל,', 'הַדֶּרֶךְ הָיְתָה אֲרֻכָּה כָּל כָּךְ,', 'וְהוּא יָדַע שֶׁהוּא לֹא יָכוֹל,', 'לַחֲזֹר אֶל כּוֹכָבוֹ לָנֶצַח.' ],
+            english: [ 'He sat on the edge of the star,', 'Alone with the sunset.', 'The rose told him: \'Go,', 'And he grew very sad, and he went,', 'And left his star alone.', 'And he wanted to return, but,', 'The road was so long,', 'And he knew that he could not,', 'Return to his star forever.' ],
+            transliteration: [ 'Hu yashav al sfat ha-kochav,', 'Levado im ha-shki\'ah.', 'Ha-shoshanah amrah lo: \'Lech,', 'Ve-hu ne\'etzav me\'od, ve-halach,', 'Ve-azav et kochavo levad.', 'Ve-hu ratzah lachzor, aval,', 'Ha-derech haytah arukah kol kach,', 'Ve-hu yada she-hu lo yachol,', 'Lachzor el kochavo la-netzach.' ]
+        },
+        context: "Yehonatan Geffen wrote this song in memory of his nephew, a soldier killed in 1973. Using the simple, childlike language of 'The Little Prince,' it tells the heartbreaking story of leaving home (his star) and love (his rose) for a journey (the army) from which he can never return. It strips away heroic narratives to focus on the intimate, irreversible tragedy of a single lost life.",
+        analysis: { theme: 'Allegorical Loss', era: '1970s', emotion: 'Melancholic, Gentle', difficulty: 'Beginner' }
+    },
+    {
+        id: 'kmo-tzemach-bar',
+        title: 'Like a Wildflower',
+        hebrewTitle: 'כמו צמח בר',
+        artist: 'Chava Alberstein',
+        youtubeId: 'Zf9zVf4I0-c',
+        description: 'An anthem of resilience and survival, using the metaphor of a lone wildflower that endures a harsh winter to bloom again.',
+        tags: ['Resilience', 'Hope', 'Survival', 'Yom HaZikaron'],
+        lyrics: {
+            hebrew: [ 'רַק אִמָּא דָּאֲגָה וְאָמְרָה:', '"אֵיךְ תִּגְדַּל, יַלְדִּי?"', 'וְהוּא חִיֵּךְ לָהּ וְשָׁתַק.', 'כְּמוֹ צֶמַח בַּר.', 'שֶׁמְּחַפֵּשׂ אֶת הַשֶּׁמֶשׁ', 'מִתַּחַת לַסְּלָעִים.', 'כָּךְ הוּא חָלַם לִפְרֹחַ,', 'יוֹם אֶחָד, בֵּין הַשְּׁבִילִים.' ],
+            english: [ 'Only mother worried and said:', '"How will you grow, my child?"', 'And he smiled at her and was silent.', 'Like a wildflower.', 'That searches for the sun', 'Underneath the rocks.', 'So he dreamed of blooming,', 'One day, among the paths.' ],
+            transliteration: [ 'Rak ima da\'agah ve-amrah:', '"Eich tigdal, yaldi?"', 'Ve-hu chiyech lah ve-shatak.', 'Kmo tzemach bar.', 'She-mechapes et ha-shemesh', 'Mi-tachat la-sla\'im.', 'Kach hu chalam lifroach,', 'Yom echad, bein ha-shvilim.' ]
+        },
+        context: "This song by Rachel Shapira is a powerful message of hope for the bereaved. Its theme of perseverance through darkness and the promise of eventual renewal resonates deeply with the Israeli experience. It suggests that even from the depths of grief, life can emerge, fragile but determined, like a wildflower breaking through hard ground.",
+        analysis: { theme: 'Resilience & Survival', era: '1970s', emotion: 'Hopeful, Enduring', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'lelechet-shevi-acharayich',
+        title: 'To Walk Captivated By You',
+        hebrewTitle: 'ללכת שבי אחרייך',
+        artist: 'Ilanit',
+        youtubeId: 'qO3z4T9xYbo',
+        description: 'A declaration of love and commitment to the Land of Israel, personified as a beloved partner whose burdens must be shared.',
+        tags: ['Love of Land', 'Yom Kippur War', 'Hope', 'Belonging'],
+        lyrics: {
+            hebrew: [ 'לָלֶכֶת שְׁבִי אַחֲרַיִךְ,', 'לִנְשֹׁם אֶת עֲפַר דְּרָכַיִךְ,', 'לִכְאֹב וְלָשֵׂאת בִּשְׁנַיִם', 'וְלֶאֱהֹב אוֹתָךְ.', 'לָתֵת אֶת יָדִי לְיָדֵךְ,', 'לִצְעֹד לְעֻמַּת פָּנַיִךְ,', 'לָשִׂים אֶת כְּתֵפִי אֶל שֶׁכֶם', 'וְלִבְנוֹת אוֹתָךְ.' ],
+            english: [ 'To walk captivated by you,', 'To breathe the dust of your paths,', 'To ache and to bear together', 'And to love you.', 'To give my hand to yours,', 'To march towards your face,', 'To place my shoulder to the burden', 'And to build you.' ],
+            transliteration: [ 'Lalechet shevi acharayich,', 'Linshom et afar drachayich,', 'Lich\'ov ve-laset bi-shnayim', 'Ve-le\'ehov otach.', 'Latet et yadi le-yadech,', 'Litz\'od le\'umat panayich,', 'Lasim et k\'tefi el shechem', 'Ve-livnot otach.' ]
+        },
+        context: "Ehud Manor wrote these lyrics during the Yom Kippur War while he was abroad, feeling helpless. The song is an expression of his deep, physical connection to the land and his yearning to return and share in its struggles. It describes a love that is not easy or idyllic but embraces pain and responsibility. In memorial contexts, it reaffirms the bond to the land for which soldiers fell.",
+        analysis: { theme: 'Love of Land', era: '1970s', emotion: 'Devotional, Earnest', difficulty: 'Beginner' }
+    },
+    {
+        id: 'zemer-nogah',
+        title: 'A Sad Song',
+        hebrewTitle: 'זמר נוגה',
+        artist: 'Ofra Haza',
+        youtubeId: 'T_3FAPlJk4g',
+        description: 'A haunting poem by the pre-state poet Rachel, giving voice to the silent, private grief of those left behind by war.',
+        tags: ['Poetry', 'Sacrifice', 'Longing', 'Pre-State Era'],
+        lyrics: {
+            hebrew: [ 'הֲתִזְכֹּר מַנְגִינָתִי, זֶמֶר עֶרֶשׂ?', 'הֲתִשְׁמַע בִּדְמִי הַלֵּילוֹת?', 'הֲתֵדַע אֶת הַכְּאֵב הַנִּצְחִי,', 'הַמְּחַכֶּה לְךָ תָּמִיד?', 'וְאִם לֹא אֶהְיֶה כְּשֶׁתָּשׁוּב,', 'הֲתָבוֹא אֶל קִבְרִי הַשָּׁכֹל,', 'וְתִבְכֶּה עַל אַהֲבָה שֶׁאֵינֶנָּה?' ],
+            english: [ 'Will you remember my melody, a cradle song?', 'Will you hear in the silence of the nights?', 'Will you know the eternal pain,', 'That always waits for you?', 'And if I am not here when you return,', 'Will you come to my bereaved grave,', 'And weep for a love that is no more?' ],
+            transliteration: [ 'Ha-tizkor manginati, zemer eres?', 'Ha-tishma bi-dmi ha-leilot?', 'Ha-teda et ha-ke\'ev ha-nitzchi,', 'Ha-mechakeh lecha tamid?', 'Ve-im lo ehyeh ke-she-tashuv,', 'Ha-tavo el kivri ha-shakol,', 'Ve-tivkeh al ahavah she-einena?' ]
+        },
+        context: "This poem by Rachel Bluwstein (1890-1931), one of modern Hebrew's foundational poets, speaks from the perspective of one left behind by a beloved who has gone to a war from which he may not return. Its power lies in its quiet intimacy and focus on the personal sacrifice of those who wait and remember. Set to music, it was adopted into the canon of memorial songs.",
+        analysis: { theme: 'Poetic Longing', era: '1920s (Poem)', emotion: 'Wistful, Haunting', difficulty: 'Advanced' }
+    },
+    {
+        id: 'avshalom',
+        title: 'Avshalom',
+        hebrewTitle: 'אבשלום',
+        artist: 'Arik Einstein & Shalom Hanoch',
+        youtubeId: 'O9dYp_oXGqc',
+        description: 'A classic rock ballad that merges the biblical tragedy of King David\'s son with the contemporary grief of losing a friend.',
+        tags: ['Personal Grief', 'Biblical Allusion', 'Loss', 'Friendship'],
+        lyrics: {
+            hebrew: [ 'פָּנָיו הָיוּ כְּמוֹ הַשֶּׁמֶשׁ,', 'עֵינָיו אוֹר כּוֹכָבִים.', 'וּשְׂעָרוֹ הַזָּהֹב', 'הָיָה תָּלוּי עַל הָעֵץ.', 'אַבְשָׁלוֹם, אַבְשָׁלוֹם,', 'לָמָּה לֹא חָזַרְתָּ הַבַּיְתָה?', 'הַמֶּלֶךְ דָּוִד קוֹרֵא לְךָ,', 'הוּא מְחַכֶּה לְךָ.' ],
+            english: [ 'His face was like the sun,', 'His eyes the light of stars.', 'And his golden hair', 'Was hanging on the tree.', 'Avshalom, Avshalom,', 'Why did you not come home?', 'King David calls for you,', 'He is waiting for you.' ],
+            transliteration: [ 'Panav hayu kmo ha-shemesh,', 'Einav or kochavim.', 'U-se\'aro ha-zahov', 'Hayah talui al ha-etz.', 'Avshalom, Avshalom,', 'Lamah lo chazarta ha-baytah?', 'Ha-melech David kore lecha,', 'Hu mechakeh lecha.' ]
+        },
+        context: "Written in memory of a close friend's young son, this song draws a direct parallel between modern grief and King David's famous lament for his son, Avshalom, in the Bible. By invoking this ancient story of a father's inconsolable grief, the song elevates a personal loss into a timeless, archetypal tragedy, becoming an anthem for a generation grappling with the loss of friends in Israel's wars.",
+        analysis: { theme: 'Biblical Grief', era: '1970s', emotion: 'Grieving, Rock', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'shtei-etzbaot-mitzidon',
+        title: 'Two Fingers from Sidon',
+        hebrewTitle: 'שתי אצבעות מצידון',
+        artist: 'Boaz Ofri',
+        youtubeId: 'nFp25LwJ1p0',
+        description: 'From a seminal anti-war film, this song captures the tragic irony of the First Lebanon War, where being close to home meant nothing.',
+        tags: ['Lebanon War', 'Anti-War', 'Loss of Innocence', 'Trauma'],
+        lyrics: {
+            hebrew: [ 'גֶּפֶן, יַיִן, מִטָּה חַמָּה.', 'בְּיָפוֹ שֶׁל סְתָו.', 'וְהוּא כָּתַב: "אִמָּא יְקָרָה,', 'הַכֹּל כָּאן כְּמוֹ אָז.', 'אַל תִּדְאֲגִי, אֲנִי חוֹזֵר,', 'זֶה כְּבָר מַמָּשׁ קָרוֹב,', 'רַק שְׁתֵּי אֶצְבָּעוֹת מִצִּידוֹן."' ],
+            english: [ 'A vine, wine, a warm bed.', 'In the beauty of autumn.', 'And he wrote: "Dear Mom,', 'Everything here is like it was then.', 'Don\'t worry, I am coming back,', 'It\'s really close now,', 'Just two fingers from Sidon."' ],
+            transliteration: [ 'Gefen, yayin, mitah chamah.', 'Be-yofo shel stav.', 'Ve-hu katav: "Ima yekara,', 'Ha-kol kan kmo az.', 'Al tid\'agi, ani chozer,', 'Zeh kvar mamash karov,', 'Rak shtei etzba\'ot mi-Tzidon."' ]
+        },
+        context: "The title track from a 1986 film that shattered heroic molds, offering a critical look at the First Lebanon War. The title is soldier's slang for being very close to the Israeli border, measured by two fingers on a map. The song's tragic irony is that this proximity means nothing in the face of sudden death. It became an anthem for a disillusioned generation, questioning the purpose of war.",
+        analysis: { theme: 'Anti-War Trauma', era: '1980s', emotion: 'Somber, Critical', difficulty: 'Intermediate' }
+    },
+    {
+        id: 'livkot-lecha',
+        title: 'To Cry for You',
+        hebrewTitle: 'לבכות לך',
+        artist: 'Aviv Geffen & Arik Einstein',
+        youtubeId: 'S1Y_0agII4g',
+        description: 'A personal song of grief that became a national anthem of mourning for an entire generation after the assassination of Yitzhak Rabin.',
+        tags: ['Personal Grief', 'Yitzhak Rabin', 'Loss', 'Youth'],
+        lyrics: {
+            hebrew: [ 'לִבְכּוֹת לְךָ, אֲנִי מַבְטִיחַ לִבְכּוֹת לְךָ,', 'עַל שֶׁהָלַכְתָּ בְּלִי לְהַגִּיד לִי שָׁלוֹם.', 'כְּמוֹ שֶׁאַתָּה, לֹא יִהְיֶה לִי חָבֵר אַחֵר,', 'כָּזֶה שֶׁיָּבוֹא וְיֵלֵךְ כְּמוֹ חֲלוֹם.', 'וְזֶה כּוֹאֵב, לְהִתְגַּעְגֵּעַ וְלִזְכֹּר,', 'אֶת כָּל הַדְּבָרִים שֶׁלֹּא נַסְפִּיק לַעֲשׂוֹת.', 'לְדַבֵּר אִתְּךָ, וְלֹא לְקַבֵּל תְּשׁוּבָה,', 'זוֹ הַשְּׁתִיקָה שֶׁאוֹתִי מְשַׁגַּעַת.' ],
+            english: [ 'To cry for you, I promise to cry for you,', 'For you left without saying goodbye to me.', 'Like you, I will have no other friend,', 'One who comes and goes like a dream.', 'And it hurts, to miss and to remember,', 'All the things we won\'t get to do.', 'To talk to you, and not get an answer,', 'It\'s the silence that drives me mad.' ],
+            transliteration: [ 'Livkot lecha, ani mavti\'ach livkot lecha,', 'Al she-halachta bli le-hagid li shalom.', 'Kmo she-ata, lo yihiyeh li chaver acher,', 'Kazeh she-yavo ve-yelech kmo chalom.', 'Ve-zeh ko\'ev, le-hitga\'age\'a ve-lizkor,', 'Et kol ha-devarim she-lo naspik la\'asot.', 'Le-daber itcha, ve-lo le-kabel teshuvah,', 'Zo ha-shtikah she-oti meshaga\'at.' ]
+        },
+        context: "Initially written by Aviv Geffen for a deceased friend, this raw, personal song became the anthem for the 'Candle Youth' after the 1-995 assassination of Yitzhak Rabin. Geffen performed it at the rally moments before the murder. Its direct, simple language of loss articulated the shock and grief of a generation in a way formal mourning could not, forever linking personal pain with national trauma.",
+        analysis: { theme: 'Personal & National Grief', era: '1990s', emotion: 'Heartbroken, Raw', difficulty: 'Beginner' }
     }
 ];
 
@@ -980,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function populateFilters() {
-    const allTags = new Set(songDatabase.flatMap(song => song.tags));
+    const allTags = [...new Set(songDatabase.flatMap(song => song.tags))].sort();
     const filtersContainer = document.getElementById('tag-filters');
     filtersContainer.innerHTML = ''; // Clear existing
     allTags.forEach(tag => {
@@ -988,6 +785,13 @@ function populateFilters() {
         button.textContent = tag;
         button.dataset.tag = tag;
         filtersContainer.appendChild(button);
+    });
+    // Re-add event listeners after populating
+    document.querySelectorAll('#tag-filters button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.currentTarget.classList.toggle('active');
+            renderLibrary();
+        });
     });
 }
 
@@ -1057,9 +861,9 @@ function loadSong(songId) {
     const hebrewContainer = document.getElementById('hebrew-lyrics');
     const englishContainer = document.getElementById('english-lyrics');
     const transliterationContainer = document.getElementById('transliteration-lyrics');
-    hebrewContainer.innerHTML = song.lyrics.hebrew.map(line => `<div class="lyric-line">${line}</div>`).join('');
-    englishContainer.innerHTML = song.lyrics.english.map(line => `<div class="lyric-line">${line}</div>`).join('');
-    transliterationContainer.innerHTML = song.lyrics.transliteration.map(line => `<div class="lyric-line">${line}</div>`).join('');
+    hebrewContainer.innerHTML = song.lyrics.hebrew.map(line => `<div class="lyric-line">${line || '&nbsp;'}</div>`).join('');
+    englishContainer.innerHTML = song.lyrics.english.map(line => `<div class="lyric-line">${line || '&nbsp;'}</div>`).join('');
+    transliterationContainer.innerHTML = song.lyrics.transliteration.map(line => `<div class="lyric-line">${line || '&nbsp;'}</div>`).join('');
 
     // Populate context
     document.getElementById('song-context').innerHTML = `<p>${song.context.replace(/\n/g, '</p><p>')}</p>`;

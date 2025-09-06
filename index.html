@@ -597,7 +597,6 @@
 
     <main class="main-content">
         <div class="container">
-            <!-- YouTube Translator Section -->
             <section id="youtube-translator" class="youtube-input-section">
                 <h2>🎬 Translate Any Hebrew Song from YouTube</h2>
                 <p style="margin-bottom: 1.5rem; color: #6c757d;">Simply paste a YouTube URL of any Hebrew song, and our AI will automatically extract, translate, and provide cultural context!</p>
@@ -650,7 +649,6 @@
                 </div>
             </section>
 
-            <!-- YouTube Player Section -->
             <section id="youtube-player" class="youtube-player-section">
                 <button class="back-button" onclick="showYouTubeTranslator()">← Back to Translator</button>
                 
@@ -661,8 +659,7 @@
                 </div>
 
                 <div class="youtube-embed" id="youtube-embed-container">
-                    <!-- YouTube iframe will be inserted here -->
-                </div>
+                    </div>
 
                 <div class="controls">
                     <button class="control-button" onclick="syncLyrics()">🔄 Sync Lyrics</button>
@@ -715,7 +712,6 @@
                 </div>
             </section>
 
-            <!-- Song Library (existing content) -->
             <section id="library" class="song-library" style="display: none;">
                 <div class="song-card" onclick="loadPresetSong('hatikvah')">
                     <h3>Hatikvah</h3>
@@ -746,7 +742,6 @@
                 </div>
             </section>
 
-            <!-- About Section -->
             <section id="about" style="display: none;">
                 <div class="cultural-context">
                     <h3>About This Project</h3>
@@ -798,7 +793,7 @@
                 title: 'Hatikvah',
                 hebrewTitle: 'התקווה',
                 artist: 'Naftali Herz Imber',
-                youtubeId: 'SAMPLE_ID', // You'll replace with actual IDs
+                youtubeId: 'Rz4_a5_A43A', // Example ID
                 hebrew: [
                     'כל עוד בלבב פנימה',
                     'נפש יהודי הומיה',
@@ -841,6 +836,16 @@
             document.getElementById('youtube-translator').style.display = 'block';
             document.getElementById('youtube-player').classList.remove('active');
             document.getElementById('library').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+            
+            document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.nav-button')[0].classList.add('active');
+        }
+
+        function showLibrary() {
+            document.getElementById('youtube-translator').style.display = 'none';
+            document.getElementById('youtube-player').classList.remove('active');
+            document.getElementById('library').style.display = 'grid';
             document.getElementById('about').style.display = 'none';
             
             document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
@@ -1175,14 +1180,7 @@
                     translateYouTubeSong();
                 }
             });
-        });('.nav-button')[0].classList.add('active');
-        }
-
-        function showLibrary() {
-            document.getElementById('youtube-translator').style.display = 'none';
-            document.getElementById('youtube-player').classList.remove('active');
-            document.getElementById('library').style.display = 'grid';
-            document.getElementById('about').style.display = 'none';
-            
-            document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll
+        });
+    </script>
+</body>
+</html>

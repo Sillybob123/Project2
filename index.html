@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hebrew Songs Translation - AI-Powered YouTube Integration</title>
+    <title>Hebrew Remembrance Songs: A Curated Library</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --text-color: #2c3e50;
-            --background-color: #f8f9fa;
+            --primary-color: #3a506b; /* Deeper blue */
+            --secondary-color: #5bc0de; /* Lighter blue accent */
+            --accent-color: #d9534f; /* Muted red for emphasis */
+            --text-color: #333;
+            --background-color: #f9f9f9;
             --card-background: #ffffff;
-            --border-color: #e9ecef;
+            --border-color: #e0e0e0;
             --hebrew-color: #8b4513;
             --english-color: #2c3e50;
             --transliteration-color: #6c757d;
@@ -27,10 +25,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .container {
@@ -40,23 +38,24 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), #1c2541);
             color: white;
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .header-content h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
             font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .header-content p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
@@ -66,7 +65,7 @@
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .nav-content {
@@ -78,8 +77,8 @@
 
         .nav-button {
             background: none;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
             cursor: pointer;
@@ -89,7 +88,7 @@
 
         .nav-button:hover,
         .nav-button.active {
-            background: var(--secondary-color);
+            background: var(--primary-color);
             color: white;
         }
 
@@ -97,141 +96,155 @@
             padding: 2rem 0;
         }
 
-        /* YouTube Input Section */
-        .youtube-input-section {
+        /* Library Section */
+        #library-section {
+            display: block;
+        }
+
+        .library-controls {
             background: var(--card-background);
+            padding: 1.5rem;
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
-            border-left: 4px solid var(--success-color);
-        }
-
-        .youtube-input-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             display: flex;
+            gap: 1.5rem;
             align-items: center;
-            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
-        .input-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .url-input {
+        .search-bar {
             flex: 1;
-            padding: 0.75rem;
+            min-width: 300px;
+            padding: 0.75rem 1rem;
             border: 2px solid var(--border-color);
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
         }
 
-        .url-input:focus {
+        .search-bar:focus {
             outline: none;
             border-color: var(--secondary-color);
         }
 
-        .translate-button {
-            background: linear-gradient(135deg, var(--success-color), #2ecc71);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .translate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
-        }
-
-        .translate-button:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .option-group {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .option-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--primary-color);
-        }
-
-        .option-group select,
-        .option-group input[type="checkbox"] {
-            margin-right: 0.5rem;
-        }
-
-        /* Loading States */
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--secondary-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .progress-bar {
+        .tag-filters button {
             background: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 8px;
-            margin: 1rem 0;
+            color: #495057;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 0.25rem;
+            transition: all 0.2s ease-in-out;
         }
 
-        .progress-fill {
-            background: linear-gradient(90deg, var(--secondary-color), var(--success-color));
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease;
+        .tag-filters button.active {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
         }
 
-        /* YouTube Player Section */
-        .youtube-player-section {
+        .song-library {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .song-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .song-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+            font-size: 1.4rem;
+        }
+
+        .song-card .hebrew-title {
+            color: var(--hebrew-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .song-card .artist {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .song-card .description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+
+        .song-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .song-card .tag {
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        #no-results {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: #6c757d;
+            grid-column: 1 / -1;
+        }
+
+        /* Player Section */
+        .player-section {
             background: var(--card-background);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            display: none;
+            display: none; /* Hidden by default */
+        }
+        
+        .player-section.active {
+            display: block;
         }
 
-        .youtube-player-section.active {
-            display: block;
+        .back-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-button:hover {
+            background: #c0392b;
         }
 
         .player-header {
@@ -243,291 +256,43 @@
 
         .player-header h2 {
             color: var(--primary-color);
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
         }
+        
+        /* ... other player styles from previous version ... */
+        .player-header .hebrew-title { color: var(--hebrew-color); font-size: 1.8rem; direction: rtl; margin-bottom: 0.5rem; }
+        .player-header .artist { color: var(--secondary-color); font-size: 1.3rem; font-weight: 500; }
+        .youtube-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
+        .lyrics-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .lyrics-column { background: #f9f9f9; padding: 1.5rem; border-radius: 8px; border-top: 4px solid; max-height: 500px; overflow-y: auto; }
+        .hebrew-lyrics { border-top-color: var(--hebrew-color); direction: rtl; text-align: right; }
+        .english-lyrics { border-top-color: var(--english-color); }
+        .transliteration-lyrics { border-top-color: var(--transliteration-color); }
+        .lyrics-column h3 { margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; position: sticky; top: 0; background: #f9f9f9; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        .hebrew-lyrics h3 { color: var(--hebrew-color); }
+        .english-lyrics h3 { color: var(--english-color); }
+        .transliteration-lyrics h3 { color: var(--transliteration-color); }
+        .lyric-line { margin-bottom: 1rem; padding: 0.75rem; border-radius: 6px; transition: all 0.3s ease; cursor: default; border-left: 3px solid transparent; line-height: 1.6; }
+        .cultural-context { background: linear-gradient(135deg, #f9f9f9, #e9ecef); padding: 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid var(--accent-color); }
+        .cultural-context h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.4rem; }
+        .cultural-context p, .cultural-context li { color: #495057; line-height: 1.8; margin-bottom: 1rem; }
+        .ai-analysis { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
+        .ai-analysis h3 { margin-bottom: 1rem; font-size: 1.4rem; }
+        .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .analysis-card { background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px; }
+        .analysis-card h4 { margin-bottom: 0.5rem; color: #ffd700; }
 
-        .player-header .hebrew-title {
-            color: var(--hebrew-color);
-            font-size: 1.5rem;
-            direction: rtl;
-            margin-bottom: 0.5rem;
-        }
-
-        .player-header .artist {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .youtube-embed {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .youtube-embed iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-        }
-
-        .lyrics-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .lyrics-column {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-top: 3px solid;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .hebrew-lyrics {
-            border-top-color: var(--hebrew-color);
-            direction: rtl;
-            text-align: right;
-        }
-
-        .english-lyrics {
-            border-top-color: var(--english-color);
-        }
-
-        .transliteration-lyrics {
-            border-top-color: var(--transliteration-color);
-        }
-
-        .lyrics-column h3 {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: sticky;
-            top: 0;
-            background: #f8f9fa;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hebrew-lyrics h3 {
-            color: var(--hebrew-color);
-        }
-
-        .english-lyrics h3 {
-            color: var(--english-color);
-        }
-
-        .transliteration-lyrics h3 {
-            color: var(--transliteration-color);
-        }
-
-        .lyric-line {
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-left: 3px solid transparent;
-            line-height: 1.6;
-        }
-
-        .lyric-line:hover {
-            background: rgba(52, 152, 219, 0.1);
-            border-left-color: var(--secondary-color);
-        }
-
-        .lyric-line.active {
-            background: rgba(52, 152, 219, 0.2);
-            border-left-color: var(--secondary-color);
-            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
-        }
-
-        .cultural-context {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        /* About Section */
+        #about-section {
+            background: var(--card-background);
             padding: 2rem;
             border-radius: 12px;
-            margin-top: 2rem;
-            border-left: 4px solid var(--accent-color);
+            display: none; /* Hidden by default */
         }
 
-        .cultural-context h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .cultural-context p {
-            color: #495057;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .control-button {
-            background: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .control-button:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .back-button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: #c0392b;
-        }
-
-        /* Song Library Styles */
-        .song-library {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .song-card {
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border-left: 4px solid var(--secondary-color);
-        }
-
-        .song-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .song-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .song-card .hebrew-title {
-            color: var(--hebrew-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            direction: rtl;
-            text-align: right;
-        }
-
-        .song-card .artist {
-            color: var(--secondary-color);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .song-card .description {
-            color: #6c757d;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* Status Messages */
-        .status-message {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .status-warning {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .lyrics-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .nav-content {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-            
-            .header-content h1 {
-                font-size: 2rem;
-            }
-            
-            .song-library {
-                grid-template-columns: 1fr;
-            }
-
-            .input-group {
-                flex-direction: column;
-            }
-
-            .options-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        .footer {
+        footer {
             background: var(--primary-color);
             color: white;
             text-align: center;
@@ -535,43 +300,12 @@
             margin-top: 3rem;
         }
 
-        .footer p {
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* AI Analysis Section */
-        .ai-analysis {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-
-        .ai-analysis h3 {
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .analysis-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .analysis-card h4 {
-            margin-bottom: 0.5rem;
-            color: #ffd700;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content h1 { font-size: 2.2rem; }
+            .song-library { grid-template-columns: 1fr; }
+            .lyrics-container { grid-template-columns: 1fr; }
+            .library-controls { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
@@ -579,8 +313,8 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>Hebrew Songs Translation</h1>
-                <p>AI-Powered YouTube Integration - Translate any Hebrew song instantly with cultural context and perfect pronunciation guides</p>
+                <h1>Hebrew Remembrance Songs</h1>
+                <p>A curated library of translated songs for Yom HaZikaron, Yom HaShoah, and moments of reflection.</p>
             </div>
         </div>
     </header>
@@ -588,356 +322,768 @@
     <nav class="navigation">
         <div class="container">
             <div class="nav-content">
-                <button class="nav-button active" onclick="showYouTubeTranslator()">🎵 YouTube Translator</button>
-                <button class="nav-button" onclick="showLibrary()">📚 Song Library</button>
-                <button class="nav-button" onclick="showAbout()">ℹ️ About</button>
+                <button class="nav-button active" onclick="showView('library-section')">📚 Song Library</button>
+                <button class="nav-button" onclick="showView('about-section')">ℹ️ About This Project</button>
             </div>
         </div>
     </nav>
 
     <main class="main-content">
         <div class="container">
-            <section id="youtube-translator" class="youtube-input-section">
-                <h2>🎬 Translate Any Hebrew Song from YouTube</h2>
-                <p style="margin-bottom: 1.5rem; color: #6c757d;">Simply paste a YouTube URL of any Hebrew song with captions, and our AI will automatically extract, translate, and provide cultural context!</p>
-                
-                <div class="status-message" id="status-message"></div>
-
-                <div class="input-group">
-                    <input type="text" 
-                           id="youtube-url" 
-                           class="url-input" 
-                           placeholder="Paste YouTube URL here (e.g., https://www.youtube.com/watch?v=...)"
-                           value="">
-                    <button class="translate-button" onclick="translateYouTubeSong()" id="translate-btn">
-                        🚀 Translate Song
-                    </button>
+            
+            <section id="library-section">
+                <div class="library-controls">
+                    <input type="text" id="search-bar" class="search-bar" placeholder="Search for a song or artist...">
+                    <div id="tag-filters" class="tag-filters">
+                        </div>
                 </div>
-
-                <div class="options-grid">
-                    <div class="option-group">
-                        <label>Translation Style:</label>
-                        <select id="translation-style">
-                            <option value="poetic">Poetic & Meaningful</option>
-                            <option value="literal">Literal Translation</option>
-                            <option value="singable">Singable English</option>
-                        </select>
+                <div id="song-library" class="song-library">
                     </div>
-                    
-                    <div class="option-group">
-                        <label>Include Cultural Context:</label>
-                        <input type="checkbox" id="include-context" checked>
-                        <span>Add historical/cultural background</span>
-                    </div>
-
-                    <div class="option-group">
-                        <label>Transliteration Style:</label>
-                        <select id="transliteration-style">
-                            <option value="ashkenazi">Ashkenazi Hebrew</option>
-                            <option value="sephardic">Sephardic Hebrew</option>
-                            <option value="modern">Modern Israeli</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="loading-spinner" id="loading-spinner">
-                    <div class="spinner"></div>
-                    <div id="loading-text">Contacting AI...</div>
-                </div>
+                <div id="no-results" style="display: none;">No songs found matching your search.</div>
             </section>
 
-            <section id="youtube-player" class="youtube-player-section">
-                <button class="back-button" onclick="showYouTubeTranslator()">← Back to Translator</button>
+            <section id="player-section" class="player-section">
+                <button class="back-button" onclick="showView('library-section')">← Back to Library</button>
                 
                 <div class="player-header">
-                    <h2 id="yt-song-title">Song Title</h2>
-                    <div class="hebrew-title" id="yt-hebrew-title">כותרת בעברית</div>
-                    <div class="artist" id="yt-song-artist">Artist Name</div>
+                    <h2 id="song-title">Song Title</h2>
+                    <div class="hebrew-title" id="hebrew-title">כותרת בעברית</div>
+                    <div class="artist" id="song-artist">Artist Name</div>
                 </div>
 
-                <div class="youtube-embed" id="youtube-embed-container">
-                    </div>
+                <div class="youtube-embed" id="youtube-embed-container"></div>
 
-                <div class="controls">
-                    <button class="control-button" onclick="syncLyrics()">🔄 Sync Lyrics</button>
-                    <button class="control-button" onclick="downloadTranslation()">💾 Download</button>
-                    <button class="control-button" onclick="shareSong()">🔗 Share</button>
+                <div class="ai-analysis">
+                    <h3>Song Analysis</h3>
+                    <div class="analysis-grid">
+                        <div class="analysis-card"><h4>Theme</h4><p id="song-theme"></p></div>
+                        <div class="analysis-card"><h4>Era</h4><p id="song-era"></p></div>
+                        <div class="analysis-card"><h4>Emotional Tone</h4><p id="song-emotion"></p></div>
+                        <div class="analysis-card"><h4>For Learners</h4><p id="song-difficulty"></p></div>
+                    </div>
                 </div>
 
                 <div class="lyrics-container">
-                    <div class="lyrics-column hebrew-lyrics">
-                        <h3>עברית (Hebrew Original)</h3>
-                        <div id="yt-hebrew-lyrics"></div>
-                    </div>
-                    <div class="lyrics-column english-lyrics">
-                        <h3>English Translation</h3>
-                        <div id="yt-english-lyrics"></div>
-                    </div>
-                    <div class="lyrics-column transliteration-lyrics">
-                        <h3>Heblish (Pronunciation)</h3>
-                        <div id="yt-transliteration-lyrics"></div>
-                    </div>
-                </div>
-
-                <div class="ai-analysis" id="ai-analysis">
-                    <h3>🤖 AI Song Analysis</h3>
-                    <div class="analysis-grid">
-                        <div class="analysis-card">
-                            <h4>Theme</h4>
-                            <p id="song-theme">Loading...</p>
-                        </div>
-                        <div class="analysis-card">
-                            <h4>Era/Period</h4>
-                            <p id="song-era">Loading...</p>
-                        </div>
-                        <div class="analysis-card">
-                            <h4>Emotional Tone</h4>
-                            <p id="song-emotion">Loading...</p>
-                        </div>
-                        <div class="analysis-card">
-                            <h4>Difficulty Level</h4>
-                            <p id="song-difficulty">Loading...</p>
-                        </div>
-                    </div>
+                    <div class="lyrics-column hebrew-lyrics"><h3>עברית (Hebrew)</h3><div id="hebrew-lyrics"></div></div>
+                    <div class="lyrics-column english-lyrics"><h3>English</h3><div id="english-lyrics"></div></div>
+                    <div class="lyrics-column transliteration-lyrics"><h3>Pronunciation</h3><div id="transliteration-lyrics"></div></div>
                 </div>
 
                 <div class="cultural-context">
-                    <h3>📚 Cultural Context & Significance</h3>
-                    <div id="yt-song-context">
-                        <p>Cultural context will appear here after translation...</p>
-                    </div>
+                    <h3>Background & Significance</h3>
+                    <div id="song-context"></div>
                 </div>
             </section>
+            
+            <section id="about-section">
+                <h2>About This Project</h2>
+                <p>This project was created to provide a meaningful resource for understanding the profound, beautiful, and often heartbreaking songs that form the soundtrack of Israeli and Jewish remembrance.</p>
+                <p>Music is a powerful conduit for history, emotion, and collective memory. For those who do not speak Hebrew, the depth of these songs can be lost. This library aims to bridge that gap by providing not just literal translations, but poetic interpretations, accurate pronunciation guides (transliterations), and the cultural and historical context necessary to fully appreciate each piece.</p>
+                <h3>Features:</h3>
+                <ul>
+                    <li><strong>Curated Selection:</strong> A hand-picked collection of songs for Yom HaZikaron (Israel's Memorial Day), Yom HaShoah (Holocaust Remembrance Day), and general themes of peace, loss, and hope.</li>
+                    <li><strong>In-Depth Translations:</strong> Each song is presented with its original Hebrew, a meaningful English translation, and a phonetic transliteration.</li>
+                    <li><strong>Cultural Context:</strong> Understand the story behind the song—who wrote it, when, why, and what it means to the people who sing it.</li>
+                    <li><strong>Search and Filter:</strong> Easily find songs by title, artist, or theme using the library's search and tag filters.</li>
+                </ul>
+                <p>This is a living project. We hope it serves as a valuable tool for education, connection, and remembrance.</p>
+            </section>
 
-            <section id="library" class="song-library" style="display: none;">
-                </section>
-
-            <section id="about" style="display: none;">
-                </section>
         </div>
     </main>
 
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <p>Powered by AI • Preserving memory through music • Making Hebrew songs accessible to the world</p>
+            <p>Preserving memory through music. Making Hebrew songs accessible to the world.</p>
         </div>
     </footer>
 
-    <script>
-        let currentTranslation = null;
-        let youtubePlayer = null;
-
-        // Navigation functions (no changes)
-        function showYouTubeTranslator() {
-            document.getElementById('youtube-translator').style.display = 'block';
-            document.getElementById('youtube-player').classList.remove('active');
-            document.getElementById('library').style.display = 'none';
-            document.getElementById('about').style.display = 'none';
-            document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.nav-button')[0].classList.add('active');
+<script>
+// =================================================================================
+//  SONG DATABASE
+//  This is where all the pre-translated song data is stored.
+//  To add a new song, simply copy an existing object and paste it at the end of the array.
+// =================================================================================
+const songDatabase = [
+    {
+        id: 'hachoref-haacharon',
+        title: 'The Last Winter',
+        hebrewTitle: 'החורף האחרון',
+        artist: 'Hava Alberstein',
+        youtubeId: 'UduJG5bUPEA',
+        description: 'A heart-wrenching song written by Avi Koren in memory of his brother who fell in the Yom Kippur War.',
+        tags: ['Yom HaZikaron', 'Loss', 'Yom Kippur War'],
+        lyrics: {
+            hebrew: [
+                'אחי הטוב, הבן היפה שלי',
+                'החורף האחרון שלך עכשיו הגיע',
+                'אחי הטוב, הבן היפה שלי',
+                'אתה שומע איך הרוח מייללת?',
+                'ומתחת לשמיכה הכבדה',
+                'אתה שוכב קר, אתה לא נושם',
+                'בחורף הזה כבר לא תהיה כאן',
+                'אחי הטוב, הבן היפה שלי'
+            ],
+            english: [
+                'My good brother, my beautiful son',
+                'Your last winter has now arrived',
+                'My good brother, my beautiful son',
+                'Do you hear how the wind is wailing?',
+                'And under the heavy blanket',
+                'You lie cold, you are not breathing',
+                'This winter, you will no longer be here',
+                'My good brother, my beautiful son'
+            ],
+            transliteration: [
+                'Achi hatov, haben hayafa sheli',
+                'Hachoref ha\'acharon shelcha achshav hegia',
+                'Achi hatov, haben hayafa sheli',
+                'Ata shome\'a eich haruach meyalélet?',
+                'Umitachat lasmicha hakveda',
+                'Ata shochev kar, ata lo noshem',
+                'Bachoref haze kvar lo tihye kan',
+                'Achi hatov, haben hayafa sheli'
+            ]
+        },
+        context: "Written by Avi Koren about his brother, Shmuel Avraham Koren, who was killed in the Yom Kippur War. The song captures the raw, personal grief of a family member dealing with the finality of loss, contrasting the coldness of death with the warmth of memory. It has become an anthem of personal bereavement on Yom HaZikaron.",
+        analysis: {
+            theme: 'Personal Grief',
+            era: '1970s',
+            emotion: 'Melancholic, Mournful',
+            difficulty: 'Intermediate'
         }
-
-        function showLibrary() { /* ... unchanged ... */ }
-        function showAbout() { /* ... unchanged ... */ }
-
-        // YouTube URL extraction (no changes)
-        function extractVideoId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
+    },
+    {
+        id: 'lu-yehi',
+        title: 'Let It Be',
+        hebrewTitle: 'לו יהי',
+        artist: 'Naomi Shemer',
+        youtubeId: 'PhO8a_j-22E',
+        description: 'An iconic prayer for peace, written by Naomi Shemer during the intense uncertainty of the Yom Kippur War.',
+        tags: ['Hope', 'Peace', 'Yom Kippur War'],
+        lyrics: {
+            hebrew: [
+                'עוד יש מפרש לבן באופק',
+                'מול ענן שחור כבד',
+                'כל שנבקש לו יהי',
+                'ואם פתאום יזרח מאופל',
+                'על ראשנו אור כוכב',
+                'כל שנבקש לו יהי.',
+                'לו יהי, לו יהי',
+                'אנא, לו יהי',
+                'כל שנבקש לו יהי.'
+            ],
+            english: [
+                'There is still a white sail on the horizon',
+                'Against a heavy, black cloud',
+                'All that we ask for, let it be.',
+                'And if suddenly, from the darkness, there shines',
+                'Above our heads the light of a star',
+                'All that we ask for, let it be.',
+                'Let it be, let it be',
+                'Please, let it be',
+                'All that we ask for, let it be.'
+            ],
+            transliteration: [
+                'Od yesh mifras lavan ba\'ofek',
+                'Mul anan shachor kaved',
+                'Kol shenevakesh lu yehi',
+                'Ve\'im pitom yizrach me\'ofel',
+                'Al rosheinu or kochav',
+                'Kol shenevakesh lu yehi.',
+                'Lu yehi, lu yehi',
+                'Ana, lu yehi',
+                'Kol shenevakesh lu yehi.'
+            ]
+        },
+        context: "Naomi Shemer wrote this song in 1973 as a Hebrew response to the Beatles' 'Let It Be,' but it quickly took on a life of its own as a national prayer during the Yom Kippur War. It expresses a deep yearning for an end to suffering and a return to normalcy and peace, becoming a timeless Israeli anthem of hope.",
+        analysis: {
+            theme: 'Hope & Peace',
+            era: '1970s',
+            emotion: 'Hopeful, Prayerful',
+            difficulty: 'Beginner'
         }
-
-        // ===============================================
-        // ========= CORE CHANGE: REAL AI CALL ===========
-        // ===============================================
-        async function translateYouTubeSong() {
-            const url = document.getElementById('youtube-url').value.trim();
-            const loadingDiv = document.getElementById('loading-spinner');
-            const translateBtn = document.getElementById('translate-btn');
-
-            if (!url) {
-                showStatus('Please enter a YouTube URL', 'error');
-                return;
-            }
-
-            const videoId = extractVideoId(url);
-            if (!videoId) {
-                showStatus('Please enter a valid YouTube URL', 'error');
-                return;
-            }
-
-            // UI updates for loading
-            translateBtn.disabled = true;
-            translateBtn.innerHTML = '⏳ Processing...';
-            loadingDiv.style.display = 'block';
-            document.getElementById('loading-text').textContent = "Fetching transcript & calling AI...";
-
-            try {
-                // Get user options
-                const translationStyle = document.getElementById('translation-style').value;
-                const transliterationStyle = document.getElementById('transliteration-style').value;
-                const includeContext = document.getElementById('include-context').checked;
-
-                // Send data to our new backend function
-                const response = await fetch('/api/translate', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        youtubeUrl: url,
-                        translationStyle,
-                        transliterationStyle,
-                        includeContext
-                    }),
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'The AI server returned an error.');
-                }
-
-                const translationData = await response.json();
-                currentTranslation = { ...translationData, youtubeId: videoId }; // Add videoId to the data
-
-                showStatus('Song translated successfully!', 'success');
-                showYouTubePlayer();
-
-            } catch (error) {
-                console.error('Translation Error:', error);
-                showStatus(`Translation failed: ${error.message}`, 'error');
-            } finally {
-                // Reset UI
-                translateBtn.disabled = false;
-                translateBtn.innerHTML = '🚀 Translate Song';
-                loadingDiv.style.display = 'none';
-            }
+    },
+    {
+        id: 'eli-eli',
+        title: 'My God, My God (A Walk to Caesarea)',
+        hebrewTitle: 'אלי, אלי (הליכה לקיסריה)',
+        artist: 'Hannah Szenes',
+        youtubeId: 'QTQdu1j_y5g',
+        description: 'A famous poem by Hannah Szenes, a paratrooper who was captured and executed during WWII.',
+        tags: ['Yom HaShoah', 'Hope', 'Poetry'],
+        lyrics: {
+            hebrew: [
+                'אלי, אלי',
+                'שלא יגמר לעולם',
+                'החול והים',
+                'רשרוש של המים',
+                'ברק השמיים',
+                'תפילת האדם'
+            ],
+            english: [
+                'My God, my God',
+                'May it never end',
+                'The sand and the sea',
+                'The rush of the water',
+                'The crash of the heavens',
+                'The prayer of man.'
+            ],
+            transliteration: [
+                'Eli, Eli',
+                'Shelo yigamer le\'olam',
+                'Hachol vehayam',
+                'Rishrush shel hamayim',
+                'Brak hashamayim',
+                'Tefilat ha\'adam'
+            ]
+        },
+        context: "Written in 1942 by Hannah Szenes, a poet and Special Operations Executive paratrooper. She was captured behind enemy lines in Hungary and executed in 1944. The poem, filled with imagery of nature's eternity, is a powerful plea for hope and continuity in the face of immense darkness. It is a cornerstone of Yom HaShoah commemorations.",
+        analysis: {
+            theme: 'Endurance & Hope',
+            era: '1940s',
+            emotion: 'Wistful, Hopeful',
+            difficulty: 'Beginner'
         }
-
-        function showYouTubePlayer() {
-            document.getElementById('youtube-translator').style.display = 'none';
-            document.getElementById('youtube-player').classList.add('active');
-            if (currentTranslation) {
-                loadTranslationIntoPlayer(currentTranslation);
-            }
+    },
+    {
+        id: 'ein-li-eretz-acheret',
+        title: 'I Have No Other Country',
+        hebrewTitle: 'אין לי ארץ אחרת',
+        artist: 'Gali Atari (words by Ehud Manor)',
+        youtubeId: '1zPhm-aEGJg',
+        description: 'A powerful anthem of belonging and resilience, expressing a deep, sometimes painful, love for Israel.',
+        tags: ['Hope', 'Resilience', 'Peace'],
+        lyrics: {
+            hebrew: [
+                'אין לי ארץ אחרת',
+                'גם אם אדמתי בוערת',
+                'רק מילה בעברית חודרת',
+                'אל עורקיי, אל נשמתי',
+                'בגופי הכואב',
+                'בלב הרעב',
+                'פה הוא ביתי.'
+            ],
+            english: [
+                'I have no other country',
+                'Even if my land is burning',
+                'Only a word in Hebrew penetrates',
+                'Into my veins, into my soul',
+                'With an aching body',
+                'With a hungry heart',
+                'Here is my home.'
+            ],
+            transliteration: [
+                'Ein li eretz acheret',
+                'Gam im admati bo\'eret',
+                'Rak milah be\'ivrit choderet',
+                'El orakai, el nishmati',
+                'Begufi hako\'ev',
+                'Balev hara\'ev',
+                'Po hu beiti.'
+            ]
+        },
+        context: "With lyrics by Ehud Manor and music by Corinne Allal, this song became an anthem of the Israeli peace movement. Written during the First Lebanon War, it conveys a message of fierce attachment to the land, even amidst pain and disagreement. It speaks to the idea that despite its flaws and conflicts, Israel is the only home for its people, a place they will not abandon.",
+        analysis: {
+            theme: 'Patriotism & Resilience',
+            era: '1980s',
+            emotion: 'Defiant, Passionate',
+            difficulty: 'Intermediate'
         }
-
-        function loadTranslationIntoPlayer(translation) {
-            // Update header
-            document.getElementById('yt-song-title').textContent = translation.title;
-            document.getElementById('yt-hebrew-title').textContent = translation.hebrewTitle;
-            document.getElementById('yt-song-artist').textContent = translation.artist;
-            
-            // Embed YouTube player
-            const embedContainer = document.getElementById('youtube-embed-container');
-            embedContainer.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${translation.youtubeId}?enablejsapi=1" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>`;
-            
-            // Load lyrics
-            displayYouTubeLyrics(translation);
-            
-            // Load AI analysis
-            document.getElementById('song-theme').textContent = translation.theme || 'N/A';
-            document.getElementById('song-era').textContent = translation.era || 'N/A';
-            document.getElementById('song-emotion').textContent = translation.emotion || 'N/A';
-            document.getElementById('song-difficulty').textContent = translation.difficulty || 'N/A';
-            
-            // Load context
-            document.getElementById('yt-song-context').innerHTML = `<p>${translation.context || 'No context provided.'}</p>`;
+    },
+    {
+        id: 'shir-hareut',
+        title: 'The Song of Friendship',
+        hebrewTitle: 'שיר הרעות',
+        artist: 'The Chizbatron (words by Haim Gouri)',
+        youtubeId: 'SjgXf7pE-oM',
+        description: 'An iconic song of camaraderie and loss, written during the 1948 War of Independence.',
+        tags: ['Yom HaZikaron', 'Friendship', 'War of Independence'],
+        lyrics: {
+            hebrew: [
+                'על הנגב יורד ליל הסתיו',
+                'ומצית כוכבים חרש חרש',
+                'עת הרוח עובר על הסף',
+                'עננים מהלכים על הדרך.',
+                'הרעות נשאנוך בלי מילים',
+                'אפורה, עקשנית ושותקת',
+                'ונזכור את כולם',
+                'את יפי הבלורית והתואר.'
+            ],
+            english: [
+                'The autumn night descends on the Negev',
+                'And quietly, quietly, lights the stars',
+                'As the wind passes over the threshold',
+                'Clouds are walking on the road.',
+                'The friendship, we carried you without words',
+                'Gray, stubborn and silent',
+                'And we will remember them all',
+                'The ones with the handsome hair and stature.'
+            ],
+            transliteration: [
+                'Al haNegev yored leil hastav',
+                'Umatzit kochavim cheresh cheresh',
+                'Et haruach over al hasaf',
+                'Ananim mehalchim al haderech.',
+                'HaRe\'ut nasanuch bli milim',
+                'Aforah, akshanit veshoketet',
+                'Venizkor et kulam',
+                'Et yefei hablorit vehatoar.'
+            ]
+        },
+        context: "Written by Haim Gouri during the 1948 War of Independence, this song is the ultimate anthem of comradeship ('Re\'ut') among soldiers. It speaks of the silent, unbreakable bond between those who fought together and the promise to remember those who fell. Its somber melody and powerful lyrics have made it a central part of Israeli memorial ceremonies.",
+        analysis: {
+            theme: 'Friendship & Remembrance',
+            era: '1940s',
+            emotion: 'Solemn, Nostalgic',
+            difficulty: 'Advanced'
         }
-
-        function displayYouTubeLyrics(translation) {
-            const hebrewContainer = document.getElementById('yt-hebrew-lyrics');
-            const englishContainer = document.getElementById('yt-english-lyrics');
-            const transliterationContainer = document.getElementById('yt-transliteration-lyrics');
-
-            hebrewContainer.innerHTML = '';
-            englishContainer.innerHTML = '';
-            transliterationContainer.innerHTML = '';
-
-            // Check if lyrics arrays exist and have content
-            if (!translation.hebrew || translation.hebrew.length === 0) {
-                englishContainer.innerHTML = '<div class="lyric-line">Could not process lyrics.</div>';
-                return;
-            }
-
-            translation.hebrew.forEach((line, index) => {
-                const hebrewLine = document.createElement('div');
-                hebrewLine.className = 'lyric-line';
-                hebrewLine.textContent = line;
-                hebrewLine.onclick = () => highlightYouTubeLine(index);
-                hebrewContainer.appendChild(hebrewLine);
-
-                const englishLine = document.createElement('div');
-                englishLine.className = 'lyric-line';
-                englishLine.textContent = translation.english[index] || '';
-                englishLine.onclick = () => highlightYouTubeLine(index);
-                englishContainer.appendChild(englishLine);
-
-                const transliterationLine = document.createElement('div');
-                transliterationLine.className = 'lyric-line';
-                transliterationLine.textContent = translation.transliteration[index] || '';
-                transliterationLine.onclick = () => highlightYouTubeLine(index);
-                transliterationContainer.appendChild(transliterationLine);
-            });
+    },
+    {
+        id: 'yerushalayim-shel-zahav',
+        title: 'Jerusalem of Gold',
+        hebrewTitle: 'ירושלים של זהב',
+        artist: 'Naomi Shemer',
+        youtubeId: 'l0d-P7Y_pLM',
+        description: 'A deeply poetic and longing ode to Jerusalem, written just before the Six-Day War that reunified the city.',
+        tags: ['Hope', 'Jerusalem', 'Six-Day War'],
+        lyrics: {
+            hebrew: [
+                'אוויר הרים צלול כיין',
+                'וריח אורנים',
+                'נישא ברוח הערביים',
+                'עם קול פעמונים.',
+                'ירושלים של זהב',
+                'ושל נחושת ושל אור',
+                'הלא לכל שיריך אני כינור.'
+            ],
+            english: [
+                'Mountain air as clear as wine',
+                'And the scent of pines',
+                'Is carried on the evening wind',
+                'With the sound of bells.',
+                'Jerusalem of gold',
+                'And of copper and of light',
+                'Am I not a violin for all your songs?'
+            ],
+            transliteration: [
+                'Avir harim tzalul kayayin',
+                'Ve\'reach oranim',
+                'Nisa be\'ruach ha\'arbayim',
+                'Im kol pa\'amonim.',
+                'Yerushalayim shel zahav',
+                'Veshel nechoshet veshel or',
+                'Halo lechol shirayich ani kinor.'
+            ]
+        },
+        context: "Composed by Naomi Shemer for the 1967 Israeli Song Festival. Written just weeks before the Six-Day War, it expressed the 2,000-year-old Jewish yearning for a return to an inaccessible, divided Jerusalem. After the war, when the Old City was captured by Israeli forces, Shemer added a triumphant final verse. It is considered Israel's unofficial second national anthem.",
+        analysis: {
+            theme: 'Longing & Homecoming',
+            era: '1960s',
+            emotion: 'Yearning, Reverent',
+            difficulty: 'Intermediate'
         }
+    },
+    {
+        id: 'milyon-kochavim',
+        title: 'A Million Stars',
+        hebrewTitle: 'מיליון כוכבים',
+        artist: 'Amit Farkash',
+        youtubeId: 'QZovYp8y5gE',
+        description: 'A touching song written by a friend in memory of Tom Farkash, an Air Force pilot killed in the Second Lebanon War.',
+        tags: ['Yom HaZikaron', 'Loss', 'Second Lebanon War'],
+        lyrics: {
+            hebrew: [
+                'יש מיליון כוכבים הלילה',
+                'והלב שלי שבור',
+                'אני זוכר איך שהבטחת',
+                'שתחזור לפני שיעבור.',
+                'אמרת נסיים את המלחמה הזאת',
+                'ננצח ונחזור',
+                'אבל הנה נשארתי לבדי',
+                'עם חור שחור.'
+            ],
+            english: [
+                'There are a million stars tonight',
+                'And my heart is broken',
+                'I remember how you promised',
+                'That you would return before it was over.',
+                'You said we will finish this war',
+                'We will win and come back',
+                'But here I am, left alone',
+                'With a black hole.'
+            ],
+            transliteration: [
+                'Yesh milyon kochavim halayla',
+                'Ve\'halev sheli shavur',
+                'Ani zocher eich she\'hivtachta',
+                'She\'tachazor lifnei she\'yaavor.',
+                'Amarta nesayem et hamilchama hazot',
+                'Nenatzeach ve\'nachzor',
+                'Aval hina nisharti levadi',
+                'Im chor shachor.'
+            ]
+        },
+        context: "This song was written by Yiftach Kerzner in memory of his friend Tom Farkash, an IAF helicopter pilot who was killed in the Second Lebanon War in 2006. Tom's sister, Amit Farkash, performed it, and her emotional delivery turned it into one of modern Israel's most well-known songs of mourning. It speaks to the younger generation's experience of loss and has become a staple of Yom HaZikaron ceremonies.",
+        analysis: {
+            theme: 'Modern Loss',
+            era: '2000s',
+            emotion: 'Heartbroken, Intimate',
+            difficulty: 'Beginner'
+        }
+    },
+    {
+        id: 'bab-el-wad',
+        title: 'Bab el-Wad',
+        hebrewTitle: 'באב אל וואד',
+        artist: 'Yafa Yarkoni',
+        youtubeId: '3LwT2JgVjeo',
+        description: 'A memorial song for the soldiers who fell trying to break the siege of Jerusalem in the 1948 War of Independence.',
+        tags: ['Yom HaZikaron', 'Jerusalem', 'War of Independence'],
+        lyrics: {
+            hebrew: [
+                'פה אני עובר, ניצב ליד האבן.',
+                'כביש אספלט שחור, סלעים ורכסים.',
+                'ערב אט יורד, רוח ים נושבת',
+                'אור כוכב ראשון מעל בית מחסיר.',
+                'באב אל וואד,',
+                'לנצח זכור נא את שמותינו,',
+                'שיירות פרצו בדרך אל העיר.'
+            ],
+            english: [
+                'Here I pass, standing by the stone.',
+                'A black asphalt road, rocks and ridges.',
+                'Evening slowly falls, a sea breeze blows',
+                'The light of the first star over Beit Machsir.',
+                'Bab el-Wad,',
+                'Forever remember our names,',
+                'Convoys broke through on the road to the city.'
+            ],
+            transliteration: [
+                'Po ani over, nitzav leyad ha\'even.',
+                'Kvish asfalt shachor, sla\'im u\'rechasim.',
+                'Erev at yored, ruach yam noshevet',
+                'Or kochav rishon me\'al Beit Machsir.',
+                'Bab el Wad,',
+                'Lanetzach zechor na et shmoteinu,',
+                'Shayarot partzu baderech el ha\'ir.'
+            ]
+        },
+        context: "Bab el-Wad (Sha'ar HaGai in Hebrew) is a valley on the Tel Aviv-Jerusalem highway where fierce battles took place during the 1948 War of Independence. Convoys trying to break the Arab siege of Jerusalem were ambushed there, with heavy casualties. The song, with words by Haim Gouri, gives voice to the fallen, asking passersby to remember their sacrifice which opened the road to the city. The rusted, armored vehicles of those convoys are still preserved on the side of the road today as a memorial.",
+        analysis: {
+            theme: 'Sacrifice & Memory',
+            era: '1940s',
+            emotion: 'Solemn, Commemorative',
+            difficulty: 'Advanced'
+        }
+    },
+    {
+        id: 'anachnu-nisharim',
+        title: 'We are Staying',
+        hebrewTitle: 'אנחנו נשארים',
+        artist: 'Dudu Zakai',
+        youtubeId: 'u2cVLrRUd4I',
+        description: 'A defiant song of continuity and connection to the land, written after the evacuation of Yamit in Sinai.',
+        tags: ['Resilience', 'Hope', 'Peace'],
+        lyrics: {
+            hebrew: [
+                'הפרחים ידממו בעוד שנה',
+                'בצבעים שהיו לפני ואחרי',
+                'ואנחנו נהיה שנינו כאן',
+                'בגשמים וברוחות הסתיו האחרים',
+                'כי אנחנו נשארים',
+                'אנחנו נשארים'
+            ],
+            english: [
+                'The flowers will bleed in another year',
+                'In colors that were before and after',
+                'And we will both be here',
+                'In the rains and winds of other autumns',
+                'Because we are staying',
+                'We are staying'
+            ],
+            transliteration: [
+                'Haprachim yedamemu be\'od shana',
+                'Bitzvaim shehayu lifnei ve\'acharei',
+                'Ve\'anachnu nihiye shneinu kan',
+                'Bagshamim uveruchot hastav ha\'acherim',
+                'Ki anachnu nisharim',
+                'Anachnu nisharim'
+            ]
+        },
+        context: "Written by Halel Mittelpunkt after the wrenching 1982 evacuation of the Israeli settlement of Yamit in the Sinai Peninsula as part of the peace treaty with Egypt. The song became an anthem of the settlers who felt uprooted, expressing a deep-seated determination to remain connected to the Land of Israel, no matter the political circumstances. It captures a sense of defiant permanence and love for the land itself.",
+        analysis: {
+            theme: 'Continuity',
+            era: '1980s',
+            emotion: 'Determined, Bittersweet',
+            difficulty: 'Intermediate'
+        }
+    },
+    {
+        id: 'paamon-kaved',
+        title: 'A Heavy Bell',
+        hebrewTitle: 'פעמון כבד',
+        artist: 'Dan Almagor',
+        youtubeId: 'u4k7rR0Vz4w',
+        description: 'A poem written in the immediate, raw aftermath of the Yom Kippur War, lamenting the loss of an entire generation.',
+        tags: ['Yom HaZikaron', 'Loss', 'Yom Kippur War'],
+        lyrics: {
+            hebrew: [
+                'צלצול של פעמון כבד ורם',
+                'היה צריך להעיר את כל העם',
+                'ולהזכיר לכולנו שוב ושוב',
+                'את מה שכבר כמעט נשכח',
+                'שעל הבנים שנפלו במלחמה',
+                'עדיין לא שולמה המקדמה.'
+            ],
+            english: [
+                'The ring of a heavy and loud bell',
+                'Should have woken the entire nation',
+                'And reminded us all, again and again',
+                'That which was almost forgotten',
+                'That for the sons who fell in the war',
+                'The down payment has not yet been made.'
+            ],
+            transliteration: [
+                'Tziltzul shel pa\'amon kaved veram',
+                'Haya tzarich leha\'ir et kol ha\'am',
+                'Ulehazkir lekulanu shuv veshuv',
+                'Et ma shekvar kimat nishkach',
+                'She\'al habanim shenoflu bamilchama',
+                'Adayin lo shulma hamikdama.'
+            ]
+        },
+        context: "This song, with sharp lyrics by Dan Almagor, is a piece of social and political criticism written in the wake of the Yom Kippur War. It laments the societal forgetfulness and the return to normalcy that often follows conflict, arguing that the nation has not fully paid its debt or learned its lesson from the sacrifice of its fallen soldiers. It's a call for perpetual remembrance and accountability.",
+        analysis: {
+            theme: 'National Memory',
+            era: '1970s',
+            emotion: 'Critical, Somber',
+            difficulty: 'Advanced'
+        }
+    },
+    {
+        id: 'ktov-et-ze-be-iparon',
+        title: 'Write it with a Pencil',
+        hebrewTitle: 'כתוב את זה בעיפרון',
+        artist: 'Samy Samir',
+        youtubeId: '16gY_aAlaas',
+        description: 'The story of a Holocaust survivor who asks for his concentration camp number to be written in pencil, hoping to one day erase it.',
+        tags: ['Yom HaShoah', 'Hope', 'Resilience'],
+        lyrics: {
+            hebrew: [
+                'כתוב את זה בעיפרון',
+                'בתוך הקרון החתום',
+                'אם לא תמצא קרון',
+                'כתוב על העצמות שלי',
+                'ואם אני אמות',
+                'תחיה אתה, תספר אתה',
+                'מה שקרה לי.'
+            ],
+            english: [
+                'Write it with a pencil',
+                'Inside the sealed train car',
+                'If you cannot find a car',
+                'Write on my bones',
+                'And if I die',
+                'You will live, you will tell',
+                'What happened to me.'
+            ],
+            transliteration: [
+                'Ktov et ze be\'iparon',
+                'Betoch hakaron hechatum',
+                'Im lo timtza karon',
+                'Ktov al ha\'atzamot sheli',
+                'Ve\'im ani amut',
+                'Tichyeh ata, tesaper ata',
+                'Ma shekara li.'
+            ]
+        },
+        context: "Based on the poem by Dan Pagis, a Holocaust survivor. The original poem speaks of Eve in the Garden of Eden, but the song adaptation powerfully re-contextualizes it to the Holocaust. The line 'write it with a pencil' captures a heartbreaking, almost naive hope that the horrific reality could somehow be temporary or erasable. It is a profound meditation on memory, testimony, and the impossible desire to undo trauma.",
+        analysis: {
+            theme: 'Testimony & Trauma',
+            era: 'Post-Holocaust',
+            emotion: 'Haunting, Fragile',
+            difficulty: 'Advanced'
+        }
+    },
+    {
+        id: 'magash-hakesef',
+        title: 'The Silver Platter',
+        hebrewTitle: 'מגש הכסף',
+        artist: 'Natan Alterman (Poem)',
+        youtubeId: 'h8s6A4h-0-s',
+        description: 'A famous poem depicting the fallen soldiers of 1948 as the "silver platter" on which the state of Israel was founded.',
+        tags: ['Yom HaZikaron', 'Sacrifice', 'War of Independence'],
+        lyrics: {
+            hebrew: [
+                'והארץ תשקוט, עין שמיים אודמת',
+                'תעמעם לאיטה על גבולות עשנים.',
+                'ואומה תעמוד, קרועת לב אך נושמת',
+                'לקבל את הנס האחד, אין שני.',
+                '...ואז יצאו נערה ונער',
+                'ואט אט יצעדו הם מול האומה.',
+                'לבושי חג וקרב, כבדי נשק וקסם',
+                'ויאמרו: אנחנו מגש הכסף',
+                'שעליו לך ניתנה מדינת היהודים.'
+            ],
+            english: [
+                'And the land will grow still, the red eye of the sky',
+                'Will slowly dim over smoking borders.',
+                'And a nation will stand, heartbroken but breathing',
+                'To receive the one miracle, there is no second.',
+                '...And then a girl and a boy will step forward',
+                'And slowly they will march before the nation.',
+                'Dressed for festival and battle, heavy with weapons and charm',
+                'And they will say: We are the silver platter',
+                'On which the Jewish state was given to you.'
+            ],
+            transliteration: [
+                'Veha\'aretz tishkot, ein shamayim odemet',
+                'Te\'am\'em le\'itah al gvulot ashenim.',
+                'Ve\'umah ta\'amod, kru\'at lev ach noshemet',
+                'Lekabel et hanes ha\'echad, ein sheni.',
+                '...Ve\'az yitz\'u na\'arah ve\'na\'ar',
+                'Ve\'at at yitz\'adu hem mul ha\'umah.',
+                'Levushei chag u\'krav, kvedei neshek ve\'kesem',
+                'Veyomru: Anachnu magash hakesef',
+                'She\'alav lach nitna medinat hayehudim.'
+            ]
+        },
+        context: "Natan Alterman's iconic 1947 poem is not a song in the traditional sense, but its recitation is a pillar of Yom HaZikaron. It answers a hypothetical question from Chaim Weizmann that a state is not given on a silver platter. Alterman's response is that the state *was* delivered on a silver platter—but that platter was the generation of young men and women who gave their lives for its creation. It is the ultimate Israeli expression of the concept of national sacrifice.",
+        analysis: {
+            theme: 'National Sacrifice',
+            era: '1940s',
+            emotion: 'Solemn, Mythic',
+            difficulty: 'Advanced'
+        }
+    }
+];
 
-        function highlightYouTubeLine(index) {
-            document.querySelectorAll('#youtube-player .lyric-line').forEach(line => {
-                line.classList.remove('active');
-            });
-            const hebrewLines = document.querySelectorAll('#yt-hebrew-lyrics .lyric-line');
-            const englishLines = document.querySelectorAll('#yt-english-lyrics .lyric-line');
-            const transliterationLines = document.querySelectorAll('#yt-transliteration-lyrics .lyric-line');
-            if (hebrewLines[index]) hebrewLines[index].classList.add('active');
-            if (englishLines[index]) englishLines[index].classList.add('active');
-            if (transliterationLines[index]) transliterationLines[index].classList.add('active');
-        }
+// =================================================================================
+//  WEBSITE FUNCTIONALITY
+//  The code below powers the library, search, and player. No need to edit this.
+// =================================================================================
 
-        // Utility functions (no major changes)
-        function syncLyrics() { showStatus('Lyrics sync feature coming soon!', 'warning'); }
-        function downloadTranslation() {
-            if (!currentTranslation) return;
-            const content = generateDownloadContent(currentTranslation);
-            downloadFile(`${currentTranslation.title}_translation.txt`, content);
-            showStatus('Translation downloaded!', 'success');
-        }
-        function generateDownloadContent(t) { return `Title: ${t.title}\nArtist: ${t.artist}\n\n--- HEBREW ---\n${t.hebrew.join('\n')}\n\n--- ENGLISH ---\n${t.english.join('\n')}\n\n--- PRONUNCIATION ---\n${t.transliteration.join('\n')}\n\n--- CONTEXT ---\n${t.context}`; }
-        function downloadFile(filename, content) {
-            const element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
-            element.setAttribute('download', filename);
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
-        function shareSong() {
-            if (!currentTranslation) return;
-            const shareUrl = `${window.location.origin}${window.location.pathname}?song=${encodeURIComponent(currentTranslation.youtubeId)}`;
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                showStatus('Share link copied to clipboard!', 'success');
-            });
-        }
-        function showStatus(message, type) {
-            const statusDiv = document.getElementById('status-message');
-            statusDiv.className = `status-message status-${type}`;
-            statusDiv.textContent = message;
-            statusDiv.style.display = 'block';
-            setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    populateFilters();
+    renderLibrary();
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('youtube-url').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    translateYouTubeSong();
-                }
-            });
+    const searchBar = document.getElementById('search-bar');
+    searchBar.addEventListener('input', () => renderLibrary());
+    
+    document.querySelectorAll('#tag-filters button').forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+            renderLibrary();
         });
-    </script>
+    });
+});
+
+function populateFilters() {
+    const allTags = new Set(songDatabase.flatMap(song => song.tags));
+    const filtersContainer = document.getElementById('tag-filters');
+    filtersContainer.innerHTML = ''; // Clear existing
+    allTags.forEach(tag => {
+        const button = document.createElement('button');
+        button.textContent = tag;
+        button.dataset.tag = tag;
+        filtersContainer.appendChild(button);
+    });
+}
+
+function renderLibrary() {
+    const libraryContainer = document.getElementById('song-library');
+    const noResultsDiv = document.getElementById('no-results');
+    libraryContainer.innerHTML = '';
+
+    const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+    const activeTags = Array.from(document.querySelectorAll('#tag-filters button.active')).map(b => b.dataset.tag);
+
+    const filteredSongs = songDatabase.filter(song => {
+        const matchesSearch = 
+            song.title.toLowerCase().includes(searchTerm) ||
+            song.artist.toLowerCase().includes(searchTerm) ||
+            song.hebrewTitle.includes(searchTerm);
+        
+        const matchesTags = activeTags.length === 0 || activeTags.every(tag => song.tags.includes(tag));
+
+        return matchesSearch && matchesTags;
+    });
+    
+    if (filteredSongs.length === 0) {
+        noResultsDiv.style.display = 'block';
+    } else {
+        noResultsDiv.style.display = 'none';
+    }
+
+    filteredSongs.forEach(song => {
+        const card = document.createElement('div');
+        card.className = 'song-card';
+        card.onclick = () => loadSong(song.id);
+        
+        const tagsHtml = song.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+        card.innerHTML = `
+            <h3>${song.title}</h3>
+            <div class="hebrew-title">${song.hebrewTitle}</div>
+            <div class="artist">${song.artist}</div>
+            <p class="description">${song.description}</p>
+            <div class="tags">${tagsHtml}</div>
+        `;
+        libraryContainer.appendChild(card);
+    });
+}
+
+function loadSong(songId) {
+    const song = songDatabase.find(s => s.id === songId);
+    if (!song) return;
+
+    // Populate header
+    document.getElementById('song-title').textContent = song.title;
+    document.getElementById('hebrew-title').textContent = song.hebrewTitle;
+    document.getElementById('song-artist').textContent = song.artist;
+
+    // Embed YouTube video
+    document.getElementById('youtube-embed-container').innerHTML = 
+        `<iframe src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    
+    // Populate analysis
+    document.getElementById('song-theme').textContent = song.analysis.theme;
+    document.getElementById('song-era').textContent = song.analysis.era;
+    document.getElementById('song-emotion').textContent = song.analysis.emotion;
+    document.getElementById('song-difficulty').textContent = song.analysis.difficulty;
+    
+    // Populate lyrics
+    const hebrewContainer = document.getElementById('hebrew-lyrics');
+    const englishContainer = document.getElementById('english-lyrics');
+    const transliterationContainer = document.getElementById('transliteration-lyrics');
+    hebrewContainer.innerHTML = song.lyrics.hebrew.map(line => `<div class="lyric-line">${line}</div>`).join('');
+    englishContainer.innerHTML = song.lyrics.english.map(line => `<div class="lyric-line">${line}</div>`).join('');
+    transliterationContainer.innerHTML = song.lyrics.transliteration.map(line => `<div class="lyric-line">${line}</div>`).join('');
+
+    // Populate context
+    document.getElementById('song-context').innerHTML = `<p>${song.context.replace(/\n/g, '</p><p>')}</p>`;
+
+    showView('player-section');
+}
+
+function showView(viewId) {
+    document.getElementById('library-section').style.display = 'none';
+    document.getElementById('player-section').style.display = 'none';
+    document.getElementById('about-section').style.display = 'none';
+    
+    document.getElementById(viewId).style.display = 'block';
+
+    document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+    if (viewId === 'library-section') {
+        document.querySelector('.nav-button[onclick="showView(\'library-section\')"]').classList.add('active');
+    } else if (viewId === 'about-section') {
+        document.querySelector('.nav-button[onclick="showView(\'about-section\')"]').classList.add('active');
+    }
+    
+    window.scrollTo(0, 0); // Scroll to top on view change
+}
+
+</script>
 </body>
 </html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebrew Songs Translation - AI-Powered YouTube Integration</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --text-color: #2c3e50;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --border-color: #e9ecef;
+            --hebrew-color: #8b4513;
+            --english-color: #2c3e50;
+            --transliteration-color: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .header-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .navigation {
+            background: var(--card-background);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: none;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-button:hover,
+        .nav-button.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        /* YouTube Input Section */
+        .youtube-input-section {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .youtube-input-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .url-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .translate-button {
+            background: linear-gradient(135deg, var(--success-color), #2ecc71);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .translate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        }
+
+        .translate-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option-group {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .option-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .option-group select,
+        .option-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Loading States */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 8px;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--secondary-color), var(--success-color));
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* YouTube Player Section */
+        .youtube-player-section {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .youtube-player-section.active {
+            display: block;
+        }
+
+        .player-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .player-header h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-header .hebrew-title {
+            color: var(--hebrew-color);
+            font-size: 1.5rem;
+            direction: rtl;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-header .artist {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .youtube-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .youtube-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .lyrics-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .lyrics-column {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .hebrew-lyrics {
+            border-top-color: var(--hebrew-color);
+            direction: rtl;
+            text-align: right;
+        }
+
+        .english-lyrics {
+            border-top-color: var(--english-color);
+        }
+
+        .transliteration-lyrics {
+            border-top-color: var(--transliteration-color);
+        }
+
+        .lyrics-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hebrew-lyrics h3 {
+            color: var(--hebrew-color);
+        }
+
+        .english-lyrics h3 {
+            color: var(--english-color);
+        }
+
+        .transliteration-lyrics h3 {
+            color: var(--transliteration-color);
+        }
+
+        .lyric-line {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            line-height: 1.6;
+        }
+
+        .lyric-line:hover {
+            background: rgba(52, 152, 219, 0.1);
+            border-left-color: var(--secondary-color);
+        }
+
+        .lyric-line.active {
+            background: rgba(52, 152, 219, 0.2);
+            border-left-color: var(--secondary-color);
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+        }
+
+        .cultural-context {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .cultural-context h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .cultural-context p {
+            color: #495057;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-button:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .back-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #c0392b;
+        }
+
+        /* Song Library Styles */
+        .song-library {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .song-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .song-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .song-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .song-card .hebrew-title {
+            color: var(--hebrew-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .song-card .artist {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .song-card .description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .lyrics-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .song-library {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* AI Analysis Section */
+        .ai-analysis {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .ai-analysis h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .analysis-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .analysis-card h4 {
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Hebrew Songs Translation</h1>
+                <p>AI-Powered YouTube Integration - Translate any Hebrew song instantly with cultural context and perfect pronunciation guides</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-content">
+                <button class="nav-button active" onclick="showYouTubeTranslator()">🎵 YouTube Translator</button>
+                <button class="nav-button" onclick="showLibrary()">📚 Song Library</button>
+                <button class="nav-button" onclick="showAbout()">ℹ️ About</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- YouTube Translator Section -->
+            <section id="youtube-translator" class="youtube-input-section">
+                <h2>🎬 Translate Any Hebrew Song from YouTube</h2>
+                <p style="margin-bottom: 1.5rem; color: #6c757d;">Simply paste a YouTube URL of any Hebrew song, and our AI will automatically extract, translate, and provide cultural context!</p>
+                
+                <div class="status-message" id="status-message"></div>
+
+                <div class="input-group">
+                    <input type="text" 
+                           id="youtube-url" 
+                           class="url-input" 
+                           placeholder="Paste YouTube URL here (e.g., https://www.youtube.com/watch?v=...)"
+                           value="">
+                    <button class="translate-button" onclick="translateYouTubeSong()" id="translate-btn">
+                        🚀 Translate Song
+                    </button>
+                </div>
+
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label>Translation Style:</label>
+                        <select id="translation-style">
+                            <option value="poetic">Poetic & Meaningful</option>
+                            <option value="literal">Literal Translation</option>
+                            <option value="singable">Singable English</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Include Cultural Context:</label>
+                        <input type="checkbox" id="include-context" checked>
+                        <span>Add historical/cultural background</span>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Transliteration Style:</label>
+                        <select id="transliteration-style">
+                            <option value="ashkenazi">Ashkenazi Hebrew</option>
+                            <option value="sephardic">Sephardic Hebrew</option>
+                            <option value="modern">Modern Israeli</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="loading-spinner" id="loading-spinner">
+                    <div class="spinner"></div>
+                    <div id="loading-text">Analyzing video and extracting lyrics...</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- YouTube Player Section -->
+            <section id="youtube-player" class="youtube-player-section">
+                <button class="back-button" onclick="showYouTubeTranslator()">← Back to Translator</button>
+                
+                <div class="player-header">
+                    <h2 id="yt-song-title">Song Title</h2>
+                    <div class="hebrew-title" id="yt-hebrew-title">כותרת בעברית</div>
+                    <div class="artist" id="yt-song-artist">Artist Name</div>
+                </div>
+
+                <div class="youtube-embed" id="youtube-embed-container">
+                    <!-- YouTube iframe will be inserted here -->
+                </div>
+
+                <div class="controls">
+                    <button class="control-button" onclick="syncLyrics()">🔄 Sync Lyrics</button>
+                    <button class="control-button" onclick="downloadTranslation()">💾 Download</button>
+                    <button class="control-button" onclick="shareSong()">🔗 Share</button>
+                </div>
+
+                <div class="lyrics-container">
+                    <div class="lyrics-column hebrew-lyrics">
+                        <h3>עברית (Hebrew Original)</h3>
+                        <div id="yt-hebrew-lyrics"></div>
+                    </div>
+                    <div class="lyrics-column english-lyrics">
+                        <h3>English Translation</h3>
+                        <div id="yt-english-lyrics"></div>
+                    </div>
+                    <div class="lyrics-column transliteration-lyrics">
+                        <h3>Heblish (Pronunciation)</h3>
+                        <div id="yt-transliteration-lyrics"></div>
+                    </div>
+                </div>
+
+                <div class="ai-analysis" id="ai-analysis">
+                    <h3>🤖 AI Song Analysis</h3>
+                    <div class="analysis-grid">
+                        <div class="analysis-card">
+                            <h4>Theme</h4>
+                            <p id="song-theme">Loading...</p>
+                        </div>
+                        <div class="analysis-card">
+                            <h4>Era/Period</h4>
+                            <p id="song-era">Loading...</p>
+                        </div>
+                        <div class="analysis-card">
+                            <h4>Emotional Tone</h4>
+                            <p id="song-emotion">Loading...</p>
+                        </div>
+                        <div class="analysis-card">
+                            <h4>Difficulty Level</h4>
+                            <p id="song-difficulty">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cultural-context">
+                    <h3>📚 Cultural Context & Significance</h3>
+                    <div id="yt-song-context">
+                        <p>Cultural context will appear here after translation...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Song Library (existing content) -->
+            <section id="library" class="song-library" style="display: none;">
+                <div class="song-card" onclick="loadPresetSong('hatikvah')">
+                    <h3>Hatikvah</h3>
+                    <div class="hebrew-title">התקווה</div>
+                    <div class="artist">Naftali Herz Imber</div>
+                    <p class="description">Israel's national anthem, expressing the eternal hope of the Jewish people to return to their homeland.</p>
+                </div>
+
+                <div class="song-card" onclick="loadPresetSong('eli-eli')">
+                    <h3>Eli Eli</h3>
+                    <div class="hebrew-title">אלי אלי</div>
+                    <div class="artist">Hannah Szenes</div>
+                    <p class="description">A prayer written by Hannah Szenes before her execution in WWII.</p>
+                </div>
+
+                <div class="song-card" onclick="loadPresetSong('yerushalayim-shel-zahav')">
+                    <h3>Jerusalem of Gold</h3>
+                    <div class="hebrew-title">ירושלים של זהב</div>
+                    <div class="artist">Naomi Shemer</div>
+                    <p class="description">A poetic ode to Jerusalem, capturing the longing for the holy city.</p>
+                </div>
+
+                <div class="song-card" onclick="loadPresetSong('zochreinu')">
+                    <h3>Remember Us</h3>
+                    <div class="hebrew-title">זכרנו</div>
+                    <div class="artist">Traditional</div>
+                    <p class="description">A memorial song for Holocaust remembrance.</p>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" style="display: none;">
+                <div class="cultural-context">
+                    <h3>About This Project</h3>
+                    <p>This revolutionary platform combines the power of AI with deep cultural understanding to make Hebrew songs accessible to everyone. Our advanced system can analyze any Hebrew song from YouTube and provide:</p>
+                    
+                    <div class="analysis-grid" style="margin: 2rem 0;">
+                        <div class="analysis-card" style="background: rgba(52, 152, 219, 0.1); color: var(--text-color);">
+                            <h4 style="color: var(--secondary-color);">🎯 Smart Translation</h4>
+                            <p>AI-powered translation that preserves meaning, emotion, and cultural context</p>
+                        </div>
+                        <div class="analysis-card" style="background: rgba(46, 204, 113, 0.1); color: var(--text-color);">
+                            <h4 style="color: var(--success-color);">🎵 Perfect Pronunciation</h4>
+                            <p>Accurate transliteration in multiple Hebrew pronunciation styles</p>
+                        </div>
+                        <div class="analysis-card" style="background: rgba(231, 76, 60, 0.1); color: var(--text-color);">
+                            <h4 style="color: var(--accent-color);">📚 Cultural Context</h4>
+                            <p>Historical background and significance of each song</p>
+                        </div>
+                        <div class="analysis-card" style="background: rgba(243, 156, 18, 0.1); color: var(--text-color);">
+                            <h4 style="color: var(--warning-color);">🤖 AI Analysis</h4>
+                            <p>Theme identification, emotional analysis, and learning recommendations</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>How it works:</strong></p>
+                    <ol style="margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
+                        <li>Paste any YouTube URL of a Hebrew song</li>
+                        <li>Our AI extracts and analyzes the lyrics</li>
+                        <li>Get instant translation, transliteration, and cultural context</li>
+                        <li>Enjoy synchronized lyrics with the video</li>
+                    </ol>
+                    
+                    <p>Perfect for students learning Hebrew, people connecting with their heritage, or anyone who wants to understand the beautiful and profound messages in Hebrew music.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Powered by AI • Preserving memory through music • Making Hebrew songs accessible to the world</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample preset songs data
+        const presetSongs = {
+            'hatikvah': {
+                title: 'Hatikvah',
+                hebrewTitle: 'התקווה',
+                artist: 'Naftali Herz Imber',
+                youtubeId: 'SAMPLE_ID', // You'll replace with actual IDs
+                hebrew: [
+                    'כל עוד בלבב פנימה',
+                    'נפש יהודי הומיה',
+                    'ולפאתי מזרח קדימה',
+                    'עין לציון צופיה',
+                    'עוד לא אבדה תקותנו',
+                    'התקווה בת שנות אלפים',
+                    'להיות עם חפשי בארצנו',
+                    'ארץ ציון וירושלים'
+                ],
+                english: [
+                    'As long as in the heart, within',
+                    'A Jewish soul still yearns',
+                    'And onward, towards the ends of the east',
+                    'An eye still looks toward Zion',
+                    'Our hope is not yet lost',
+                    'The hope of two thousand years',
+                    'To be a free people in our land',
+                    'The land of Zion and Jerusalem'
+                ],
+                transliteration: [
+                    'Kol od balevav penimah',
+                    'Nefesh yehudi homiyah',
+                    'Ulfa\'atei mizrach kadimah',
+                    'Ayin letzion tzofiyah',
+                    'Od lo avdah tikvateinu',
+                    'Hatikvah bat shnot alpayim',
+                    'Lihyot am chofshi be\'artzeinu',
+                    'Eretz tzion viyerushalayim'
+                ],
+                context: `Hatikvah represents the eternal Jewish hope for return to the homeland. Written during the early Zionist period, it became Israel's national anthem and embodies 2,000 years of Jewish longing for Zion.`
+            }
+        };
+
+        let currentTranslation = null;
+        let youtubePlayer = null;
+
+        // Navigation functions
+        function showYouTubeTranslator() {
+            document.getElementById('youtube-translator').style.display = 'block';
+            document.getElementById('youtube-player').classList.remove('active');
+            document.getElementById('library').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+            
+            document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.nav-button')[0].classList.add('active');
+        }
+
+        function showLibrary() {
+            document.getElementById('youtube-translator').style.display = 'none';
+            document.getElementById('youtube-player').classList.remove('active');
+            document.getElementById('library').style.display = 'grid';
+            document.getElementById('about').style.display = 'none';
+            
+            document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll
